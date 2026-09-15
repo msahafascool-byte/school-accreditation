@@ -510,16 +510,10 @@ $('btnManageUsers').style.display=can('users')?'inline-flex':'none';
 $('btnPermissions').style.display=can('perms')?'inline-flex':'none';
 $('btnBackup').style.display=can('export')?'inline-flex':'none';
 $('cardClear').style.display=can('clear')?'block':'none';}
-
 function applyLogos(){
-const sEl=$('logoSchool'),mEl=$('logoMinistry');
-if(logoSchoolUrl){sEl.className='hdr-logo';sEl.innerHTML='<img src="'+logoSchoolUrl+'" alt="شعار المدرسة" style="width:100%;height:100%;object-fit:contain">';}
-else{sEl.className='hdr-logo empty';sEl.textContent='🏫';}
-if(logoMinistryUrl){mEl.className='hdr-logo';mEl.innerHTML='<img src="'+logoMinistryUrl+'" alt="شعار الوزارة" style="width:100%;height:100%;object-fit:contain">';}
-else{mEl.className='hdr-logo empty';mEl.textContent='🇸🇦';}
-// ربط الضغط للرفع
-sEl.onclick=()=>{if(can('logos'))uploadLogo('school');else toast('⚠️ لا تملك صلاحية رفع الشعارات','w');};
-mEl.onclick=()=>{if(can('logos'))uploadLogo('ministry');else toast('⚠️ لا تملك صلاحية رفع الشعارات','w');};}
+const logosEl=document.querySelector('.hdr-logos');
+if(logosEl)logosEl.style.display='none';
+}
 
 async function uploadLogo(type){
 const input=document.createElement('input');
