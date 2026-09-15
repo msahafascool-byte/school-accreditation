@@ -698,20 +698,31 @@ ua.ondrop=e=>{e.preventDefault();ua.classList.remove('dg');if(e.dataTransfer.fil
 $('startCameraArea').onclick=startCamera;
 $('btnStopCamera').onclick=stopCamera;
 $('btnCapture').onclick=capturePhoto;}
-
 async function handleFiles(files){
 if(!can('upload')){toast('⚠️ لا تملك صلاحية الرفع','w');return;}
-let n=0;
+toast('⏳ جارٍ الرفع...','');
+let n=0,errs=[];
 for(const f of files){
 try{
-let fname=f.name,fdata=await f2b64(f);
-// لو صورة: احفظها أيضاً في Storage للعرض السريع
-if(f.type&&f.type.startsWith('image/')&&f.size<2*1024*1024){
-try{const ref=storage.ref('evidence/'+curI+'/'+Date.now()+'_'+f.name);await ref.put(f);const url=await ref.getDownloadURL();fdata=url;}catch(e){console.warn('Storage upload failed, using base64',e);}
+if(f.size>800000){errs.push(f.name+' (كبير)');continue;}
+const fdata=await f2b64(f);
+await db.collection('files').add({
+code:curI,
+fileName:f.name,
+fileSize:f.size,
+fileType:f.type||'application/octet-stream',
+fileData:fdata,
+uploadDate:new Date().toISOString(),
+uploadedBy:currentUser?currentUser.email:''
+});
+n++;
+}catch(e){
+console.error('خطأ:',f.name,e);
+errs.push(f.name+' ('+(e.code||e.message)+')');
+}}
+if(n>0)toast('✅ تم حفظ '+n+' ملف','s');
+if(errs.length>0)toast('❌ فشل: '+errs.join(', '),'e');
 }
-await db.collection('files').add({code:curI,fileName:fname,fileSize:f.size,fileType:f.type,fileData:fdata,uploadDate:new Date().toISOString(),uploadedBy:currentUser.email});n++;
-}catch(e){console.error(e);}}
-if(n>0){toast('✅ تم حفظ '+n+' ملف','s');}else toast('❌ خطأ','e');}
 
 let cameraStream=null;
 function startCamera(){
