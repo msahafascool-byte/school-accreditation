@@ -704,8 +704,8 @@ toast('⏳ جارٍ الرفع...','');
 let n=0,errs=[];
 for(const f of files){
 try{
-if(f.size>800000){errs.push(f.name+' (كبير)');continue;}
-const fdata=await f2b64(f);
+if(f.size>900000){errs.push(f.name+' (أكثر من 900KB)');continue;}
+let fdata=await f2b64(f);
 await db.collection('files').add({
 code:curI,
 fileName:f.name,
