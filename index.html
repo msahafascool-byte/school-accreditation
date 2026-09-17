@@ -136,13 +136,16 @@ body{background:var(--bg);padding:20px;direction:rtl;min-height:100vh;color:var(
 .ab.x:hover{background:#dc2626;color:#fff}
 .ab.p{background:linear-gradient(135deg,#dbeafe 0%,#bfdbfe 100%);color:#1d4ed8}
 .ab.p:hover{background:#2563eb;color:#fff}
-.preview-modal{position:fixed;inset:0;background:rgba(15,23,42,.85);display:flex;align-items:center;justify-content:center;z-index:99999;padding:20px;animation:fadeIn .2s}
-.preview-content{background:#fff;border-radius:20px;max-width:95vw;max-height:95vh;width:auto;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.4)}
-.preview-header{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:2px solid var(--border);background:linear-gradient(135deg,#f0fdf4 0%,#ccfbf1 100%);border-radius:20px 20px 0 0}
-.preview-header h3{color:var(--primary);font-size:1rem;font-weight:800;margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:70vw}
-.preview-close{width:36px;height:36px;border-radius:50%;border:none;background:#fee2e2;color:#dc2626;font-size:1.2rem;cursor:pointer;font-weight:800;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.preview-modal{position:fixed;inset:0;background:rgba(15,23,42,.92);display:flex;align-items:center;justify-content:center;z-index:99999;padding:10px;animation:fadeIn .2s;backdrop-filter:blur(6px)}
+.preview-content{background:#fff;border-radius:20px;width:95vw;max-width:1400px;height:95vh;display:flex;flex-direction:column;box-shadow:0 25px 70px rgba(0,0,0,.5);overflow:hidden}
+.preview-header{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:2px solid var(--border);background:linear-gradient(135deg,#f0fdf4 0%,#ccfbf1 100%);flex-shrink:0}
+.preview-header h3{color:var(--primary);font-size:1rem;font-weight:800;margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;margin-left:12px}
+.preview-close{width:40px;height:40px;border-radius:50%;border:none;background:#fee2e2;color:#dc2626;font-size:1.3rem;cursor:pointer;font-weight:800;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
 .preview-close:hover{background:#dc2626;color:#fff;transform:rotate(90deg)}
-.preview-body{padding:20px;overflow:auto;background:#f8fffe;border-radius:0 0 20px 20px;min-width:320px;min-height:200px}
+.preview-body{padding:0;overflow:auto;background:#f1f5f9;flex:1;display:flex;align-items:center;justify-content:center;position:relative}
+.preview-body img{max-width:100%;max-height:100%;object-fit:contain;display:block}
+.preview-body iframe{width:100%;height:100%;border:none;background:#fff}
+.preview-body video{max-width:100%;max-height:100%;display:block}
 .es{text-align:center;padding:35px 20px;color:var(--text-light)}
 .es .ei{font-size:3rem;display:block;margin-bottom:12px;opacity:.5}
 .es p{font-size:.9rem}
@@ -213,6 +216,13 @@ body{background:var(--bg);padding:20px;direction:rtl;min-height:100vh;color:var(
 .sync.offline{color:#dc2626;border-color:#fecaca}
 .sync.offline .dot{background:#dc2626}
 footer{text-align:center;margin-top:40px;color:var(--text-light);font-size:.82rem;padding:20px;font-weight:600}
+@media(max-width:768px){
+.hdr{flex-direction:column;align-items:flex-start}
+.stats{grid-template-columns:1fr 1fr}
+.grid{grid-template-columns:1fr}
+.charts-grid{grid-template-columns:1fr}
+.preview-content{width:98vw;height:98vh}
+}
 </style>
 </head>
 <body>
@@ -284,7 +294,7 @@ footer{text-align:center;margin-top:40px;color:var(--text-light);font-size:.82re
 </div>
 <div class="sec" id="secUpload">
 <h3>📎 الشواهد والأدلة <span class="fcn" id="fCount">0 ملف</span></h3>
-<p class="hint">✅ الملفات محفوظة في السحابة</p>
+<p class="hint">✅ الملفات محفوظة في السحابة • اضغط 👁️ للمعاينة</p>
 <div class="upload-tabs">
 <button class="upload-tab active" data-tab="files" onclick="switchTab('files')">📎 رفع ملفات</button>
 <button class="upload-tab" data-tab="camera" onclick="switchTab('camera')">📷 تصوير</button>
@@ -705,11 +715,11 @@ const type=f.fileType||'';
 const name=f.fileName||'ملف';
 let content='';
 if(type.startsWith('image/')){
-content='<img src="'+f.fileData+'" style="max-width:100%;max-height:75vh;border-radius:12px;display:block;margin:auto">';
+content='<img src="'+f.fileData+'" style="max-width:100%;max-height:100%;object-fit:contain;display:block">';
 }else if(type==='application/pdf'||name.toLowerCase().endsWith('.pdf')){
-content='<iframe src="'+f.fileData+'" style="width:100%;height:75vh;border:none;border-radius:12px"></iframe>';
+content='<iframe src="'+f.fileData+'"></iframe>';
 }else if(type.startsWith('video/')){
-content='<video src="'+f.fileData+'" controls style="max-width:100%;max-height:75vh;border-radius:12px;display:block;margin:auto"></video>';
+content='<video src="'+f.fileData+'" controls style="max-width:100%;max-height:100%"></video>';
 }else{
 content='<div style="text-align:center;padding:40px;color:var(--text-light)"><div style="font-size:4rem;margin-bottom:15px">📄</div><p style="margin-bottom:15px">لا يمكن معاينة هذا النوع من الملفات</p><button class="btn bp" onclick="dlFile(\''+id+'\')">⬇️ تحميل الملف</button></div>';
 }
@@ -947,7 +957,7 @@ async function expBackup(){
 if(!can('export')){toast('⚠️','w');return;}
 try{
 if(allFiles.length===0&&allNotes.length===0&&allReviews.length===0){toast('⚠️ لا توجد بيانات','w');return;}
-const bk={appName:'منظومة الاعتماد المدرسي',version:'8.0',exportDate:new Date().toISOString(),files:allFiles,notes:allNotes,reviews:allReviews};
+const bk={appName:'منظومة الاعتماد المدرسي',version:'10.0',exportDate:new Date().toISOString(),files:allFiles,notes:allNotes,reviews:allReviews};
 const b=new Blob([JSON.stringify(bk)],{type:'application/json'});
 const u=URL.createObjectURL(b);
 const a=document.createElement('a');
@@ -1157,7 +1167,7 @@ $('impInput').onchange=function(){if(this.files[0]){impBackup(this.files[0]);thi
 $('clrBtn').onclick=clrAll;
 window.addEventListener('online',()=>{$('syncIndicator').classList.remove('offline');$('syncText').textContent='متصل';});
 window.addEventListener('offline',()=>{$('syncIndicator').classList.add('offline');$('syncText').textContent='غير متصل';});
-console.log('🎉 المنظومة جاهزة — v9 مع معاينة الملفات');
+console.log('🎉 المنظومة جاهزة — v10 مع معاينة الملفات المُحسّنة');
 </script>
 </body>
 </html>
