@@ -130,12 +130,14 @@ body{background:var(--bg);padding:20px;direction:rtl;min-height:100vh;color:var(
 .fi .fm{font-size:.75rem;color:var(--text-light);margin-top:3px}
 .fi .fa{display:flex;gap:6px}
 .ab{width:34px;height:34px;border-radius:50%;border:none;font-size:.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.ab.p{background:linear-gradient(135deg,#dbeafe 0%,#bfdbfe 100%);color:#1d4ed8}
+.ab.p:hover{background:#2563eb;color:#fff}
+.ab.e{background:linear-gradient(135deg,#fef3c7 0%,#fde68a 100%);color:#b45309}
+.ab.e:hover{background:#f59e0b;color:#fff}
 .ab.d{background:linear-gradient(135deg,#ccfbf1 0%,#99f6e4 100%);color:var(--primary-dark)}
 .ab.d:hover{background:var(--primary);color:#fff}
 .ab.x{background:linear-gradient(135deg,#fee2e2 0%,#fecaca 100%);color:#dc2626}
 .ab.x:hover{background:#dc2626;color:#fff}
-.ab.p{background:linear-gradient(135deg,#dbeafe 0%,#bfdbfe 100%);color:#1d4ed8}
-.ab.p:hover{background:#2563eb;color:#fff}
 .preview-modal{position:fixed;inset:0;background:rgba(15,23,42,.92);display:flex;align-items:center;justify-content:center;z-index:99999;padding:10px;animation:fadeIn .2s;backdrop-filter:blur(6px)}
 .preview-content{background:#fff;border-radius:20px;width:95vw;max-width:1400px;height:95vh;display:flex;flex-direction:column;box-shadow:0 25px 70px rgba(0,0,0,.5);overflow:hidden}
 .preview-header{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:2px solid var(--border);background:linear-gradient(135deg,#f0fdf4 0%,#ccfbf1 100%);flex-shrink:0}
@@ -200,12 +202,23 @@ body{background:var(--bg);padding:20px;direction:rtl;min-height:100vh;color:var(
 .perm-check:disabled{opacity:.4;cursor:not-allowed}
 .modal-bg{position:fixed;inset:0;background:rgba(15,23,42,.6);display:none;align-items:center;justify-content:center;z-index:9999;padding:20px}
 .modal-bg.show{display:flex}
-.modal{background:#fff;border-radius:20px;padding:30px;max-width:520px;width:100%;max-height:90vh;overflow:auto}
+.modal{background:#fff;border-radius:20px;padding:30px;max-width:620px;width:100%;max-height:90vh;overflow:auto}
 .modal h3{color:var(--primary);margin-bottom:20px;font-weight:800;font-size:1.15rem}
 .modal label{display:block;font-size:.85rem;color:var(--text-light);font-weight:800;margin-bottom:8px;margin-top:16px}
-.modal input,.modal select{width:100%;padding:12px 16px;border:2px solid var(--border);border-radius:12px;font-family:inherit;font-size:.92rem;background:#f8fffe;outline:none}
+.modal input,.modal select,.modal textarea{width:100%;padding:12px 16px;border:2px solid var(--border);border-radius:12px;font-family:inherit;font-size:.92rem;background:#f8fffe;outline:none;resize:vertical}
+.modal textarea{min-height:80px}
 .modal .actions{display:flex;gap:10px;margin-top:24px}
 .modal .actions .btn{flex:1;justify-content:center}
+.ind-table{width:100%;border-collapse:collapse;background:var(--card);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);margin-bottom:22px}
+.ind-table th{background:var(--gradient);color:#fff;padding:14px 12px;text-align:right;font-size:.82rem;font-weight:800}
+.ind-table td{padding:12px;border-bottom:1px solid var(--border);font-size:.85rem;vertical-align:top}
+.ind-table tr:hover td{background:#f8fffe}
+.ind-table .code-cell{font-weight:800;color:var(--primary);white-space:nowrap}
+.ind-table .actions-cell{display:flex;gap:6px;justify-content:flex-end}
+.search-bar{background:var(--card);border-radius:14px;padding:16px 20px;margin-bottom:18px;box-shadow:var(--shadow);display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.search-bar input{flex:1;min-width:220px;padding:12px 18px;border:2px solid var(--border);border-radius:12px;font-family:inherit;font-size:.9rem;background:#f8fffe;outline:none}
+.search-bar input:focus{border-color:var(--primary);background:#fff}
+.search-bar select{padding:12px 16px;border:2px solid var(--border);border-radius:12px;font-family:inherit;font-size:.9rem;background:#f8fffe;outline:none;cursor:pointer}
 .tst{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(120px);background:var(--gradient);color:#fff;padding:16px 28px;border-radius:16px;box-shadow:0 12px 32px rgba(15,118,110,.35);font-weight:700;font-size:.9rem;opacity:0;transition:all .4s;z-index:99999;pointer-events:none;max-width:90%;text-align:center}
 .tst.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .tst.s{background:linear-gradient(135deg,#16a34a 0%,#22c55e 100%)}
@@ -216,13 +229,7 @@ body{background:var(--bg);padding:20px;direction:rtl;min-height:100vh;color:var(
 .sync.offline{color:#dc2626;border-color:#fecaca}
 .sync.offline .dot{background:#dc2626}
 footer{text-align:center;margin-top:40px;color:var(--text-light);font-size:.82rem;padding:20px;font-weight:600}
-@media(max-width:768px){
-.hdr{flex-direction:column;align-items:flex-start}
-.stats{grid-template-columns:1fr 1fr}
-.grid{grid-template-columns:1fr}
-.charts-grid{grid-template-columns:1fr}
-.preview-content{width:98vw;height:98vh}
-}
+@media(max-width:768px){.hdr{flex-direction:column;align-items:flex-start}.stats{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr}.charts-grid{grid-template-columns:1fr}.preview-content{width:98vw;height:98vh}.ind-table{font-size:.75rem}}
 </style>
 </head>
 <body>
@@ -260,6 +267,7 @@ footer{text-align:center;margin-top:40px;color:var(--text-light);font-size:.82re
 </div>
 <div class="nav" style="margin-bottom:22px">
 <button class="btn bw" onclick="exportPDF()">📄 تقرير PDF</button>
+<button class="btn bp" id="btnManageIndicators" onclick="go('indicators')" style="display:none">✏️ إدارة المؤشرات</button>
 <button class="btn bg" id="btnBackup" onclick="go('backup')" style="display:none">💾 نسخة احتياطية</button>
 <button class="btn bp" id="btnManageUsers" onclick="go('users')" style="display:none">👥 إدارة المستخدمين</button>
 <button class="btn bp" id="btnPermissions" onclick="go('permissions')" style="display:none">🎛️ لوحة التحكم</button>
@@ -294,7 +302,7 @@ footer{text-align:center;margin-top:40px;color:var(--text-light);font-size:.82re
 </div>
 <div class="sec" id="secUpload">
 <h3>📎 الشواهد والأدلة <span class="fcn" id="fCount">0 ملف</span></h3>
-<p class="hint">✅ الملفات محفوظة في السحابة • اضغط 👁️ للمعاينة</p>
+<p class="hint">✅ الملفات محفوظة في السحابة • 👁️ معاينة • ✏️ تعديل • ⬇️ تحميل • 🗑️ حذف</p>
 <div class="upload-tabs">
 <button class="upload-tab active" data-tab="files" onclick="switchTab('files')">📎 رفع ملفات</button>
 <button class="upload-tab" data-tab="camera" onclick="switchTab('camera')">📷 تصوير</button>
@@ -336,6 +344,30 @@ footer{text-align:center;margin-top:40px;color:var(--text-light);font-size:.82re
 </div>
 </div>
 
+<div id="pg-indicators" class="pg h">
+<div class="hdr">
+<div><h1>✏️ إدارة المؤشرات</h1><div style="font-size:.85rem;color:rgba(255,255,255,.85);margin-top:6px"><a onclick="go('home')" style="color:#fff;cursor:pointer;font-weight:700;text-decoration:none">🏠 الرئيسية</a> ◀ إدارة المؤشرات</div></div>
+<div class="nav"><button class="btn bg" id="btnAddIndicator">➕ إضافة مؤشر</button><button class="btn bd" id="btnResetIndicators">🔄 استعادة الأصلية</button><button class="btn" style="background:rgba(255,255,255,.15);color:#fff;border:2px solid rgba(255,255,255,.25)" onclick="go('home')">◀ الرئيسية</button></div>
+</div>
+<div class="wb"><span style="font-size:1.4rem">ℹ️</span><div><strong>ملاحظة:</strong> يمكنك تعديل اسم المؤشر ورمزه والمجال الفرعي والشواهد. التغييرات تُحفظ فوراً وتُطبَّق على جميع المستخدمين.</div></div>
+<div class="search-bar">
+<input type="text" id="indSearch" placeholder="🔍 ابحث في المؤشرات..." oninput="renderIndicatorsAdmin()">
+<select id="indFieldFilter" onchange="renderIndicatorsAdmin()">
+<option value="">كل المجالات</option>
+</select>
+<select id="indSubFilter" onchange="renderIndicatorsAdmin()">
+<option value="">كل المجالات الفرعية</option>
+</select>
+<span style="color:var(--text-light);font-weight:700;font-size:.85rem" id="indCount">0 مؤشر</span>
+</div>
+<div style="overflow-x:auto">
+<table class="ind-table">
+<thead><tr><th style="width:100px">الرمز</th><th style="width:130px">المجال</th><th style="width:150px">المجال الفرعي</th><th>النص</th><th style="width:150px">إجراءات</th></tr></thead>
+<tbody id="indicatorsTableBody"></tbody>
+</table>
+</div>
+</div>
+
 <div id="pg-backup" class="pg h">
 <div class="hdr"><div><h1>💾 النسخ الاحتياطي</h1><div style="font-size:.85rem;color:rgba(255,255,255,.85);margin-top:6px"><a onclick="go('home')" style="color:#fff;cursor:pointer;font-weight:700;text-decoration:none">🏠 الرئيسية</a> ◀ النسخ الاحتياطي</div></div><button class="btn" style="background:rgba(255,255,255,.15);color:#fff;border:2px solid rgba(255,255,255,.25)" onclick="go('home')">◀ الرئيسية</button></div>
 <div class="bsi">
@@ -346,7 +378,7 @@ footer{text-align:center;margin-top:40px;color:var(--text-light);font-size:.82re
 </div>
 <div class="wb"><span style="font-size:1.4rem">⚠️</span><div><strong>تنبيه:</strong> البيانات محفوظة في السحابة. صدّر نسخة احتياطية دورياً للأمان.</div></div>
 <div class="bg2">
-<div class="bc"><div class="bi2" style="background:linear-gradient(135deg,#dcfce7 0%,#bbf7d0 100%);color:#15803d">⬇️</div><h2>تصدير</h2><p>تنزيل جميع البيانات في ملف JSON واحد</p><button class="btn bg" id="expBtn">📤 تصدير الآن</button></div>
+<div class="bc"><div class="bi2" style="background:linear-gradient(135deg,#dcfce7 0%,#bbf7d0 100%);color:#15803d">⬇️</div><h2>تصدير</h2><p>تنزيل جميع البيانات في ملف JSON واحد (يشمل المؤشرات)</p><button class="btn bg" id="expBtn">📤 تصدير الآن</button></div>
 <div class="bc"><div class="bi2" style="background:linear-gradient(135deg,#ccfbf1 0%,#99f6e4 100%);color:var(--primary)">⬆️</div><h2>استيراد</h2><p>استعد بياناتك. <strong>سيتم استبدال الحالي.</strong></p><button class="btn bp" id="impBtn">📥 اختيار ملف</button><input type="file" id="impInput" accept=".json" style="display:none"></div>
 <div class="bc"><div class="bi2" style="background:linear-gradient(135deg,#fef3c7 0%,#fde68a 100%);color:#b45309">📄</div><h2>تقرير PDF</h2><p>أنشئ تقريراً شاملاً احترافياً</p><button class="btn bw" onclick="exportPDF()">🖨️ إنشاء</button></div>
 <div class="bc" id="cardClear"><div class="bi2" style="background:linear-gradient(135deg,#fee2e2 0%,#fecaca 100%);color:#dc2626">🗑️</div><h2>مسح الكل</h2><p>حذف جميع البيانات. <strong>لا يمكن التراجع.</strong></p><button class="btn bd" id="clrBtn">🧹 مسح</button></div>
@@ -380,6 +412,25 @@ footer{text-align:center;margin-top:40px;color:var(--text-light);font-size:.82re
 </div>
 </div>
 
+<div class="modal-bg" id="indicatorModalBg">
+<div class="modal">
+<h3 id="indModalTitle">✏️ تعديل المؤشر</h3>
+<label>الرمز (مثال: 1-1-1-4)</label>
+<input type="text" id="indCode" placeholder="1-1-1-4">
+<label>المجال الرئيسي</label>
+<select id="indField"></select>
+<label>المجال الفرعي</label>
+<input type="text" id="indSub" placeholder="مثال: التخطيط القيادي" list="subList">
+<datalist id="subList"></datalist>
+<label>نص المؤشر</label>
+<textarea id="indText" placeholder="اكتب نص المؤشر هنا..."></textarea>
+<label>الشواهد والأدلة المقترحة</label>
+<textarea id="indEvidence" placeholder="اكتب الشواهد هنا..."></textarea>
+<div class="actions"><button class="btn bo" onclick="closeIndicatorModal()">إلغاء</button><button class="btn bg" id="btnSaveIndicator">💾 حفظ</button></div>
+<div class="err" id="indModalErr" style="margin-top:10px"></div>
+</div>
+</div>
+
 <div class="tst" id="toast"></div>
 
 <script>
@@ -393,7 +444,7 @@ const FIELDS=[
 {id:"outcomes",name:"نواتج التعلم",icon:"📊",desc:"التحصيل الدراسي والمهارات الأساسية والرقمية والتنمية الشخصية والسلوك"},
 {id:"environment",name:"البيئة المدرسية",icon:"🏫",desc:"المبنى والتجهيزات والأمن والسلامة والصحة والنظافة والتجهيزات التقنية"}];
 
-const INDICATORS=[
+const DEFAULT_INDICATORS=[
 {code:"1-1-1-1",fieldId:"leadership",sub:"التخطيط القيادي",text:"تُعدّ المدرسة خطة تشغيلية بناءً على تحليل الواقع واحتياجات المدرسة.",evidence:"الخطة التشغيلية، تحليل SWOT، محاضر الاعتماد."},
 {code:"1-1-1-2",fieldId:"leadership",sub:"التخطيط القيادي",text:"تُشرك المدرسة الأطراف المعنية في بناء الخطة.",evidence:"الاستبانات، محاضر الاجتماعات."},
 {code:"1-1-1-3",fieldId:"leadership",sub:"التخطيط القيادي",text:"تُتابع القيادة تنفيذ الخطة التشغيلية وتقيّم مستوى تحقق أهدافها دورياً.",evidence:"تقارير الإنجاز، أدوات متابعة المؤشرات."},
@@ -447,8 +498,10 @@ const INDICATORS=[
 {code:"4-1-5-1",fieldId:"environment",sub:"المناخ المدرسي",text:"تسود ثقافة الود والدعم والتكامل بين الكادر.",evidence:"استبانات المناخ."},
 {code:"4-1-5-2",fieldId:"environment",sub:"المناخ المدرسي",text:"تُسهم البيئة في إشعار الطالب بالأمان والانتماء.",evidence:"استبانات رضا المتعلمين."}];
 
-const DEFAULT_PERMS={manager:{view:true,upload:true,delFile:true,notes:true,swot:true,review:true,export:true,pdf:true,users:true,perms:true,clear:true},agent:{view:true,upload:true,delFile:true,notes:true,swot:true,review:true,export:true,pdf:true,users:false,perms:false,clear:false},secretary:{view:true,upload:true,delFile:true,notes:true,swot:true,review:false,export:false,pdf:true,users:false,perms:false,clear:false},counselor:{view:true,upload:false,delFile:false,notes:true,swot:true,review:true,export:false,pdf:true,users:false,perms:false,clear:false},viewer:{view:true,upload:false,delFile:false,notes:false,swot:false,review:false,export:false,pdf:true,users:false,perms:false,clear:false}};
-const PERM_NAMES={view:'👁️ مشاهدة',upload:'📎 رفع ملفات',delFile:'🗑️ حذف ملفات',notes:'📝 ملاحظات',swot:'🏷️ SWOT',review:'📅 مراجعة',export:'💾 تصدير',pdf:'📄 PDF',users:'👥 مستخدمين',perms:'🎛️ صلاحيات',clear:'🗑️ مسح الكل'};
+let INDICATORS=[];
+
+const DEFAULT_PERMS={manager:{view:true,upload:true,delFile:true,notes:true,swot:true,review:true,export:true,pdf:true,users:true,perms:true,clear:true,editFile:true,manageInd:true},agent:{view:true,upload:true,delFile:true,notes:true,swot:true,review:true,export:true,pdf:true,users:false,perms:false,clear:false,editFile:true,manageInd:false},secretary:{view:true,upload:true,delFile:true,notes:true,swot:true,review:false,export:false,pdf:true,users:false,perms:false,clear:false,editFile:true,manageInd:false},counselor:{view:true,upload:false,delFile:false,notes:true,swot:true,review:true,export:false,pdf:true,users:false,perms:false,clear:false,editFile:false,manageInd:false},viewer:{view:true,upload:false,delFile:false,notes:false,swot:false,review:false,export:false,pdf:true,users:false,perms:false,clear:false,editFile:false,manageInd:false}};
+const PERM_NAMES={view:'👁️ مشاهدة',upload:'📎 رفع ملفات',editFile:'✏️ تعديل ملفات',delFile:'🗑️ حذف ملفات',notes:'📝 ملاحظات',swot:'🏷️ SWOT',review:'📅 مراجعة',export:'💾 تصدير',pdf:'📄 PDF',users:'👥 مستخدمين',perms:'🎛️ صلاحيات',manageInd:'✏️ إدارة المؤشرات',clear:'🗑️ مسح الكل'};
 const ROLE_NAMES={manager:'🎩 مدير',agent:'📊 وكيل',secretary:'📝 سكرتير',counselor:'🧑‍🏫 مرشد',viewer:'👁️ مشاهد'};
 const ROLES=['manager','agent','secretary','counselor','viewer'];
 
@@ -457,14 +510,52 @@ const gF=id=>FIELDS.find(f=>f.id===id);
 const gIByF=fid=>INDICATORS.filter(i=>i.fieldId===fid);
 const gIByC=c=>INDICATORS.find(i=>i.code===c);
 const esc=s=>{const d=document.createElement('div');d.textContent=s;return d.innerHTML;};
-const fmtB=b=>b<1024?b+' B':b<1048576?(b/1024).toFixed(1)+' KB':(b/1048576).toFixed(1)+' MB';
+const fmtB=b=>b<1024?b+' B':b<1048576?(b/1024).toFixed(1)+' KB':(b/(1048576)).toFixed(1)+' MB';
 const fIco=n=>{const e=n.split('.').pop().toLowerCase();return e==='pdf'?'📕':['doc','docx'].includes(e)?'📘':['xls','xlsx'].includes(e)?'📗':['ppt','pptx'].includes(e)?'📙':['jpg','jpeg','png','gif','webp','bmp'].includes(e)?'🖼️':['zip','rar','7z'].includes(e)?'🗜️':['mp4','avi','mov'].includes(e)?'🎬':['mp3','wav','ogg'].includes(e)?'🎵':'📄';};
 const swN=c=>c==='S'?'قوة':c==='W'?'ضعف':c==='O'?'فرصة':c==='T'?'تهديد':'';
 function toast(m,t){const el=$('toast');el.textContent=m;el.className='tst show '+(t||'');clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove('show'),3000);}
-function f2b64(f){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=()=>rej(r.error);r.readAsDataURL(f);});}
-
-let currentUser=null,currentRole='viewer',currentPerms={},allPerms={};
+function f2b64(f){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=()=>rej(r.error);r.readAsDataURL(f);});}let currentUser=null,currentRole='viewer',currentPerms={},allPerms={};
 function can(p){return currentPerms&&currentPerms[p]===true;}
+
+// ============================================================
+// نقل المؤشرات إلى Firebase (أول مرة فقط)
+// ============================================================
+async function migrateIndicatorsIfNeeded(){
+try{
+const metaRef=db.collection('meta').doc('indicators-version');
+const metaDoc=await metaRef.get();
+if(!metaDoc.exists){
+console.log('⏳ نقل المؤشرات إلى Firebase...');
+const batch=db.batch();
+DEFAULT_INDICATORS.forEach((ind,idx)=>{
+const ref=db.collection('indicators').doc(ind.code);
+batch.set(ref,{...ind,order:idx,createdAt:new Date().toISOString()});
+});
+await batch.commit();
+await metaRef.set({version:'1.0',migratedAt:new Date().toISOString()});
+console.log('✅ تم نقل '+DEFAULT_INDICATORS.length+' مؤشر');
+}
+}catch(e){console.error('خطأ في نقل المؤشرات:',e);}
+}
+
+// ============================================================
+// مستمع المؤشرات (Real-time)
+// ============================================================
+function setupIndicatorsListener(){
+db.collection('indicators').orderBy('order').onSnapshot(snap=>{
+INDICATORS=snap.docs.map(d=>{
+const data=d.data();
+return{code:d.id,fieldId:data.fieldId,sub:data.sub,text:data.text,evidence:data.evidence,order:data.order||0};
+});
+// إعادة ترتيب حسب order
+INDICATORS.sort((a,b)=>a.order-b.order);
+console.log('📋 تم تحميل '+INDICATORS.length+' مؤشر من Firebase');
+// تحديث الصفحات المفتوحة
+if(!$('pg-home').classList.contains('h'))rHome();
+if(!$('pg-field').classList.contains('h'))rField();
+if(!$('pg-indicators').classList.contains('h'))renderIndicatorsAdmin();
+},err=>{console.error('خطأ في مستمع المؤشرات:',err);});
+}
 
 auth.onAuthStateChanged(async user=>{
 if(user){
@@ -477,6 +568,9 @@ const doc=await db.collection('users').doc(user.uid).get();
 if(doc.exists){currentRole=doc.data().role||'viewer';}
 else{const isFirst=(user.email||'').toLowerCase()==='msahafascool@gmail.com';currentRole=isFirst?'manager':'viewer';await db.collection('users').doc(user.uid).set({email:user.email,name:user.displayName||user.email,role:currentRole,createdAt:new Date().toISOString()});}
 currentPerms=allPerms[currentRole]||DEFAULT_PERMS[currentRole]||DEFAULT_PERMS.viewer;
+// نقل المؤشرات + تشغيل المستمع
+await migrateIndicatorsIfNeeded();
+setupIndicatorsListener();
 }catch(e){console.error(e);currentRole=(user.email||'').toLowerCase()==='msahafascool@gmail.com'?'manager':'viewer';currentPerms=DEFAULT_PERMS[currentRole];}
 $('pg-auth').classList.add('h');$('pg-home').classList.remove('h');
 $('uName').textContent=user.displayName||user.email;
@@ -486,11 +580,12 @@ updateUIPerms();
 setupRealtimeListeners();
 setupPermsListener();
 go('home');
-}else{currentUser=null;currentRole='viewer';currentPerms={};$('pg-home').classList.add('h');$('pg-auth').classList.remove('h');}});
+}else{currentUser=null;currentRole='viewer';currentPerms={};INDICATORS=[];$('pg-home').classList.add('h');$('pg-auth').classList.remove('h');}});
 
 function updateUIPerms(){
 $('btnManageUsers').style.display=can('users')?'inline-flex':'none';
 $('btnPermissions').style.display=can('perms')?'inline-flex':'none';
+$('btnManageIndicators').style.display=can('manageInd')?'inline-flex':'none';
 $('btnBackup').style.display=can('export')?'inline-flex':'none';
 $('cardClear').style.display=can('clear')?'block':'none';}
 
@@ -502,7 +597,9 @@ $('btnLogin').textContent='🔐 تسجيل الدخول';};
 $('btnGoogle').onclick=async()=>{try{const p=new firebase.auth.GoogleAuthProvider();await auth.signInWithPopup(p);}catch(e){showAuthErr(getAuthErr(e));}};
 $('btnLogout').onclick=async()=>{if(confirm('هل تريد الخروج؟'))await auth.signOut();};
 function showAuthErr(m){const e=$('authErr');e.textContent=m;e.classList.add('show');setTimeout(()=>e.classList.remove('show'),5000);}
-function getAuthErr(e){const m=e.code||'';if(m.includes('user-not-found'))return 'المستخدم غير موجود';if(m.includes('wrong-password'))return 'كلمة المرور خاطئة';if(m.includes('invalid-email'))return 'البريد غير صحيح';if(m.includes('invalid-credential'))return 'البريد أو كلمة المرور غير صحيحة';if(m.includes('too-many-requests'))return 'محاولات كثيرة';if(m.includes('popup-closed'))return 'تم إغلاق النافذة';if(m.includes('unauthorized-domain'))return 'النطاق غير مصرّح به';return 'خطأ: '+e.message;}let allFiles=[],allNotes=[],allReviews=[];
+function getAuthErr(e){const m=e.code||'';if(m.includes('user-not-found'))return 'المستخدم غير موجود';if(m.includes('wrong-password'))return 'كلمة المرور خاطئة';if(m.includes('invalid-email'))return 'البريد غير صحيح';if(m.includes('invalid-credential'))return 'البريد أو كلمة المرور غير صحيحة';if(m.includes('too-many-requests'))return 'محاولات كثيرة';if(m.includes('popup-closed'))return 'تم إغلاق النافذة';if(m.includes('unauthorized-domain'))return 'النطاق غير مصرّح به';return 'خطأ: '+e.message;}
+
+let allFiles=[],allNotes=[],allReviews=[];
 function setupRealtimeListeners(){
 db.collection('files').onSnapshot(s=>{allFiles=s.docs.map(d=>({id:d.id,...d.data()}));if(!$('pg-home').classList.contains('h'))rHome();if(!$('pg-field').classList.contains('h'))rField();if(!$('pg-ind').classList.contains('h'))rFiles();$('syncText').textContent='متصل';});
 db.collection('notes').onSnapshot(s=>{allNotes=s.docs.map(d=>({id:d.id,...d.data()}));if(!$('pg-home').classList.contains('h'))rHome();if(!$('pg-field').classList.contains('h'))rField();});
@@ -522,6 +619,7 @@ let curF=null,curI=null;
 function go(p){
 if(p==='users'&&!can('users')){toast('⚠️ لا تملك صلاحية','w');return;}
 if(p==='permissions'&&!can('perms')){toast('⚠️ لا تملك صلاحية','w');return;}
+if(p==='indicators'&&!can('manageInd')){toast('⚠️ لا تملك صلاحية','w');return;}
 if(p==='backup'&&!can('export')){toast('⚠️ لا تملك صلاحية','w');return;}
 document.querySelectorAll('.pg').forEach(x=>x.classList.add('h'));
 $('pg-'+p).classList.remove('h');
@@ -529,6 +627,7 @@ window.scrollTo(0,0);
 if(p==='home')rHome();
 else if(p==='field')rField();
 else if(p==='ind')rInd();
+else if(p==='indicators')initIndicatorsAdmin();
 else if(p==='backup')rBackup();
 else if(p==='users')loadUsers();
 else if(p==='permissions')loadPermissions();}
@@ -544,7 +643,7 @@ charts['chartProgress']=new Chart(ctx,{type:'doughnut',data:{labels:['مكتمل
 function drawFieldsChart(){
 destroyChart('chartFields');
 const labels=FIELDS.map(f=>f.name);
-const data=FIELDS.map(f=>{const inds=gIByF(f.id);const done=inds.filter(i=>allFiles.some(x=>x.code===i.code)||allNotes.some(x=>x.code===i.code)).length;return Math.round(done/inds.length*100);});
+const data=FIELDS.map(f=>{const inds=gIByF(f.id);if(inds.length===0)return 0;const done=inds.filter(i=>allFiles.some(x=>x.code===i.code)||allNotes.some(x=>x.code===i.code)).length;return Math.round(done/inds.length*100);});
 const ctx=$('chartFields').getContext('2d');
 charts['chartFields']=new Chart(ctx,{type:'bar',data:{labels:labels,datasets:[{label:'نسبة الإنجاز %',data:data,backgroundColor:['#0f766e','#14b8a6','#f59e0b','#8b5cf6'],borderRadius:10}]},options:{responsive:true,maintainAspectRatio:false,scales:{y:{beginAtZero:true,max:100,ticks:{font:{weight:'bold'}}}},plugins:{legend:{display:false}}}});}
 
@@ -559,7 +658,7 @@ function drawReviewsChart(){
 destroyChart('chartReviews');
 const tr=allReviews.filter(r=>r.status==='reviewed').length;
 const tw=allReviews.filter(r=>r.status==='needsImprovement').length;
-const tp=INDICATORS.length-tr-tw;
+const tp=Math.max(0,INDICATORS.length-tr-tw);
 const ctx=$('chartReviews').getContext('2d');
 charts['chartReviews']=new Chart(ctx,{type:'doughnut',data:{labels:['✅ تمت','⚠️ تحسين','⏳ انتظار'],datasets:[{data:[tr,tw,tp],backgroundColor:['#16a34a','#f59e0b','#94a3b8'],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,cutout:'65%',plugins:{legend:{position:'bottom',labels:{font:{size:12,weight:'bold'},padding:15}}}}});}
 
@@ -569,7 +668,7 @@ g.innerHTML='';
 FIELDS.forEach(f=>{
 const inds=gIByF(f.id);
 const done=inds.filter(i=>allFiles.some(x=>x.code===i.code)||allNotes.some(x=>x.code===i.code)).length;
-const pct=Math.round(done/inds.length*100);
+const pct=inds.length>0?Math.round(done/inds.length*100):0;
 const c=document.createElement('div');
 c.className='fc';
 c.onclick=()=>{curF=f.id;go('field');};
@@ -581,7 +680,7 @@ const rM={};
 allReviews.forEach(r=>{rM[r.code]=r;});
 const tf=allFiles.length,tn=Object.keys(nM).length,tr=Object.values(rM).filter(r=>r.status==='reviewed').length;
 const cs=new Set([...allFiles.map(f=>f.code),...Object.keys(nM),...Object.keys(rM)]);
-const progress=Math.round(cs.size/INDICATORS.length*100);
+const progress=INDICATORS.length>0?Math.round(cs.size/INDICATORS.length*100):0;
 $('s1').textContent=INDICATORS.length;
 $('s2').textContent=tf;
 $('s3').textContent=tn;
@@ -622,6 +721,10 @@ const notes={};
 allNotes.forEach(n=>{if(n.text&&n.text.trim())notes[n.code]=n;});
 const revs={};
 allReviews.forEach(r=>{revs[r.code]=r;});
+if(Object.keys(subs).length===0){
+c.innerHTML='<div class="es"><span class="ei">📂</span><p>لا توجد مؤشرات لهذا المجال</p></div>';
+return;
+}
 Object.keys(subs).forEach(sn=>{
 const list=subs[sn];
 const sec=document.createElement('div');
@@ -694,6 +797,7 @@ if(files.length===0){list.innerHTML='<div class="es"><span class="ei">📂</span
 list.innerHTML='';
 files.forEach(file=>{
 let actions='<button class="ab p" data-id="'+file.id+'" title="معاينة">👁️</button>';
+if(can('editFile'))actions+='<button class="ab e" data-id="'+file.id+'" title="تعديل">✏️</button>';
 actions+='<button class="ab d" data-id="'+file.id+'" title="تحميل">⬇️</button>';
 if(can('delFile'))actions+='<button class="ab x" data-id="'+file.id+'" title="حذف">🗑️</button>';
 const isImg=file.fileType&&file.fileType.startsWith('image/');
@@ -704,6 +808,7 @@ it.innerHTML='<div class="fic">'+(thumb||fIco(file.fileName))+'</div><div class=
 list.appendChild(it);
 });
 list.querySelectorAll('.ab.p').forEach(b=>b.onclick=()=>previewFile(b.dataset.id));
+list.querySelectorAll('.ab.e').forEach(b=>b.onclick=()=>editFile(b.dataset.id));
 list.querySelectorAll('.ab.d').forEach(b=>b.onclick=()=>dlFile(b.dataset.id));
 list.querySelectorAll('.ab.x').forEach(b=>b.onclick=()=>delFile(b.dataset.id));
 }
@@ -728,6 +833,36 @@ modal.className='preview-modal';
 modal.innerHTML='<div class="preview-content"><div class="preview-header"><h3>👁️ '+esc(name)+'</h3><button class="preview-close" onclick="this.closest(\'.preview-modal\').remove()">✕</button></div><div class="preview-body">'+content+'</div></div>';
 modal.onclick=function(e){if(e.target===this)this.remove();};
 document.body.appendChild(modal);
+}
+
+function editFile(id){
+if(!can('editFile')){toast('⚠️ لا تملك صلاحية التعديل','w');return;}
+const f=allFiles.find(x=>x.id===id);
+if(!f){toast('⚠️ الملف غير موجود','w');return;}
+if(!confirm('تعديل: '+f.fileName+'\n\nسيتم استبدال الملف الحالي.\n\nهل تريد المتابعة؟'))return;
+const inp=document.createElement('input');
+inp.type='file';
+inp.accept='.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.jpg,.jpeg,.png,.gif';
+inp.onchange=async function(){
+if(!this.files[0])return;
+const newFile=this.files[0];
+if(newFile.size>900000){toast('⚠️ الملف أكبر من 900KB','w');return;}
+toast('⏳ جارٍ التعديل...','');
+try{
+const fdata=await f2b64(newFile);
+await db.collection('files').doc(id).update({
+fileName:newFile.name,
+fileSize:newFile.size,
+fileType:newFile.type||'application/octet-stream',
+fileData:fdata,
+uploadDate:new Date().toISOString(),
+editedBy:currentUser?currentUser.email:'',
+editedAt:new Date().toISOString()
+});
+toast('✅ تم تعديل الملف','s');
+}catch(e){console.error(e);toast('❌ فشل: '+(e.code||e.message),'e');}
+};
+inp.click();
 }
 
 function setupUp(){
@@ -814,7 +949,9 @@ URL.revokeObjectURL(u);
 
 async function delFile(id){
 if(!can('delFile')){toast('⚠️ لا تملك صلاحية الحذف','w');return;}
-if(!confirm('حذف الملف؟'))return;
+const f=allFiles.find(x=>x.id===id);
+if(!f)return;
+if(!confirm('حذف الملف: '+f.fileName+'؟\n\nلا يمكن التراجع.'))return;
 try{await db.collection('files').doc(id).delete();toast('🗑️ تم الحذف','w');}catch(e){toast('❌','e');}
 }
 
@@ -942,8 +1079,204 @@ toast('📅 تم الحفظ','s');
 };
 d.onchange=sv;
 s.onchange=sv;
+}// ============================================================
+// إدارة المؤشرات — Admin Panel
+// ============================================================
+let currentEditCode=null;
+
+function initIndicatorsAdmin(){
+// ملء فلتر المجالات
+const ff=$('indFieldFilter');
+ff.innerHTML='<option value="">كل المجالات</option>';
+FIELDS.forEach(f=>{ff.innerHTML+='<option value="'+f.id+'">'+f.icon+' '+f.name+'</option>';});
+// ملء فلتر المجالات الفرعية
+updateSubFilter();
+renderIndicatorsAdmin();
 }
 
+function updateSubFilter(){
+const fieldId=$('indFieldFilter').value;
+const sf=$('indSubFilter');
+const currentVal=sf.value;
+sf.innerHTML='<option value="">كل المجالات الفرعية</option>';
+const subsSet=new Set();
+INDICATORS.forEach(i=>{
+if(!fieldId||i.fieldId===fieldId)subsSet.add(i.sub);
+});
+Array.from(subsSet).sort().forEach(s=>{
+sf.innerHTML+='<option value="'+esc(s)+'">'+esc(s)+'</option>';
+});
+if(currentVal && subsSet.has(currentVal))sf.value=currentVal;
+}
+
+function renderIndicatorsAdmin(){
+const search=($('indSearch').value||'').toLowerCase().trim();
+const fieldFilter=$('indFieldFilter').value;
+const subFilter=$('indSubFilter').value;
+let filtered=INDICATORS.filter(i=>{
+if(search){
+const searchIn=(i.text+' '+i.code+' '+i.sub+' '+i.evidence).toLowerCase();
+if(!searchIn.includes(search))return false;
+}
+if(fieldFilter && i.fieldId!==fieldFilter)return false;
+if(subFilter && i.sub!==subFilter)return false;
+return true;
+});
+$('indCount').textContent=filtered.length+' مؤشر';
+const tbody=$('indicatorsTableBody');
+tbody.innerHTML='';
+if(filtered.length===0){
+tbody.innerHTML='<tr><td colspan="5" style="text-align:center;padding:40px;color:var(--text-light)">لا توجد مؤشرات مطابقة</td></tr>';
+return;
+}
+filtered.forEach(i=>{
+const field=gF(i.fieldId);
+const tr=document.createElement('tr');
+tr.innerHTML='<td class="code-cell">'+esc(i.code)+'</td>'
++'<td>'+esc(field?field.name:'-')+'</td>'
++'<td>'+esc(i.sub)+'</td>'
++'<td style="line-height:1.5">'+esc(i.text)+'</td>'
++'<td><div class="actions-cell">'
++'<button class="ab e" onclick="openIndicatorModal(\''+esc(i.code)+'\')" title="تعديل">✏️</button> '
++'<button class="ab x" onclick="deleteIndicator(\''+esc(i.code)+'\')" title="حذف">🗑️</button>'
++'</div></td>';
+tbody.appendChild(tr);
+});
+}
+
+function openIndicatorModal(code){
+currentEditCode=code||null;
+const modal=$('indicatorModalBg');
+const title=$('indModalTitle');
+// ملء قائمة المجالات
+const fieldSel=$('indField');
+fieldSel.innerHTML='';
+FIELDS.forEach(f=>{fieldSel.innerHTML+='<option value="'+f.id+'">'+f.icon+' '+f.name+'</option>';});
+// ملء قائمة المجالات الفرعية المقترحة
+const subList=$('subList');
+subList.innerHTML='';
+const subsSet=new Set();
+INDICATORS.forEach(i=>subsSet.add(i.sub));
+Array.from(subsSet).sort().forEach(s=>{subList.innerHTML+='<option value="'+esc(s)+'">';});
+// ملء الحقول
+if(code){
+const ind=gIByC(code);
+if(!ind){toast('⚠️ المؤشر غير موجود','w');return;}
+title.textContent='✏️ تعديل المؤشر: '+code;
+$('indCode').value=ind.code;
+$('indField').value=ind.fieldId;
+$('indSub').value=ind.sub;
+$('indText').value=ind.text;
+$('indEvidence').value=ind.evidence;
+$('indCode').disabled=true;
+}else{
+title.textContent='➕ إضافة مؤشر جديد';
+$('indCode').value=suggestNextCode();
+$('indCode').disabled=false;
+$('indField').value=FIELDS[0].id;
+$('indSub').value='';
+$('indText').value='';
+$('indEvidence').value='';
+}
+$('indModalErr').textContent='';
+modal.classList.add('show');
+}
+
+function suggestNextCode(){
+// اقتراح الرمز التالي بناءً على آخر مؤشر
+if(INDICATORS.length===0)return '1-1-1-1';
+// حاول زيادة الرقم الأخير
+const codes=INDICATORS.map(i=>i.code).sort();
+const last=codes[codes.length-1];
+const parts=last.split('-').map(n=>parseInt(n)||0);
+if(parts.length===4){
+parts[3]++;
+return parts.join('-');
+}
+return '';
+}
+
+function closeIndicatorModal(){$('indicatorModalBg').classList.remove('show');currentEditCode=null;}
+
+$('btnAddIndicator').onclick=()=>openIndicatorModal(null);
+
+$('btnSaveIndicator').onclick=async()=>{
+const code=$('indCode').value.trim();
+const fieldId=$('indField').value;
+const sub=$('indSub').value.trim();
+const text=$('indText').value.trim();
+const evidence=$('indEvidence').value.trim();
+if(!code||!fieldId||!sub||!text){$('indModalErr').textContent='أكمل الحقول المطلوبة (الرمز، المجال، الفرعي، النص)';return;}
+try{
+if(currentEditCode){
+// تعديل
+await db.collection('indicators').doc(currentEditCode).update({fieldId,sub,text,evidence});
+toast('✅ تم تعديل المؤشر','s');
+}else{
+// إضافة جديدة — التحقق من عدم وجود الرمز
+const existing=await db.collection('indicators').doc(code).get();
+if(existing.exists){$('indModalErr').textContent='هذا الرمز مستخدم بالفعل';return;}
+const order=INDICATORS.length;
+await db.collection('indicators').doc(code).set({fieldId,sub,text,evidence,order,createdAt:new Date().toISOString()});
+toast('✅ تم إضافة المؤشر','s');
+}
+closeIndicatorModal();
+}catch(e){console.error(e);$('indModalErr').textContent='خطأ: '+(e.code||e.message);}
+};
+
+async function deleteIndicator(code){
+if(!can('manageInd')){toast('⚠️','w');return;}
+const ind=gIByC(code);
+if(!ind)return;
+if(!confirm('حذف المؤشر: '+code+'؟\n\n'+ind.text+'\n\n⚠️ سيتم حذف كل الملفات والملاحظات والمراجعات المرتبطة به!\n\nلا يمكن التراجع.'))return;
+try{
+// حذف الملفات المرتبطة
+const filesSnap=await db.collection('files').where('code','==',code).get();
+const batch1=db.batch();
+filesSnap.docs.forEach(d=>batch1.delete(d.ref));
+await batch1.commit();
+// حذف الملاحظات المرتبطة
+const notesSnap=await db.collection('notes').where('code','==',code).get();
+const batch2=db.batch();
+notesSnap.docs.forEach(d=>batch2.delete(d.ref));
+await batch2.commit();
+// حذف المراجعات المرتبطة
+const revsSnap=await db.collection('reviews').where('code','==',code).get();
+const batch3=db.batch();
+revsSnap.docs.forEach(d=>batch3.delete(d.ref));
+await batch3.commit();
+// حذف المؤشر
+await db.collection('indicators').doc(code).delete();
+toast('🗑️ تم حذف المؤشر وكل ما يخصه','w');
+}catch(e){console.error(e);toast('❌ خطأ: '+(e.code||e.message),'e');}
+}
+
+$('btnResetIndicators').onclick=async()=>{
+if(!can('manageInd')){toast('⚠️','w');return;}
+if(!confirm('استعادة المؤشرات الأصلية؟\n\n⚠️ سيتم:\n• حذف جميع المؤشرات الحالية\n• إعادة المؤشرات الأصلية الـ 52\n\n(لن يتم حذف الملفات والملاحظات)'))return;
+try{
+// حذف كل المؤشرات
+const all=await db.collection('indicators').get();
+const batch=db.batch();
+all.docs.forEach(d=>batch.delete(d.ref));
+await batch.commit();
+// إعادة الأصلية
+const batch2=db.batch();
+DEFAULT_INDICATORS.forEach((ind,idx)=>{
+const ref=db.collection('indicators').doc(ind.code);
+batch2.set(ref,{...ind,order:idx,createdAt:new Date().toISOString()});
+});
+await batch2.commit();
+toast('✅ تم استعادة '+DEFAULT_INDICATORS.length+' مؤشر','s');
+}catch(e){console.error(e);toast('❌ خطأ','e');}
+};
+
+$('indFieldFilter').onchange=()=>{updateSubFilter();renderIndicatorsAdmin();};
+$('indSubFilter').onchange=renderIndicatorsAdmin;
+
+// ============================================================
+// النسخ الاحتياطي
+// ============================================================
 function rBackup(){
 const size=allFiles.reduce((s,f)=>s+(f.fileSize||0),0);
 const nc=allNotes.filter(n=>n.text&&n.text.trim()).length;
@@ -956,8 +1289,10 @@ $('b4').textContent=fmtB(size);
 async function expBackup(){
 if(!can('export')){toast('⚠️','w');return;}
 try{
-if(allFiles.length===0&&allNotes.length===0&&allReviews.length===0){toast('⚠️ لا توجد بيانات','w');return;}
-const bk={appName:'منظومة الاعتماد المدرسي',version:'10.0',exportDate:new Date().toISOString(),files:allFiles,notes:allNotes,reviews:allReviews};
+const indicatorsSnap=await db.collection('indicators').orderBy('order').get();
+const indicators=indicatorsSnap.docs.map(d=>({code:d.id,...d.data()}));
+if(allFiles.length===0&&allNotes.length===0&&allReviews.length===0&&indicators.length===0){toast('⚠️ لا توجد بيانات','w');return;}
+const bk={appName:'منظومة الاعتماد المدرسي',version:'12.0',exportDate:new Date().toISOString(),files:allFiles,notes:allNotes,reviews:allReviews,indicators:indicators};
 const b=new Blob([JSON.stringify(bk)],{type:'application/json'});
 const u=URL.createObjectURL(b);
 const a=document.createElement('a');
@@ -967,8 +1302,8 @@ document.body.appendChild(a);
 a.click();
 document.body.removeChild(a);
 URL.revokeObjectURL(u);
-toast('✅ تم التصدير','s');
-}catch(e){toast('❌','e');}
+toast('✅ تم التصدير ('+indicators.length+' مؤشر + '+allFiles.length+' ملف)','s');
+}catch(e){console.error(e);toast('❌','e');}
 }
 
 async function impBackup(file){
@@ -976,35 +1311,48 @@ if(!can('export')){toast('⚠️','w');return;}
 try{
 const text=await file.text();
 const bk=JSON.parse(text);
-if(!bk.files&&!bk.notes&&!bk.reviews){toast('❌','e');return;}
+if(!bk.files&&!bk.notes&&!bk.reviews&&!bk.indicators){toast('❌','e');return;}
 if(!confirm('سيتم استبدال جميع البيانات!\n\nهل تريد المتابعة؟'))return;
 const delAll=async(col)=>{const s=await db.collection(col).get();const batch=db.batch();s.docs.forEach(d=>batch.delete(d.ref));await batch.commit();};
 await delAll('files');
 await delAll('notes');
 await delAll('reviews');
-let fc=0,nc=0,rc=0;
+await delAll('indicators');
+let fc=0,nc=0,rc=0,ic=0;
 if(bk.files)for(const f of bk.files){const{id,...r}=f;try{await db.collection('files').add(r);fc++;}catch(e){}}
 if(bk.notes)for(const n of bk.notes){const{id,...r}=n;try{await db.collection('notes').add(r);nc++;}catch(e){}}
 if(bk.reviews)for(const r of bk.reviews){const{id,...rest}=r;try{await db.collection('reviews').add(rest);rc++;}catch(e){}}
-toast('✅ تم استيراد '+fc+' ملف و '+nc+' ملاحظة','s');
+if(bk.indicators)for(const ind of bk.indicators){const{code,...rest}=ind;try{await db.collection('indicators').doc(code).set(rest);ic++;}catch(e){}}
+toast('✅ تم استيراد '+ic+' مؤشر + '+fc+' ملف + '+nc+' ملاحظة','s');
 rBackup();
-}catch(e){toast('❌','e');}
+}catch(e){console.error(e);toast('❌','e');}
 }
 
 async function clrAll(){
 if(!can('clear')){toast('⚠️','w');return;}
-if(!confirm('⚠️ سيتم مسح كل البيانات!\n\nهل أنت متأكد؟'))return;
+if(!confirm('⚠️ سيتم مسح كل البيانات!\n\n• الملفات\n• الملاحظات\n• المراجعات\n• المؤشرات (ستُستعاد الأصلية)\n\nهل أنت متأكد؟'))return;
 if(!confirm('تأكيد نهائي؟'))return;
 try{
 const delAll=async(col)=>{const s=await db.collection(col).get();const batch=db.batch();s.docs.forEach(d=>batch.delete(d.ref));await batch.commit();};
 await delAll('files');
 await delAll('notes');
 await delAll('reviews');
-toast('🗑️ تم المسح','w');
+await delAll('indicators');
+// إعادة المؤشرات الأصلية
+const batch=db.batch();
+DEFAULT_INDICATORS.forEach((ind,idx)=>{
+const ref=db.collection('indicators').doc(ind.code);
+batch.set(ref,{...ind,order:idx,createdAt:new Date().toISOString()});
+});
+await batch.commit();
+toast('🗑️ تم المسح وإعادة المؤشرات الأصلية','w');
 rBackup();
 }catch(e){toast('❌','e');}
 }
 
+// ============================================================
+// إدارة المستخدمين
+// ============================================================
 function loadUsers(){
 db.collection('users').onSnapshot(s=>{rUsers(s.docs.map(d=>({id:d.id,...d.data()})));});
 }
@@ -1059,6 +1407,9 @@ $('mPass').value='';
 $('btnSaveUser').textContent='💾 إضافة';
 };
 
+// ============================================================
+// الصلاحيات
+// ============================================================
 function loadPermissions(){
 const tbody=$('permTableBody');
 tbody.innerHTML='';
@@ -1097,6 +1448,9 @@ loadPermissions();
 }catch(e){toast('❌','e');}
 };
 
+// ============================================================
+// تقرير PDF
+// ============================================================
 function exportPDF(){
 const fc={};
 allFiles.forEach(f=>{fc[f.code]=(fc[f.code]||0)+1;});
@@ -1108,7 +1462,7 @@ const today=new Date().toLocaleDateString('ar-SA');
 const ti=INDICATORS.length,tf=allFiles.length,tn=Object.keys(nM).length;
 const tr=Object.values(rM).filter(r=>r.status==='reviewed').length;
 const tw=Object.values(rM).filter(r=>r.status==='needsImprovement').length;
-const tp=ti-tr-tw;
+const tp=Math.max(0,ti-tr-tw);
 const sc={S:0,W:0,O:0,T:0};
 Object.values(nM).forEach(n=>{if(n.swot&&sc[n.swot]!==undefined)sc[n.swot]++;});
 let h='<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><title>تقرير - '+today+'</title><style>';
@@ -1126,11 +1480,12 @@ h+='.bd{display:inline-block;padding:2px 8px;border-radius:20px;font-size:.7rem;
 h+='.ft2{text-align:center;margin-top:30px;padding-top:16px;border-top:2px solid #0f766e;color:#64748b;font-size:.82rem}.pb{page-break-before:always}</style></head><body>';
 h+='<div class="cv"><div class="ic">🏫</div><h1>تقرير منظومة الاعتماد المدرسي</h1><p>متوسطة الصحافة الأهلية</p><p>تقرير شامل للمؤشرات والشواهد والملاحظات والمراجعات</p><div class="dt">📅 '+today+'</div></div>';
 h+='<h2>📊 الملخص الإحصائي</h2><div class="sm"><div class="si"><div class="n">'+ti+'</div><div class="l">إجمالي المؤشرات</div></div><div class="si"><div class="n">'+tf+'</div><div class="l">الملفات</div></div><div class="si"><div class="n">'+tn+'</div><div class="l">الملاحظات</div></div><div class="si"><div class="n">'+tr+'</div><div class="l">تمت مراجعتها</div></div></div>';
-h+='<div class="sm"><div class="si" style="border-top-color:#16a34a"><div class="n" style="color:#16a34a">'+tr+'</div><div class="l">✅ تمت المراجعة</div></div><div class="si" style="border-top-color:#f59e0b"><div class="n" style="color:#f59e0b">'+tw+'</div><div class="l">⚠️ تحتاج تحسين</div></div><div class="si" style="border-top-color:#94a3b8"><div class="n" style="color:#94a3b8">'+tp+'</div><div class="l">⏳ بانتظار</div></div><div class="si" style="border-top-color:#14b8a6"><div class="n" style="color:#14b8a6">'+Math.round((tr+tw)/ti*100)+'%</div><div class="l">📈 الإنجاز</div></div></div>';
+h+='<div class="sm"><div class="si" style="border-top-color:#16a34a"><div class="n" style="color:#16a34a">'+tr+'</div><div class="l">✅ تمت المراجعة</div></div><div class="si" style="border-top-color:#f59e0b"><div class="n" style="color:#f59e0b">'+tw+'</div><div class="l">⚠️ تحتاج تحسين</div></div><div class="si" style="border-top-color:#94a3b8"><div class="n" style="color:#94a3b8">'+tp+'</div><div class="l">⏳ بانتظار</div></div><div class="si" style="border-top-color:#14b8a6"><div class="n" style="color:#14b8a6">'+(ti>0?Math.round((tr+tw)/ti*100):0)+'%</div><div class="l">📈 الإنجاز</div></div></div>';
 h+='<div class="sw"><h3>🏷️ تحليل SWOT</h3><div class="swg"><div class="swi S"><div class="n">'+sc.S+'</div><div class="l">⬆️ قوة</div></div><div class="swi W"><div class="n">'+sc.W+'</div><div class="l">⬇️ ضعف</div></div><div class="swi O"><div class="n">'+sc.O+'</div><div class="l">💡 فرصة</div></div><div class="swi T"><div class="n">'+sc.T+'</div><div class="l">⚠️ تهديد</div></div></div></div>';
 h+='<div class="pb"></div><h2>📋 تفاصيل المؤشرات</h2>';
 FIELDS.forEach(f=>{
 const inds=gIByF(f.id);
+if(inds.length===0)return;
 h+='<div class="fs"><div class="ft">'+f.icon+' '+f.name+'</div>';
 const subs={};
 inds.forEach(i=>{if(!subs[i.sub])subs[i.sub]=[];subs[i.sub].push(i);});
@@ -1161,13 +1516,16 @@ setTimeout(()=>w.print(),700);
 toast('📄 اختر "حفظ كـ PDF"','s');
 }
 
+// ============================================================
+// ربط الأزرار
+// ============================================================
 $('expBtn').onclick=expBackup;
 $('impBtn').onclick=()=>$('impInput').click();
 $('impInput').onchange=function(){if(this.files[0]){impBackup(this.files[0]);this.value='';}};
 $('clrBtn').onclick=clrAll;
 window.addEventListener('online',()=>{$('syncIndicator').classList.remove('offline');$('syncText').textContent='متصل';});
 window.addEventListener('offline',()=>{$('syncIndicator').classList.add('offline');$('syncText').textContent='غير متصل';});
-console.log('🎉 المنظومة جاهزة — v10 مع معاينة الملفات المُحسّنة');
+console.log('🎉 المنظومة جاهزة — v12 مع إدارة المؤشرات');
 </script>
 </body>
 </html>
