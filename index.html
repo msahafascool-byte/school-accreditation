@@ -40,7 +40,6 @@ body{background:var(--bg);padding:20px;direction:rtl;min-height:100vh;color:var(
 .auth-wrap .err.show{display:block}
 .hdr{background:var(--gradient);border-radius:20px;padding:20px 28px;margin-bottom:24px;box-shadow:var(--shadow-hover);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;color:#fff;position:relative;overflow:hidden}
 .hdr-left{display:flex;align-items:center;gap:16px;position:relative;z-index:1}
-.hdr-logos{display:none}
 .hdr-title h1{color:#fff;font-size:1.35rem;margin-bottom:4px;font-weight:800}
 .hdr-title .school{color:rgba(255,255,255,.85);font-size:.85rem;font-weight:600}
 .hdr-user{display:flex;align-items:center;gap:12px;position:relative;z-index:1}
@@ -352,7 +351,7 @@ footer{text-align:center;margin-top:40px;color:var(--text-light);font-size:.82re
 <div class="wb"><span style="font-size:1.4rem">ℹ️</span><div><strong>ملاحظة:</strong> يمكنك تعديل اسم المؤشر ورمزه والمجال الفرعي والشواهد. التغييرات تُحفظ فوراً وتُطبَّق على جميع المستخدمين.</div></div>
 <div class="search-bar">
 <input type="text" id="indSearch" placeholder="🔍 ابحث في المؤشرات..." oninput="renderIndicatorsAdmin()">
-<select id="indFieldFilter" onchange="renderIndicatorsAdmin()">
+<select id="indFieldFilter" onchange="updateSubFilter();renderIndicatorsAdmin()">
 <option value="">كل المجالات</option>
 </select>
 <select id="indSubFilter" onchange="renderIndicatorsAdmin()">
@@ -420,7 +419,7 @@ footer{text-align:center;margin-top:40px;color:var(--text-light);font-size:.82re
 <label>المجال الرئيسي</label>
 <select id="indField"></select>
 <label>المجال الفرعي</label>
-<input type="text" id="indSub" placeholder="مثال: التخطيط القيادي" list="subList">
+<input type="text" id="indSub" placeholder="مثال: التخطيط" list="subList">
 <datalist id="subList"></datalist>
 <label>نص المؤشر</label>
 <textarea id="indText" placeholder="اكتب نص المؤشر هنا..."></textarea>
@@ -439,64 +438,64 @@ firebase.initializeApp(firebaseConfig);
 const auth=firebase.auth(),db=firebase.firestore();
 
 const FIELDS=[
-{id:"leadership",name:"القيادة المدرسية",icon:"👔",desc:"التخطيط والتحفيز وإدارة الموارد والتطوير المهني والشراكة المجتمعية"},
-{id:"teaching",name:"التعليم والتعلم",icon:"🎓",desc:"التخطيط للتدريس والاستراتيجيات والتقييم وإدارة البيئة الصفية والأنشطة"},
-{id:"outcomes",name:"نواتج التعلم",icon:"📊",desc:"التحصيل الدراسي والمهارات الأساسية والرقمية والتنمية الشخصية والسلوك"},
-{id:"environment",name:"البيئة المدرسية",icon:"🏫",desc:"المبنى والتجهيزات والأمن والسلامة والصحة والنظافة والتجهيزات التقنية"}];
+{id:"leadership",name:"الإدارة المدرسية",icon:"🏛️",desc:"التخطيط وقيادة العملية التعليمية والمجتمع المدرسي والتطوير المؤسسي وحقوق المتعلم"},
+{id:"teaching",name:"التعليم والتعلم",icon:"🎓",desc:"بناء خبرات التعلم وتقويم التعلم"},
+{id:"outcomes",name:"نواتج التعلم",icon:"📊",desc:"التحصيل التعليمي والتطور الشخصي والصحي والاجتماعي"},
+{id:"environment",name:"البيئة المدرسية",icon:"🏫",desc:"المبنى المدرسي والأمن والسلامة"}];
 
 const DEFAULT_INDICATORS=[
-{code:"1-1-1-1",fieldId:"leadership",sub:"التخطيط القيادي",text:"تُعدّ المدرسة خطة تشغيلية بناءً على تحليل الواقع واحتياجات المدرسة.",evidence:"الخطة التشغيلية، تحليل SWOT، محاضر الاعتماد."},
-{code:"1-1-1-2",fieldId:"leadership",sub:"التخطيط القيادي",text:"تُشرك المدرسة الأطراف المعنية في بناء الخطة.",evidence:"الاستبانات، محاضر الاجتماعات."},
-{code:"1-1-1-3",fieldId:"leadership",sub:"التخطيط القيادي",text:"تُتابع القيادة تنفيذ الخطة التشغيلية وتقيّم مستوى تحقق أهدافها دورياً.",evidence:"تقارير الإنجاز، أدوات متابعة المؤشرات."},
-{code:"1-1-2-1",fieldId:"leadership",sub:"القيادة والتحفيز",text:"تُسهم القيادة في بناء بيئة عمل محفزة ومجتمع تعلم مهني.",evidence:"سجلات التقدير، لقاءات PLC."},
-{code:"1-1-2-2",fieldId:"leadership",sub:"القيادة والتحفيز",text:"تشجع القيادة المبادرات والابتكارات التربوية.",evidence:"توثيق المبادرات، سجل المكافآت."},
-{code:"1-1-3-1",fieldId:"leadership",sub:"إدارة الموارد",text:"تُدار الموارد المالية بما يحقق أهداف الخطة بكفاءة.",evidence:"ميزانية المدرسة، خطة الصرف."},
-{code:"1-1-3-2",fieldId:"leadership",sub:"إدارة الموارد",text:"تُستثمر المرافق والتجهيزات بكفاءة لخدمة التعلم.",evidence:"جدول استخدام المعامل والملاعب."},
-{code:"1-1-4-1",fieldId:"leadership",sub:"التطوير المهني",text:"تحدد القيادة الاحتياجات التدريبية للكوادر.",evidence:"حصر الاحتياجات، خطة التطوير."},
-{code:"1-1-4-2",fieldId:"leadership",sub:"التطوير المهني",text:"تُسهّل القيادة تنفيذ برامج التطوير وتقيس أثرها.",evidence:"تقارير الدورات، خطة نقل الأثر."},
-{code:"1-1-5-1",fieldId:"leadership",sub:"الشراكة المجتمعية",text:"تُفعّل الشراكة مع أولياء الأمور لمتابعة الطلاب.",evidence:"سجل اجتماعات المجلس."},
-{code:"1-1-5-2",fieldId:"leadership",sub:"الشراكة المجتمعية",text:"تبني شراكات مع المجتمع المحلي والمؤسسات.",evidence:"اتفاقيات الشراكة."},
-{code:"1-1-6-1",fieldId:"leadership",sub:"التقويم الذاتي",text:"تُجري المدرسة تقويماً ذاتياً شاملاً بأدلة موثقة.",evidence:"تقرير التقويم الذاتي."},
-{code:"2-1-1-1",fieldId:"teaching",sub:"التخطيط للتدريس",text:"يخطط المعلمون للدروس بما يحقق الأهداف المعتمدة.",evidence:"خطط الدروس، التوزيع الزمني."},
-{code:"2-1-1-2",fieldId:"teaching",sub:"التخطيط للتدريس",text:"يُراعي المعلمون الفروق الفردية في خططهم.",evidence:"أنشطة متدرجة، خطط دعم وإثراء."},
-{code:"2-1-2-1",fieldId:"teaching",sub:"استراتيجيات التدريس",text:"يُطبق المعلمون استراتيجيات نشطة تمركز حول المتعلم.",evidence:"سجل زيارات الفصول."},
-{code:"2-1-2-2",fieldId:"teaching",sub:"استراتيجيات التدريس",text:"يُنمّي المعلمون مهارات التفكير العليا.",evidence:"أسئلة صفية مفتوحة، مشاريع."},
-{code:"2-1-2-3",fieldId:"teaching",sub:"استراتيجيات التدريس",text:"يُوظف المعلمون المهارات الرقمية والتكنولوجيا.",evidence:"شاشات تفاعلية، منصات رقمية."},
-{code:"2-1-3-1",fieldId:"teaching",sub:"التقييم والتغذية الراجعة",text:"يدمج المعلمون التقييم التكويني خلال الموقف التعليمي.",evidence:"أوراق عمل سريعة."},
-{code:"2-1-3-2",fieldId:"teaching",sub:"التقييم والتغذية الراجعة",text:"يُقدم المعلمون تغذية راجعة بناءة ومحددة.",evidence:"تصحيح أعمال الطلاب."},
-{code:"2-1-3-3",fieldId:"teaching",sub:"التقييم والتغذية الراجعة",text:"تُستخدم نتائج التقييم في تعديل الاستراتيجيات.",evidence:"تقارير تحليل الاختبارات."},
-{code:"2-1-4-1",fieldId:"teaching",sub:"إدارة البيئة الصفية",text:"يُدير المعلمون وقت التعلم بكفاءة.",evidence:"الانضباط الصفي."},
-{code:"2-1-4-2",fieldId:"teaching",sub:"إدارة البيئة الصفية",text:"يُرسخ المعلمون بيئة آمنة ومحفزة.",evidence:"ميثاق السلوك."},
-{code:"2-1-5-1",fieldId:"teaching",sub:"الأنشطة غير الصفية",text:"تقدم المدرسة برامج وأنشطة تنمي المواهب.",evidence:"خطة النشاط."},
-{code:"2-1-5-2",fieldId:"teaching",sub:"الأنشطة غير الصفية",text:"يُشارك عدد كبير من الطلاب في الأنشطة.",evidence:"سجلات التسجيل."},
-{code:"2-1-6-1",fieldId:"teaching",sub:"دعم ذوي الاحتياجات",text:"تُوفر المدرسة الدعم التربوي لذوي الإعاقة.",evidence:"الخطة الفردية."},
-{code:"2-1-6-2",fieldId:"teaching",sub:"دعم الموهوبين",text:"تُنفذ برامج رعاية إثرائية للموهوبين.",evidence:"سجل الموهوبين."},
-{code:"2-1-7-1",fieldId:"teaching",sub:"المصادر والمناهج",text:"تُستغل مصادر التعلم والمكتبة لدعم المقررات.",evidence:"سجل استعارة الكتب."},
-{code:"2-1-7-2",fieldId:"teaching",sub:"المهارات الحياة",text:"تُركّز العملية التعليمية على مهارات الحياة.",evidence:"مشاريع المجموعات."},
-{code:"2-1-8-1",fieldId:"teaching",sub:"انضباط الطلاب",text:"تلتزم المدرسة بمتابعة انضباط الطلاب.",evidence:"إحصائيات الغياب."},
-{code:"2-1-8-2",fieldId:"teaching",sub:"القيم والمواطنة",text:"تُعزز العملية التدريسية قيم الهوية الوطنية.",evidence:"برامج اليوم الوطني."},
-{code:"3-1-1-1",fieldId:"outcomes",sub:"التحصيل الدراسي",text:"يحقق الطلاب مستويات متقدمة في الاختبارات الوطنية.",evidence:"نتائج نافس."},
-{code:"3-1-1-2",fieldId:"outcomes",sub:"التحصيل الدراسي",text:"يُظهر الطلاب تحسناً مستمراً في النتائج الدورية.",evidence:"مقارنة النتائج."},
-{code:"3-1-1-3",fieldId:"outcomes",sub:"التحصيل الدراسي",text:"تتناسب نواتج التعلم مع المعايير المعرفية.",evidence:"عينات الاختبارات."},
-{code:"3-1-2-1",fieldId:"outcomes",sub:"المهارات الأساسية",text:"يمتلك الطلاب مهارات القراءة والكتابة والرياضيات.",evidence:"نتائج المقاييس."},
-{code:"3-1-2-2",fieldId:"outcomes",sub:"المهارات الرقمية",text:"يُظهر الطلاب كفاءة في استخدام التقنية.",evidence:"إنتاج الطلاب الرقمي."},
-{code:"3-1-3-1",fieldId:"outcomes",sub:"التنمية الشخصية",text:"يتمتع الطلاب بالثقة بالنفس واستقلالية التفكير.",evidence:"مشاركة الطلاب."},
-{code:"3-1-3-2",fieldId:"outcomes",sub:"التنمية الشخصية",text:"يمارس الطلاب سلوكيات صحية وتغذية سليمة.",evidence:"متابعة المقصف."},
-{code:"3-1-4-1",fieldId:"outcomes",sub:"السلوك والانضباط",text:"يلتزم الطلاب بأخلاقيات السلوك الرقمي والشخصي.",evidence:"التقارير الإرشادية."},
-{code:"3-1-4-2",fieldId:"outcomes",sub:"السلوك والانضباط",text:"يظهر الطلاب التزاماً عالياً بالقيم والتطوع.",evidence:"ساعات التطوع."},
-{code:"3-1-4-3",fieldId:"outcomes",sub:"الوعي والتكيف",text:"يمتلك الطلاب قدرة على التكيف الاجتماعي.",evidence:"تقارير الموجه."},
-{code:"4-1-1-1",fieldId:"environment",sub:"المبنى والتجهيزات",text:"يتوفر مبنى مدرسي آمن ومناسب ومجهز.",evidence:"صيانة المبنى."},
-{code:"4-1-1-2",fieldId:"environment",sub:"المبنى والتجهيزات",text:"تتناسب مساحات الفصول والمرافق مع الأعداد.",evidence:"الطاقة الاستيعابية."},
-{code:"4-1-1-3",fieldId:"environment",sub:"المبنى والتجهيزات",text:"تتوفر بيئة مناسبة لدعم الوصول الشامل.",evidence:"تسهيلات ذوي الإعاقة."},
-{code:"4-1-2-1",fieldId:"environment",sub:"الأمن والسلامة",text:"تطبق المدرسة خطة طوارئ وإخلاء دورية.",evidence:"فرضيات الإخلاء."},
-{code:"4-1-2-2",fieldId:"environment",sub:"الأمن والسلامة",text:"تتوافر أدوات السلامة وتخضع لصيانة دورية.",evidence:"فحص الطفايات."},
-{code:"4-1-2-3",fieldId:"environment",sub:"الأمن والسلامة",text:"تلتزم المدرسة بخلو البيئة من المخاطر.",evidence:"جولات لجنة الأمن."},
-{code:"4-1-3-1",fieldId:"environment",sub:"الصحة والنظافة",text:"تتوفر مستوى نظافة ممتاز بشكل دائم.",evidence:"سجلات النظافة."},
-{code:"4-1-3-2",fieldId:"environment",sub:"الصحة والنظافة",text:"يلتزم المقصف بالشروط الصحية والتغذية.",evidence:"تقارير فحص المقصف."},
-{code:"4-1-4-1",fieldId:"environment",sub:"التجهيزات التقنية",text:"تتوافر شبكة إنترنت وأجهزة تعمل بكفاءة.",evidence:"سرعات الشبكة."},
-{code:"4-1-4-2",fieldId:"environment",sub:"التجهيزات التقنية",text:"تتوافر صيانة دورية للأجهزة والوسائل الرقمية.",evidence:"سجل الدعم الفني."},
-{code:"4-1-5-1",fieldId:"environment",sub:"المناخ المدرسي",text:"تسود ثقافة الود والدعم والتكامل بين الكادر.",evidence:"استبانات المناخ."},
-{code:"4-1-5-2",fieldId:"environment",sub:"المناخ المدرسي",text:"تُسهم البيئة في إشعار الطالب بالأمان والانتماء.",evidence:"استبانات رضا المتعلمين."}];
+{code:"1-1-1-1",fieldId:"leadership",sub:"التخطيط",text:"تحدد المدرسة أهدافها وفق نتائج التقويم المدرسي الذاتي.",evidence:"وثائق أهداف المدرسة، محاضر التقويم الذاتي."},
+{code:"1-1-1-2",fieldId:"leadership",sub:"التخطيط",text:"تعد المدرسة خطتها التشغيلية وفق أولويات التحسين والتطوير.",evidence:"الخطة التشغيلية، مصفوفة الأولويات."},
+{code:"1-2-1-1",fieldId:"leadership",sub:"قيادة العملية التعليمية",text:"تدعم المدرسة عمليات التعليم والتعلم بما يحقق نواتج التعلم.",evidence:"أدلة الدعم، خطط المتابعة."},
+{code:"1-2-1-2",fieldId:"leadership",sub:"قيادة العملية التعليمية",text:"تتابع المدرسة تنفيذ عمليات التعليم والتعلم وتقيس فاعليتها.",evidence:"تقارير المتابعة، أدوات قياس الفاعلية."},
+{code:"1-2-1-3",fieldId:"leadership",sub:"قيادة العملية التعليمية",text:"تدعم المدرسة التطوير المهني للعاملين بما يحسن الممارسات التعليمية.",evidence:"خطط التطوير المهني، تقارير التدريب."},
+{code:"1-2-1-4",fieldId:"leadership",sub:"قيادة العملية التعليمية",text:"توظف المدرسة البيانات والمعلومات في اتخاذ القرارات التعليمية.",evidence:"تقارير البيانات، قرارات مبنية على البيانات."},
+{code:"1-2-1-5",fieldId:"leadership",sub:"قيادة العملية التعليمية",text:"تعزز المدرسة ثقافة التحسين المستمر للأداء التعليمي.",evidence:"مبادرات التحسين، مؤشرات الأداء."},
+{code:"1-3-1-1",fieldId:"leadership",sub:"المجتمع المدرسي",text:"تسهم المدرسة في بناء مجتمع مدرسي إيجابي ومحفز للتعلم.",evidence:"برامج تعزيز المناخ المدرسي، استبانات."},
+{code:"1-3-1-2",fieldId:"leadership",sub:"المجتمع المدرسي",text:"تعزز المدرسة الشراكة والتواصل مع الأسرة والمجتمع.",evidence:"سجلات التواصل، اتفاقيات الشراكة."},
+{code:"1-3-1-3",fieldId:"leadership",sub:"المجتمع المدرسي",text:"تشجع المدرسة مشاركة المستفيدين في تطوير العمل المدرسي.",evidence:"استبانات المشاركة، اجتماعات مجلس المدرسة."},
+{code:"1-4-1-1",fieldId:"leadership",sub:"التطوير المؤسسي",text:"تطبق المدرسة آليات التقويم والتحسين المؤسسي.",evidence:"أدوات التقويم، خطط التحسين."},
+{code:"1-4-1-2",fieldId:"leadership",sub:"التطوير المؤسسي",text:"تستفيد المدرسة من نتائج التقويم في تحديد مجالات التحسين.",evidence:"تقارير التحليل، مصفوفة التحسين."},
+{code:"1-4-1-3",fieldId:"leadership",sub:"التطوير المؤسسي",text:"تنفذ المدرسة خطط التحسين وتتابع أثرها.",evidence:"تقارير متابعة الأثر، مؤشرات التحسن."},
+{code:"1-4-1-4",fieldId:"leadership",sub:"التطوير المؤسسي",text:"تراجع المدرسة أداءها بصورة دورية.",evidence:"تقارير المراجعة الدورية."},
+{code:"1-4-1-5",fieldId:"leadership",sub:"التطوير المؤسسي",text:"توظف المدرسة الموارد والإمكانات بكفاءة وفاعلية.",evidence:"تقارير استخدام الموارد، مؤشرات الكفاءة."},
+{code:"1-4-1-6",fieldId:"leadership",sub:"التطوير المؤسسي",text:"تدعم المدرسة الابتكار والمبادرات التطويرية.",evidence:"سجل المبادرات، جوائز الابتكار."},
+{code:"1-4-1-7",fieldId:"leadership",sub:"التطوير المؤسسي",text:"تحافظ المدرسة على استدامة عمليات التطوير والتحسين.",evidence:"خطط الاستدامة، تقارير المتابعة."},
+{code:"1-5-1-1",fieldId:"leadership",sub:"حقوق المتعلم وحمايته",text:"تحمي المدرسة حقوق المتعلمين وتضمن معاملتهم بعدالة واحترام.",evidence:"لائحة الحقوق، تقارير الشكاوى."},
+{code:"1-5-1-2",fieldId:"leadership",sub:"حقوق المتعلم وحمايته",text:"توفر المدرسة آليات واضحة لحماية المتعلمين ودعمهم.",evidence:"آليات الحماية، سجلات الدعم."},
+{code:"2-1-1-1",fieldId:"teaching",sub:"بناء خبرات التعلم",text:"يخطط المعلم لخبرات تعلم مناسبة لاحتياجات المتعلمين.",evidence:"خطط الدروس، سجلات التخطيط."},
+{code:"2-1-1-2",fieldId:"teaching",sub:"بناء خبرات التعلم",text:"ينفذ المعلم خبرات تعلم متنوعة ومحفزة.",evidence:"سجل الزيارات الصفية، تقارير المشرفين."},
+{code:"2-1-1-3",fieldId:"teaching",sub:"بناء خبرات التعلم",text:"يوظف المعلم استراتيجيات تدريس مناسبة لتحقيق نواتج التعلم.",evidence:"خطط الدروس، أدوات تقييم الاستراتيجيات."},
+{code:"2-1-1-4",fieldId:"teaching",sub:"بناء خبرات التعلم",text:"يوظف المعلم التقنيات والموارد التعليمية بفاعلية.",evidence:"سجل استخدام التقنيات، الموارد الرقمية."},
+{code:"2-1-1-5",fieldId:"teaching",sub:"بناء خبرات التعلم",text:"يراعي المعلم الفروق الفردية بين المتعلمين.",evidence:"أنشطة متدرجة، خطط الدعم والإثراء."},
+{code:"2-1-1-6",fieldId:"teaching",sub:"بناء خبرات التعلم",text:"ينمي المعلم مهارات التفكير والتعلم لدى المتعلمين.",evidence:"أسئلة مفتوحة، مشاريع، تقارير الأنشطة."},
+{code:"2-1-1-7",fieldId:"teaching",sub:"بناء خبرات التعلم",text:"يوفر المعلم بيئة صفية داعمة ومحفزة للتعلم.",evidence:"ميثاق الصف، تقارير المناخ الصفي."},
+{code:"2-1-1-8",fieldId:"teaching",sub:"بناء خبرات التعلم",text:"يعزز المعلم مشاركة المتعلمين وتفاعلهم في التعلم.",evidence:"سجلات المشاركة، أنشطة التفاعل."},
+{code:"2-1-1-9",fieldId:"teaching",sub:"بناء خبرات التعلم",text:"يربط المعلم التعلم بخبرات المتعلمين وواقعهم.",evidence:"أنشطة تطبيقية، مشاريع واقعية."},
+{code:"2-2-1-1",fieldId:"teaching",sub:"تقويم التعلم",text:"يستخدم المعلم أساليب تقويم متنوعة ومناسبة.",evidence:"أدوات التقويم، نماذج الاختبارات."},
+{code:"2-2-1-2",fieldId:"teaching",sub:"تقويم التعلم",text:"يوظف المعلم نتائج التقويم لتحسين تعلم المتعلمين.",evidence:"خطط العلاج، تقارير تحليل النتائج."},
+{code:"2-2-1-3",fieldId:"teaching",sub:"تقويم التعلم",text:"يقدم المعلم تغذية راجعة بناءة ومستمرة.",evidence:"ملاحظات المعلم على أعمال الطلاب."},
+{code:"2-2-1-4",fieldId:"teaching",sub:"تقويم التعلم",text:"يشارك المتعلمون في عمليات التقويم ويدركون معايير النجاح.",evidence:"نماذج التقويم الذاتي، معايير التقييم."},
+{code:"3-1-1-1",fieldId:"outcomes",sub:"التحصيل التعليمي",text:"يحقق المتعلمون مستويات مناسبة من التحصيل التعليمي.",evidence:"نتائج الاختبارات، تقارير التحصيل."},
+{code:"3-1-1-2",fieldId:"outcomes",sub:"التحصيل التعليمي",text:"يظهر المتعلمون تقدماً في نواتج التعلم المستهدفة.",evidence:"مقارنات الأداء، تقارير التقدم."},
+{code:"3-1-1-3",fieldId:"outcomes",sub:"التحصيل التعليمي",text:"يحقق المتعلمون نتائج مناسبة في الاختبارات والمهمات التعليمية.",evidence:"سجلات النتائج، نماذج المهمات."},
+{code:"3-1-1-4",fieldId:"outcomes",sub:"التحصيل التعليمي",text:"تتابع المدرسة مستويات التحصيل التعليمي للمتعلمين.",evidence:"تقارير المتابعة، قواعد البيانات."},
+{code:"3-1-1-5",fieldId:"outcomes",sub:"التحصيل التعليمي",text:"تحلل المدرسة نتائج التحصيل وتحدد جوانب القوة والتحسين.",evidence:"تقارير التحليل، مصفوفة القوة والتحسين."},
+{code:"3-1-1-6",fieldId:"outcomes",sub:"التحصيل التعليمي",text:"تضع المدرسة إجراءات لتحسين التحصيل التعليمي.",evidence:"خطط التحسين، برامج المعالجة."},
+{code:"3-2-1-1",fieldId:"outcomes",sub:"التطور الشخصي والصحي والاجتماعي",text:"يظهر المتعلمون سلوكاً إيجابياً ومسؤولية تجاه تعلمهم.",evidence:"تقارير السلوك، سجلات المتابعة."},
+{code:"3-2-1-2",fieldId:"outcomes",sub:"التطور الشخصي والصحي والاجتماعي",text:"يمارس المتعلمون مهارات التواصل والتعاون.",evidence:"أنشطة جماعية، تقارير المهارات."},
+{code:"3-2-1-3",fieldId:"outcomes",sub:"التطور الشخصي والصحي والاجتماعي",text:"يظهر المتعلمون وعياً صحياً مناسباً.",evidence:"برامج التوعية الصحية، استبانات."},
+{code:"3-2-1-4",fieldId:"outcomes",sub:"التطور الشخصي والصحي والاجتماعي",text:"يمارس المتعلمون عادات صحية وسلوكيات آمنة.",evidence:"تقارير المرشد الصحي، الأنشطة."},
+{code:"3-2-1-5",fieldId:"outcomes",sub:"التطور الشخصي والصحي والاجتماعي",text:"يشارك المتعلمون في الأنشطة والبرامج المدرسية.",evidence:"سجلات المشاركة، صور الفعاليات."},
+{code:"3-2-1-6",fieldId:"outcomes",sub:"التطور الشخصي والصحي والاجتماعي",text:"يظهر المتعلمون مهارات اجتماعية وشخصية مناسبة.",evidence:"تقارير المرشد الطلابي."},
+{code:"3-2-1-7",fieldId:"outcomes",sub:"التطور الشخصي والصحي والاجتماعي",text:"يستفيد المتعلمون من برامج التوجيه والدعم المتاحة.",evidence:"سجلات الإرشاد، تقارير الدعم."},
+{code:"4-1-1-1",fieldId:"environment",sub:"المبنى المدرسي",text:"تتوفر في المدرسة مبانٍ ومرافق مناسبة لعمليات التعليم والتعلم.",evidence:"تقارير السلامة، صور المرافق."},
+{code:"4-1-1-2",fieldId:"environment",sub:"المبنى المدرسي",text:"تحافظ المدرسة على نظافة المرافق وتجهيزها.",evidence:"سجلات النظافة، تقارير الصيانة."},
+{code:"4-1-1-3",fieldId:"environment",sub:"المبنى المدرسي",text:"تراعي مرافق المدرسة احتياجات المتعلمين وتيسر الوصول إليها.",evidence:"تسهيلات ذوي الإعاقة، تقارير الوصول."},
+{code:"4-1-1-4",fieldId:"environment",sub:"المبنى المدرسي",text:"توظف المدرسة مرافقها وتجهيزاتها بما يدعم التعلم.",evidence:"جداول استخدام المرافق، سجلات الاستخدام."},
+{code:"4-2-1-1",fieldId:"environment",sub:"الأمن والسلامة",text:"تطبق المدرسة إجراءات الأمن والسلامة المعتمدة.",evidence:"خطة الطوارئ، فرضيات الإخلاء."},
+{code:"4-2-1-2",fieldId:"environment",sub:"الأمن والسلامة",text:"تتوافر متطلبات السلامة والتعامل مع حالات الطوارئ.",evidence:"فحص الطفايات، شبكة الإنذار، مخارج الطوارئ."},
+{code:"4-2-1-3",fieldId:"environment",sub:"الأمن والسلامة",text:"تنفذ المدرسة برامج وإجراءات للتوعية بالأمن والسلامة.",evidence:"برامج التوعية، سجلات التدريب."}];
 
 let INDICATORS=[];
 
@@ -524,15 +523,23 @@ async function migrateIndicatorsIfNeeded(){
 try{
 const metaRef=db.collection('meta').doc('indicators-version');
 const metaDoc=await metaRef.get();
-if(!metaDoc.exists){
-console.log('⏳ نقل المؤشرات إلى Firebase...');
+if(!metaDoc.exists || metaDoc.data().version!=='2.0'){
+console.log('⏳ نقل المؤشرات الجديدة إلى Firebase...');
+// حذف المؤشرات القديمة إن وُجدت
+const oldSnap=await db.collection('indicators').get();
+if(oldSnap.size>0){
+const delBatch=db.batch();
+oldSnap.docs.forEach(d=>delBatch.delete(d.ref));
+await delBatch.commit();
+}
+// إضافة الجديدة
 const batch=db.batch();
 DEFAULT_INDICATORS.forEach((ind,idx)=>{
 const ref=db.collection('indicators').doc(ind.code);
 batch.set(ref,{...ind,order:idx,createdAt:new Date().toISOString()});
 });
 await batch.commit();
-await metaRef.set({version:'1.0',migratedAt:new Date().toISOString()});
+await metaRef.set({version:'2.0',migratedAt:new Date().toISOString(),total:DEFAULT_INDICATORS.length});
 console.log('✅ تم نقل '+DEFAULT_INDICATORS.length+' مؤشر');
 }
 }catch(e){console.error('خطأ في نقل المؤشرات:',e);}
@@ -542,15 +549,13 @@ console.log('✅ تم نقل '+DEFAULT_INDICATORS.length+' مؤشر');
 // مستمع المؤشرات (Real-time)
 // ============================================================
 function setupIndicatorsListener(){
-db.collection('indicators').orderBy('order').onSnapshot(snap=>{
+db.collection('indicators').onSnapshot(snap=>{
 INDICATORS=snap.docs.map(d=>{
 const data=d.data();
 return{code:d.id,fieldId:data.fieldId,sub:data.sub,text:data.text,evidence:data.evidence,order:data.order||0};
 });
-// إعادة ترتيب حسب order
 INDICATORS.sort((a,b)=>a.order-b.order);
 console.log('📋 تم تحميل '+INDICATORS.length+' مؤشر من Firebase');
-// تحديث الصفحات المفتوحة
 if(!$('pg-home').classList.contains('h'))rHome();
 if(!$('pg-field').classList.contains('h'))rField();
 if(!$('pg-indicators').classList.contains('h'))renderIndicatorsAdmin();
@@ -568,7 +573,6 @@ const doc=await db.collection('users').doc(user.uid).get();
 if(doc.exists){currentRole=doc.data().role||'viewer';}
 else{const isFirst=(user.email||'').toLowerCase()==='msahafascool@gmail.com';currentRole=isFirst?'manager':'viewer';await db.collection('users').doc(user.uid).set({email:user.email,name:user.displayName||user.email,role:currentRole,createdAt:new Date().toISOString()});}
 currentPerms=allPerms[currentRole]||DEFAULT_PERMS[currentRole]||DEFAULT_PERMS.viewer;
-// نقل المؤشرات + تشغيل المستمع
 await migrateIndicatorsIfNeeded();
 setupIndicatorsListener();
 }catch(e){console.error(e);currentRole=(user.email||'').toLowerCase()==='msahafascool@gmail.com'?'manager':'viewer';currentPerms=DEFAULT_PERMS[currentRole];}
@@ -1085,11 +1089,9 @@ s.onchange=sv;
 let currentEditCode=null;
 
 function initIndicatorsAdmin(){
-// ملء فلتر المجالات
 const ff=$('indFieldFilter');
 ff.innerHTML='<option value="">كل المجالات</option>';
 FIELDS.forEach(f=>{ff.innerHTML+='<option value="'+f.id+'">'+f.icon+' '+f.name+'</option>';});
-// ملء فلتر المجالات الفرعية
 updateSubFilter();
 renderIndicatorsAdmin();
 }
@@ -1148,17 +1150,14 @@ function openIndicatorModal(code){
 currentEditCode=code||null;
 const modal=$('indicatorModalBg');
 const title=$('indModalTitle');
-// ملء قائمة المجالات
 const fieldSel=$('indField');
 fieldSel.innerHTML='';
 FIELDS.forEach(f=>{fieldSel.innerHTML+='<option value="'+f.id+'">'+f.icon+' '+f.name+'</option>';});
-// ملء قائمة المجالات الفرعية المقترحة
 const subList=$('subList');
 subList.innerHTML='';
 const subsSet=new Set();
 INDICATORS.forEach(i=>subsSet.add(i.sub));
 Array.from(subsSet).sort().forEach(s=>{subList.innerHTML+='<option value="'+esc(s)+'">';});
-// ملء الحقول
 if(code){
 const ind=gIByC(code);
 if(!ind){toast('⚠️ المؤشر غير موجود','w');return;}
@@ -1183,16 +1182,11 @@ modal.classList.add('show');
 }
 
 function suggestNextCode(){
-// اقتراح الرمز التالي بناءً على آخر مؤشر
 if(INDICATORS.length===0)return '1-1-1-1';
-// حاول زيادة الرقم الأخير
 const codes=INDICATORS.map(i=>i.code).sort();
 const last=codes[codes.length-1];
 const parts=last.split('-').map(n=>parseInt(n)||0);
-if(parts.length===4){
-parts[3]++;
-return parts.join('-');
-}
+if(parts.length===4){parts[3]++;return parts.join('-');}
 return '';
 }
 
@@ -1206,14 +1200,12 @@ const fieldId=$('indField').value;
 const sub=$('indSub').value.trim();
 const text=$('indText').value.trim();
 const evidence=$('indEvidence').value.trim();
-if(!code||!fieldId||!sub||!text){$('indModalErr').textContent='أكمل الحقول المطلوبة (الرمز، المجال، الفرعي، النص)';return;}
+if(!code||!fieldId||!sub||!text){$('indModalErr').textContent='أكمل الحقول المطلوبة';return;}
 try{
 if(currentEditCode){
-// تعديل
 await db.collection('indicators').doc(currentEditCode).update({fieldId,sub,text,evidence});
 toast('✅ تم تعديل المؤشر','s');
 }else{
-// إضافة جديدة — التحقق من عدم وجود الرمز
 const existing=await db.collection('indicators').doc(code).get();
 if(existing.exists){$('indModalErr').textContent='هذا الرمز مستخدم بالفعل';return;}
 const order=INDICATORS.length;
@@ -1230,49 +1222,33 @@ const ind=gIByC(code);
 if(!ind)return;
 if(!confirm('حذف المؤشر: '+code+'؟\n\n'+ind.text+'\n\n⚠️ سيتم حذف كل الملفات والملاحظات والمراجعات المرتبطة به!\n\nلا يمكن التراجع.'))return;
 try{
-// حذف الملفات المرتبطة
 const filesSnap=await db.collection('files').where('code','==',code).get();
-const batch1=db.batch();
-filesSnap.docs.forEach(d=>batch1.delete(d.ref));
-await batch1.commit();
-// حذف الملاحظات المرتبطة
+if(filesSnap.size>0){const b=db.batch();filesSnap.docs.forEach(d=>b.delete(d.ref));await b.commit();}
 const notesSnap=await db.collection('notes').where('code','==',code).get();
-const batch2=db.batch();
-notesSnap.docs.forEach(d=>batch2.delete(d.ref));
-await batch2.commit();
-// حذف المراجعات المرتبطة
+if(notesSnap.size>0){const b=db.batch();notesSnap.docs.forEach(d=>b.delete(d.ref));await b.commit();}
 const revsSnap=await db.collection('reviews').where('code','==',code).get();
-const batch3=db.batch();
-revsSnap.docs.forEach(d=>batch3.delete(d.ref));
-await batch3.commit();
-// حذف المؤشر
+if(revsSnap.size>0){const b=db.batch();revsSnap.docs.forEach(d=>b.delete(d.ref));await b.commit();}
 await db.collection('indicators').doc(code).delete();
-toast('🗑️ تم حذف المؤشر وكل ما يخصه','w');
-}catch(e){console.error(e);toast('❌ خطأ: '+(e.code||e.message),'e');}
+toast('🗑️ تم حذف المؤشر','w');
+}catch(e){console.error(e);toast('❌ خطأ','e');}
 }
 
 $('btnResetIndicators').onclick=async()=>{
 if(!can('manageInd')){toast('⚠️','w');return;}
-if(!confirm('استعادة المؤشرات الأصلية؟\n\n⚠️ سيتم:\n• حذف جميع المؤشرات الحالية\n• إعادة المؤشرات الأصلية الـ 52\n\n(لن يتم حذف الملفات والملاحظات)'))return;
+if(!confirm('استعادة المؤشرات الأصلية (52)؟\n\n⚠️ سيتم حذف جميع المؤشرات الحالية.\n\n(لن يتم حذف الملفات والملاحظات)'))return;
 try{
-// حذف كل المؤشرات
 const all=await db.collection('indicators').get();
-const batch=db.batch();
-all.docs.forEach(d=>batch.delete(d.ref));
-await batch.commit();
-// إعادة الأصلية
-const batch2=db.batch();
+if(all.size>0){const b=db.batch();all.docs.forEach(d=>b.delete(d.ref));await b.commit();}
+const b2=db.batch();
 DEFAULT_INDICATORS.forEach((ind,idx)=>{
 const ref=db.collection('indicators').doc(ind.code);
-batch2.set(ref,{...ind,order:idx,createdAt:new Date().toISOString()});
+b2.set(ref,{...ind,order:idx,createdAt:new Date().toISOString()});
 });
-await batch2.commit();
+await b2.commit();
+await db.collection('meta').doc('indicators-version').set({version:'2.0',migratedAt:new Date().toISOString(),total:DEFAULT_INDICATORS.length});
 toast('✅ تم استعادة '+DEFAULT_INDICATORS.length+' مؤشر','s');
 }catch(e){console.error(e);toast('❌ خطأ','e');}
 };
-
-$('indFieldFilter').onchange=()=>{updateSubFilter();renderIndicatorsAdmin();};
-$('indSubFilter').onchange=renderIndicatorsAdmin;
 
 // ============================================================
 // النسخ الاحتياطي
@@ -1292,7 +1268,7 @@ try{
 const indicatorsSnap=await db.collection('indicators').orderBy('order').get();
 const indicators=indicatorsSnap.docs.map(d=>({code:d.id,...d.data()}));
 if(allFiles.length===0&&allNotes.length===0&&allReviews.length===0&&indicators.length===0){toast('⚠️ لا توجد بيانات','w');return;}
-const bk={appName:'منظومة الاعتماد المدرسي',version:'12.0',exportDate:new Date().toISOString(),files:allFiles,notes:allNotes,reviews:allReviews,indicators:indicators};
+const bk={appName:'منظومة الاعتماد المدرسي',version:'13.0',exportDate:new Date().toISOString(),files:allFiles,notes:allNotes,reviews:allReviews,indicators:indicators};
 const b=new Blob([JSON.stringify(bk)],{type:'application/json'});
 const u=URL.createObjectURL(b);
 const a=document.createElement('a');
@@ -1313,7 +1289,7 @@ const text=await file.text();
 const bk=JSON.parse(text);
 if(!bk.files&&!bk.notes&&!bk.reviews&&!bk.indicators){toast('❌','e');return;}
 if(!confirm('سيتم استبدال جميع البيانات!\n\nهل تريد المتابعة؟'))return;
-const delAll=async(col)=>{const s=await db.collection(col).get();const batch=db.batch();s.docs.forEach(d=>batch.delete(d.ref));await batch.commit();};
+const delAll=async(col)=>{const s=await db.collection(col).get();if(s.size>0){const b=db.batch();s.docs.forEach(d=>b.delete(d.ref));await b.commit();}};
 await delAll('files');
 await delAll('notes');
 await delAll('reviews');
@@ -1323,6 +1299,7 @@ if(bk.files)for(const f of bk.files){const{id,...r}=f;try{await db.collection('f
 if(bk.notes)for(const n of bk.notes){const{id,...r}=n;try{await db.collection('notes').add(r);nc++;}catch(e){}}
 if(bk.reviews)for(const r of bk.reviews){const{id,...rest}=r;try{await db.collection('reviews').add(rest);rc++;}catch(e){}}
 if(bk.indicators)for(const ind of bk.indicators){const{code,...rest}=ind;try{await db.collection('indicators').doc(code).set(rest);ic++;}catch(e){}}
+if(ic>0){await db.collection('meta').doc('indicators-version').set({version:'2.0',migratedAt:new Date().toISOString(),total:ic});}
 toast('✅ تم استيراد '+ic+' مؤشر + '+fc+' ملف + '+nc+' ملاحظة','s');
 rBackup();
 }catch(e){console.error(e);toast('❌','e');}
@@ -1333,18 +1310,18 @@ if(!can('clear')){toast('⚠️','w');return;}
 if(!confirm('⚠️ سيتم مسح كل البيانات!\n\n• الملفات\n• الملاحظات\n• المراجعات\n• المؤشرات (ستُستعاد الأصلية)\n\nهل أنت متأكد؟'))return;
 if(!confirm('تأكيد نهائي؟'))return;
 try{
-const delAll=async(col)=>{const s=await db.collection(col).get();const batch=db.batch();s.docs.forEach(d=>batch.delete(d.ref));await batch.commit();};
+const delAll=async(col)=>{const s=await db.collection(col).get();if(s.size>0){const b=db.batch();s.docs.forEach(d=>b.delete(d.ref));await b.commit();}};
 await delAll('files');
 await delAll('notes');
 await delAll('reviews');
 await delAll('indicators');
-// إعادة المؤشرات الأصلية
 const batch=db.batch();
 DEFAULT_INDICATORS.forEach((ind,idx)=>{
 const ref=db.collection('indicators').doc(ind.code);
 batch.set(ref,{...ind,order:idx,createdAt:new Date().toISOString()});
 });
 await batch.commit();
+await db.collection('meta').doc('indicators-version').set({version:'2.0',migratedAt:new Date().toISOString(),total:DEFAULT_INDICATORS.length});
 toast('🗑️ تم المسح وإعادة المؤشرات الأصلية','w');
 rBackup();
 }catch(e){toast('❌','e');}
@@ -1525,7 +1502,7 @@ $('impInput').onchange=function(){if(this.files[0]){impBackup(this.files[0]);thi
 $('clrBtn').onclick=clrAll;
 window.addEventListener('online',()=>{$('syncIndicator').classList.remove('offline');$('syncText').textContent='متصل';});
 window.addEventListener('offline',()=>{$('syncIndicator').classList.add('offline');$('syncText').textContent='غير متصل';});
-console.log('🎉 المنظومة جاهزة — v12 مع إدارة المؤشرات');
+console.log('🎉 المنظومة جاهزة — v13 مع المؤشرات الجديدة');
 </script>
 </body>
 </html>
