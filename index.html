@@ -218,6 +218,46 @@ body{background:var(--bg);padding:20px;direction:rtl;min-height:100vh;color:var(
 .search-bar input{flex:1;min-width:220px;padding:12px 18px;border:2px solid var(--border);border-radius:12px;font-family:inherit;font-size:.9rem;background:#f8fffe;outline:none}
 .search-bar input:focus{border-color:var(--primary);background:#fff}
 .search-bar select{padding:12px 16px;border:2px solid var(--border);border-radius:12px;font-family:inherit;font-size:.9rem;background:#f8fffe;outline:none;cursor:pointer}
+/* Progress Page Styles */
+.progress-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:22px}
+.pstat{background:var(--card);border-radius:14px;padding:16px;text-align:center;box-shadow:var(--shadow);border-top:4px solid var(--primary);transition:all .3s}
+.pstat:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover)}
+.pstat .num{font-size:1.8rem;font-weight:900;line-height:1}
+.pstat .lbl{color:var(--text-light);font-size:.78rem;margin-top:6px;font-weight:700}
+.pstat.s100{border-top-color:#16a34a}
+.pstat.s75{border-top-color:#22c55e}
+.pstat.s50{border-top-color:#f59e0b}
+.pstat.s25{border-top-color:#f97316}
+.pstat.s0{border-top-color:#dc2626}
+.progress-table{width:100%;border-collapse:collapse;background:var(--card);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);margin-bottom:22px}
+.progress-table th{background:var(--gradient);color:#fff;padding:14px 12px;text-align:right;font-size:.82rem;font-weight:800}
+.progress-table td{padding:12px;border-bottom:1px solid var(--border);font-size:.85rem;vertical-align:middle}
+.progress-table tr:hover td{background:#f8fffe}
+.progress-table .code-cell{font-weight:800;color:var(--primary);white-space:nowrap}
+.progress-bar-cell{min-width:140px}
+.progress-bar-bg{background:#e5e7eb;height:22px;border-radius:20px;overflow:hidden;position:relative;box-shadow:inset 0 1px 3px rgba(0,0,0,.1)}
+.progress-bar-fill{height:100%;border-radius:20px;transition:width .5s ease;display:flex;align-items:center;justify-content:flex-end;padding-left:8px;color:#fff;font-weight:800;font-size:.75rem;min-width:0}
+.pb100{background:linear-gradient(90deg,#16a34a 0%,#22c55e 100%)}
+.pb75{background:linear-gradient(90deg,#22c55e 0%,#84cc16 100%)}
+.pb50{background:linear-gradient(90deg,#f59e0b 0%,#fbbf24 100%)}
+.pb25{background:linear-gradient(90deg,#f97316 0%,#fb923c 100%)}
+.pb0{background:linear-gradient(90deg,#dc2626 0%,#ef4444 100%)}
+.pb-percent{font-weight:900;font-size:.85rem;color:var(--text);min-width:50px;text-align:center}
+.status-badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:.72rem;font-weight:800;white-space:nowrap}
+.sb-100{background:linear-gradient(135deg,#dcfce7 0%,#bbf7d0 100%);color:#15803d}
+.sb-75{background:linear-gradient(135deg,#d9f99d 0%,#bef264 100%);color:#3f6212}
+.sb-50{background:linear-gradient(135deg,#fef3c7 0%,#fde68a 100%);color:#b45309}
+.sb-25{background:linear-gradient(135deg,#fed7aa 0%,#fdba74 100%);color:#9a3412}
+.sb-0{background:linear-gradient(135deg,#fee2e2 0%,#fecaca 100%);color:#991b1b}
+.quick-set{display:flex;gap:4px;justify-content:center;flex-wrap:wrap}
+.quick-btn{width:38px;height:34px;border-radius:8px;border:2px solid var(--border);background:#fff;cursor:pointer;font-weight:800;font-size:.72rem;color:var(--text-light);transition:all .2s;font-family:inherit}
+.quick-btn:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.quick-btn.active{color:#fff;border-color:transparent}
+.quick-btn.q100.active{background:#16a34a}
+.quick-btn.q75.active{background:#22c55e}
+.quick-btn.q50.active{background:#f59e0b}
+.quick-btn.q25.active{background:#f97316}
+.quick-btn.q0.active{background:#dc2626}
 .tst{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(120px);background:var(--gradient);color:#fff;padding:16px 28px;border-radius:16px;box-shadow:0 12px 32px rgba(15,118,110,.35);font-weight:700;font-size:.9rem;opacity:0;transition:all .4s;z-index:99999;pointer-events:none;max-width:90%;text-align:center}
 .tst.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .tst.s{background:linear-gradient(135deg,#16a34a 0%,#22c55e 100%)}
@@ -228,7 +268,8 @@ body{background:var(--bg);padding:20px;direction:rtl;min-height:100vh;color:var(
 .sync.offline{color:#dc2626;border-color:#fecaca}
 .sync.offline .dot{background:#dc2626}
 footer{text-align:center;margin-top:40px;color:var(--text-light);font-size:.82rem;padding:20px;font-weight:600}
-@media(max-width:768px){.hdr{flex-direction:column;align-items:flex-start}.stats{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr}.charts-grid{grid-template-columns:1fr}.preview-content{width:98vw;height:98vh}.ind-table{font-size:.75rem}}
+@media(max-width:768px){.hdr{flex-direction:column;align-items:flex-start}.stats{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr}.charts-grid{grid-template-columns:1fr}.preview-content{width:98vw;height:98vh}.ind-table{font-size:.75rem}.progress-table{font-size:.72rem}.progress-stats{grid-template-columns:1fr 1fr}}
+@media print{.no-print{display:none!important}.hdr,.nav,footer{display:none!important}body{background:#fff;padding:0}.c{max-width:100%}.progress-table,.chart-card{page-break-inside:avoid}}
 </style>
 </head>
 <body>
@@ -266,6 +307,7 @@ footer{text-align:center;margin-top:40px;color:var(--text-light);font-size:.82re
 </div>
 <div class="nav" style="margin-bottom:22px">
 <button class="btn bw" onclick="exportPDF()">📄 تقرير PDF</button>
+<button class="btn bp" id="btnProgress" onclick="go('progress')">📊 لوحة متابعة التنفيذ</button>
 <button class="btn bp" id="btnManageIndicators" onclick="go('indicators')" style="display:none">✏️ إدارة المؤشرات</button>
 <button class="btn bg" id="btnBackup" onclick="go('backup')" style="display:none">💾 نسخة احتياطية</button>
 <button class="btn bp" id="btnManageUsers" onclick="go('users')" style="display:none">👥 إدارة المستخدمين</button>
@@ -343,6 +385,77 @@ footer{text-align:center;margin-top:40px;color:var(--text-light);font-size:.82re
 </div>
 </div>
 
+<!-- ==================== صفحة لوحة متابعة التنفيذ ==================== -->
+<div id="pg-progress" class="pg h">
+<div class="hdr">
+<div>
+<h1>📊 لوحة متابعة التنفيذ</h1>
+<div style="font-size:.85rem;color:rgba(255,255,255,.85);margin-top:6px">
+<a onclick="go('home')" style="color:#fff;cursor:pointer;font-weight:700;text-decoration:none">🏠 الرئيسية</a> ◀ لوحة المتابعة
+</div>
+</div>
+<div class="nav no-print">
+<button class="btn bw" onclick="printProgress()">🖨️ طباعة</button>
+<button class="btn bp" onclick="exportProgressPDF()">📄 حفظ PDF</button>
+<button class="btn" style="background:rgba(255,255,255,.15);color:#fff;border:2px solid rgba(255,255,255,.25)" onclick="go('home')">◀ الرئيسية</button>
+</div>
+</div>
+
+<div class="progress-stats no-print">
+<div class="pstat s100"><div class="num" style="color:#16a34a" id="ps100">0</div><div class="lbl">✅ نُفذ (100%)</div></div>
+<div class="pstat s75"><div class="num" style="color:#22c55e" id="ps75">0</div><div class="lbl">🟢 جزئي (75%)</div></div>
+<div class="pstat s50"><div class="num" style="color:#f59e0b" id="ps50">0</div><div class="lbl">🟡 متوسط (50%)</div></div>
+<div class="pstat s25"><div class="num" style="color:#f97316" id="ps25">0</div><div class="lbl">🟠 بدأ (25%)</div></div>
+<div class="pstat s0"><div class="num" style="color:#dc2626" id="ps0">0</div><div class="lbl">❌ لم يُنفذ (0%)</div></div>
+<div class="pstat"><div class="num" style="color:var(--primary)" id="psAvg">0%</div><div class="lbl">📊 المتوسط العام</div></div>
+</div>
+
+<div class="search-bar no-print">
+<input type="text" id="prgSearch" placeholder="🔍 ابحث في المؤشرات..." oninput="renderProgressTable()">
+<select id="prgFieldFilter" onchange="renderProgressTable()">
+<option value="">كل المجالات</option>
+</select>
+<select id="prgStatusFilter" onchange="renderProgressTable()">
+<option value="">كل الحالات</option>
+<option value="100">✅ نُفذ (100%)</option>
+<option value="75">🟢 جزئي (75%)</option>
+<option value="50">🟡 متوسط (50%)</option>
+<option value="25">🟠 بدأ (25%)</option>
+<option value="0">❌ لم يُنفذ (0%)</option>
+</select>
+<span style="color:var(--text-light);font-weight:700;font-size:.85rem" id="prgCount">0 مؤشر</span>
+</div>
+
+<div class="charts-grid no-print">
+<div class="chart-card"><h3>📊 التوزيع العام للحالات</h3><div class="chart-canvas-wrap"><canvas id="chartProgressDistribution"></canvas></div></div>
+<div class="chart-card"><h3>📈 متوسط التنفيذ لكل مجال</h3><div class="chart-canvas-wrap"><canvas id="chartFieldsProgress"></canvas></div></div>
+</div>
+
+<div class="charts-grid no-print" id="fieldsProgressCharts">
+<!-- سيتم ملؤها ديناميكياً - 4 رسوم للمجالات -->
+</div>
+
+<div style="overflow-x:auto">
+<table class="progress-table">
+<thead>
+<tr>
+<th style="width:100px">الرمز</th>
+<th style="width:130px">المجال</th>
+<th>المؤشر</th>
+<th style="width:180px">شريط التقدم</th>
+<th style="width:100px">الحالة</th>
+<th style="width:220px">تعديل سريع</th>
+</tr>
+</thead>
+<tbody id="progressTableBody"></tbody>
+</table>
+</div>
+
+<div style="text-align:center;padding:20px;color:var(--text-light);font-size:.85rem;margin-top:20px;border-top:1px solid var(--border)" class="no-print">
+💾 يتم حفظ التغييرات تلقائياً في السحابة • 🔄 مزامنة فورية مع جميع الأجهزة
+</div>
+</div>
+
 <div id="pg-indicators" class="pg h">
 <div class="hdr">
 <div><h1>✏️ إدارة المؤشرات</h1><div style="font-size:.85rem;color:rgba(255,255,255,.85);margin-top:6px"><a onclick="go('home')" style="color:#fff;cursor:pointer;font-weight:700;text-decoration:none">🏠 الرئيسية</a> ◀ إدارة المؤشرات</div></div>
@@ -377,7 +490,7 @@ footer{text-align:center;margin-top:40px;color:var(--text-light);font-size:.82re
 </div>
 <div class="wb"><span style="font-size:1.4rem">⚠️</span><div><strong>تنبيه:</strong> البيانات محفوظة في السحابة. صدّر نسخة احتياطية دورياً للأمان.</div></div>
 <div class="bg2">
-<div class="bc"><div class="bi2" style="background:linear-gradient(135deg,#dcfce7 0%,#bbf7d0 100%);color:#15803d">⬇️</div><h2>تصدير</h2><p>تنزيل جميع البيانات في ملف JSON واحد (يشمل المؤشرات)</p><button class="btn bg" id="expBtn">📤 تصدير الآن</button></div>
+<div class="bc"><div class="bi2" style="background:linear-gradient(135deg,#dcfce7 0%,#bbf7d0 100%);color:#15803d">⬇️</div><h2>تصدير</h2><p>تنزيل جميع البيانات في ملف JSON واحد (يشمل المؤشرات + التقدم)</p><button class="btn bg" id="expBtn">📤 تصدير الآن</button></div>
 <div class="bc"><div class="bi2" style="background:linear-gradient(135deg,#ccfbf1 0%,#99f6e4 100%);color:var(--primary)">⬆️</div><h2>استيراد</h2><p>استعد بياناتك. <strong>سيتم استبدال الحالي.</strong></p><button class="btn bp" id="impBtn">📥 اختيار ملف</button><input type="file" id="impInput" accept=".json" style="display:none"></div>
 <div class="bc"><div class="bi2" style="background:linear-gradient(135deg,#fef3c7 0%,#fde68a 100%);color:#b45309">📄</div><h2>تقرير PDF</h2><p>أنشئ تقريراً شاملاً احترافياً</p><button class="btn bw" onclick="exportPDF()">🖨️ إنشاء</button></div>
 <div class="bc" id="cardClear"><div class="bi2" style="background:linear-gradient(135deg,#fee2e2 0%,#fecaca 100%);color:#dc2626">🗑️</div><h2>مسح الكل</h2><p>حذف جميع البيانات. <strong>لا يمكن التراجع.</strong></p><button class="btn bd" id="clrBtn">🧹 مسح</button></div>
@@ -432,8 +545,7 @@ footer{text-align:center;margin-top:40px;color:var(--text-light);font-size:.82re
 
 <div class="tst" id="toast"></div>
 
-<script>
-const firebaseConfig={apiKey:"AIzaSyBU0TC-o_NvWZ3un0hHd5urJHKB2Tl6YGU",authDomain:"moashrat-93aaf.firebaseapp.com",projectId:"moashrat-93aaf",storageBucket:"moashrat-93aaf.firebasestorage.app",messagingSenderId:"552973575697",appId:"1:552973575697:web:b6a925a38edd8a428173b0",measurementId:"G-EM5DZPZY54"};
+<script>const firebaseConfig={apiKey:"AIzaSyBU0TC-o_NvWZ3un0hHd5urJHKB2Tl6YGU",authDomain:"moashrat-93aaf.firebaseapp.com",projectId:"moashrat-93aaf",storageBucket:"moashrat-93aaf.firebasestorage.app",messagingSenderId:"552973575697",appId:"1:552973575697:web:b6a925a38edd8a428173b0",measurementId:"G-EM5DZPZY54"};
 firebase.initializeApp(firebaseConfig);
 const auth=firebase.auth(),db=firebase.firestore();
 
@@ -498,9 +610,10 @@ const DEFAULT_INDICATORS=[
 {code:"4-2-1-3",fieldId:"environment",sub:"الأمن والسلامة",text:"تنفذ المدرسة برامج وإجراءات للتوعية بالأمن والسلامة.",evidence:"برامج التوعية، سجلات التدريب."}];
 
 let INDICATORS=[];
+let PROGRESS={}; // {code: {percent, status, note, updatedAt, updatedBy}}
 
-const DEFAULT_PERMS={manager:{view:true,upload:true,delFile:true,notes:true,swot:true,review:true,export:true,pdf:true,users:true,perms:true,clear:true,editFile:true,manageInd:true},agent:{view:true,upload:true,delFile:true,notes:true,swot:true,review:true,export:true,pdf:true,users:false,perms:false,clear:false,editFile:true,manageInd:false},secretary:{view:true,upload:true,delFile:true,notes:true,swot:true,review:false,export:false,pdf:true,users:false,perms:false,clear:false,editFile:true,manageInd:false},counselor:{view:true,upload:false,delFile:false,notes:true,swot:true,review:true,export:false,pdf:true,users:false,perms:false,clear:false,editFile:false,manageInd:false},viewer:{view:true,upload:false,delFile:false,notes:false,swot:false,review:false,export:false,pdf:true,users:false,perms:false,clear:false,editFile:false,manageInd:false}};
-const PERM_NAMES={view:'👁️ مشاهدة',upload:'📎 رفع ملفات',editFile:'✏️ تعديل ملفات',delFile:'🗑️ حذف ملفات',notes:'📝 ملاحظات',swot:'🏷️ SWOT',review:'📅 مراجعة',export:'💾 تصدير',pdf:'📄 PDF',users:'👥 مستخدمين',perms:'🎛️ صلاحيات',manageInd:'✏️ إدارة المؤشرات',clear:'🗑️ مسح الكل'};
+const DEFAULT_PERMS={manager:{view:true,upload:true,delFile:true,notes:true,swot:true,review:true,export:true,pdf:true,users:true,perms:true,clear:true,editFile:true,manageInd:true,manageProgress:true},agent:{view:true,upload:true,delFile:true,notes:true,swot:true,review:true,export:true,pdf:true,users:false,perms:false,clear:false,editFile:true,manageInd:false,manageProgress:true},secretary:{view:true,upload:true,delFile:true,notes:true,swot:true,review:false,export:false,pdf:true,users:false,perms:false,clear:false,editFile:true,manageInd:false,manageProgress:false},counselor:{view:true,upload:false,delFile:false,notes:true,swot:true,review:true,export:false,pdf:true,users:false,perms:false,clear:false,editFile:false,manageInd:false,manageProgress:false},viewer:{view:true,upload:false,delFile:false,notes:false,swot:false,review:false,export:false,pdf:true,users:false,perms:false,clear:false,editFile:false,manageInd:false,manageProgress:false}};
+const PERM_NAMES={view:'👁️ مشاهدة',upload:'📎 رفع ملفات',editFile:'✏️ تعديل ملفات',delFile:'🗑️ حذف ملفات',notes:'📝 ملاحظات',swot:'🏷️ SWOT',review:'📅 مراجعة',export:'💾 تصدير',pdf:'📄 PDF',users:'👥 مستخدمين',perms:'🎛️ صلاحيات',manageInd:'✏️ إدارة المؤشرات',manageProgress:'📊 متابعة التنفيذ',clear:'🗑️ مسح الكل'};
 const ROLE_NAMES={manager:'🎩 مدير',agent:'📊 وكيل',secretary:'📝 سكرتير',counselor:'🧑‍🏫 مرشد',viewer:'👁️ مشاهد'};
 const ROLES=['manager','agent','secretary','counselor','viewer'];
 
@@ -512,27 +625,25 @@ const esc=s=>{const d=document.createElement('div');d.textContent=s;return d.inn
 const fmtB=b=>b<1024?b+' B':b<1048576?(b/1024).toFixed(1)+' KB':(b/(1048576)).toFixed(1)+' MB';
 const fIco=n=>{const e=n.split('.').pop().toLowerCase();return e==='pdf'?'📕':['doc','docx'].includes(e)?'📘':['xls','xlsx'].includes(e)?'📗':['ppt','pptx'].includes(e)?'📙':['jpg','jpeg','png','gif','webp','bmp'].includes(e)?'🖼️':['zip','rar','7z'].includes(e)?'🗜️':['mp4','avi','mov'].includes(e)?'🎬':['mp3','wav','ogg'].includes(e)?'🎵':'📄';};
 const swN=c=>c==='S'?'قوة':c==='W'?'ضعف':c==='O'?'فرصة':c==='T'?'تهديد':'';
+const prStatus=p=>p===100?'مكتمل':p===75?'جيد جداً':p===50?'متوسط':p===25?'بداية':'لم يُنفذ';
 function toast(m,t){const el=$('toast');el.textContent=m;el.className='tst show '+(t||'');clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove('show'),3000);}
-function f2b64(f){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=()=>rej(r.error);r.readAsDataURL(f);});}let currentUser=null,currentRole='viewer',currentPerms={},allPerms={};
+function f2b64(f){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=()=>rej(r.error);r.readAsDataURL(f);});}
+
+let currentUser=null,currentRole='viewer',currentPerms={},allPerms={};
 function can(p){return currentPerms&&currentPerms[p]===true;}
 
-// ============================================================
-// نقل المؤشرات إلى Firebase (أول مرة فقط)
-// ============================================================
 async function migrateIndicatorsIfNeeded(){
 try{
 const metaRef=db.collection('meta').doc('indicators-version');
 const metaDoc=await metaRef.get();
 if(!metaDoc.exists || metaDoc.data().version!=='2.0'){
 console.log('⏳ نقل المؤشرات الجديدة إلى Firebase...');
-// حذف المؤشرات القديمة إن وُجدت
 const oldSnap=await db.collection('indicators').get();
 if(oldSnap.size>0){
 const delBatch=db.batch();
 oldSnap.docs.forEach(d=>delBatch.delete(d.ref));
 await delBatch.commit();
 }
-// إضافة الجديدة
 const batch=db.batch();
 DEFAULT_INDICATORS.forEach((ind,idx)=>{
 const ref=db.collection('indicators').doc(ind.code);
@@ -545,9 +656,6 @@ console.log('✅ تم نقل '+DEFAULT_INDICATORS.length+' مؤشر');
 }catch(e){console.error('خطأ في نقل المؤشرات:',e);}
 }
 
-// ============================================================
-// مستمع المؤشرات (Real-time)
-// ============================================================
 function setupIndicatorsListener(){
 db.collection('indicators').onSnapshot(snap=>{
 INDICATORS=snap.docs.map(d=>{
@@ -555,11 +663,25 @@ const data=d.data();
 return{code:d.id,fieldId:data.fieldId,sub:data.sub,text:data.text,evidence:data.evidence,order:data.order||0};
 });
 INDICATORS.sort((a,b)=>a.order-b.order);
-console.log('📋 تم تحميل '+INDICATORS.length+' مؤشر من Firebase');
+console.log('📋 تم تحميل '+INDICATORS.length+' مؤشر');
 if(!$('pg-home').classList.contains('h'))rHome();
 if(!$('pg-field').classList.contains('h'))rField();
 if(!$('pg-indicators').classList.contains('h'))renderIndicatorsAdmin();
+if(!$('pg-progress').classList.contains('h'))renderProgressPage();
 },err=>{console.error('خطأ في مستمع المؤشرات:',err);});
+}
+
+function setupProgressListener(){
+db.collection('progress').onSnapshot(snap=>{
+PROGRESS={};
+snap.docs.forEach(d=>{
+const data=d.data();
+PROGRESS[d.id]={percent:data.percent||0,status:data.status||'',note:data.note||'',updatedAt:data.updatedAt||'',updatedBy:data.updatedBy||''};
+});
+console.log('📊 تم تحميل '+Object.keys(PROGRESS).length+' حالة تقدم');
+if(!$('pg-progress').classList.contains('h'))renderProgressPage();
+if(!$('pg-home').classList.contains('h'))rHome();
+},err=>{console.error('خطأ في مستمع التقدم:',err);});
 }
 
 auth.onAuthStateChanged(async user=>{
@@ -575,6 +697,7 @@ else{const isFirst=(user.email||'').toLowerCase()==='msahafascool@gmail.com';cur
 currentPerms=allPerms[currentRole]||DEFAULT_PERMS[currentRole]||DEFAULT_PERMS.viewer;
 await migrateIndicatorsIfNeeded();
 setupIndicatorsListener();
+setupProgressListener();
 }catch(e){console.error(e);currentRole=(user.email||'').toLowerCase()==='msahafascool@gmail.com'?'manager':'viewer';currentPerms=DEFAULT_PERMS[currentRole];}
 $('pg-auth').classList.add('h');$('pg-home').classList.remove('h');
 $('uName').textContent=user.displayName||user.email;
@@ -584,13 +707,14 @@ updateUIPerms();
 setupRealtimeListeners();
 setupPermsListener();
 go('home');
-}else{currentUser=null;currentRole='viewer';currentPerms={};INDICATORS=[];$('pg-home').classList.add('h');$('pg-auth').classList.remove('h');}});
+}else{currentUser=null;currentRole='viewer';currentPerms={};INDICATORS=[];PROGRESS={};$('pg-home').classList.add('h');$('pg-auth').classList.remove('h');}});
 
 function updateUIPerms(){
 $('btnManageUsers').style.display=can('users')?'inline-flex':'none';
 $('btnPermissions').style.display=can('perms')?'inline-flex':'none';
 $('btnManageIndicators').style.display=can('manageInd')?'inline-flex':'none';
 $('btnBackup').style.display=can('export')?'inline-flex':'none';
+$('btnProgress').style.display=can('manageProgress')?'inline-flex':'none';
 $('cardClear').style.display=can('clear')?'block':'none';}
 
 $('btnLogin').onclick=async()=>{
@@ -625,6 +749,7 @@ if(p==='users'&&!can('users')){toast('⚠️ لا تملك صلاحية','w');re
 if(p==='permissions'&&!can('perms')){toast('⚠️ لا تملك صلاحية','w');return;}
 if(p==='indicators'&&!can('manageInd')){toast('⚠️ لا تملك صلاحية','w');return;}
 if(p==='backup'&&!can('export')){toast('⚠️ لا تملك صلاحية','w');return;}
+if(p==='progress'&&!can('manageProgress')){toast('⚠️ لا تملك صلاحية','w');return;}
 document.querySelectorAll('.pg').forEach(x=>x.classList.add('h'));
 $('pg-'+p).classList.remove('h');
 window.scrollTo(0,0);
@@ -632,6 +757,7 @@ if(p==='home')rHome();
 else if(p==='field')rField();
 else if(p==='ind')rInd();
 else if(p==='indicators')initIndicatorsAdmin();
+else if(p==='progress')initProgressPage();
 else if(p==='backup')rBackup();
 else if(p==='users')loadUsers();
 else if(p==='permissions')loadPermissions();}
@@ -676,7 +802,7 @@ const pct=inds.length>0?Math.round(done/inds.length*100):0;
 const c=document.createElement('div');
 c.className='fc';
 c.onclick=()=>{curF=f.id;go('field');};
-c.innerHTML='<div class="ic">'+f.icon+'</div><h2>'+f.name+'</h2><p>'+f.desc+'</p><div class="st"><span>📋 '+inds.length+'</span><span class="fs" data-f="'+f.id+'">📎 0</span><span class="ns" data-f="'+f.id+'">📝 0</span><span class="rs" data-f="'+f.id+'">✅ 0</span></div><div class="progress-bar"><div class="progress-fill" style="width:'+pct+'%"></div></div><div style="font-size:.78rem;color:var(--primary);font-weight:800;margin-top:6px">'+pct+'% مكتمل</div>';
+c.innerHTML='<div class="ic">'+f.icon+'</div><h2>'+f.name+'</h2><p>'+f.desc+'</p><div class="st"><span>📋 '+inds.length+'</span><span class="fs" data-f="'+f.id+'">📎 0</span><span class="ns" data-f="'+f.id+'">📝 0</span><span class="rs" data-f="'+f.id+'">✅ 0</span></div><div class="progress-bar"><div class="progress-fill" style="width:'+pct+'%"></div></div><div style="font-size:.78rem;color:var(--primary);font-weight:800;margin-top:6px">'+pct+'% تغطية</div>';
 g.appendChild(c);});
 const nM={};
 allNotes.forEach(n=>{if(n.text&&n.text.trim())nM[n.code]=n;});
@@ -707,9 +833,7 @@ drawProgressChart(progress);
 drawFieldsChart();
 drawSWOTChart();
 drawReviewsChart();
-}
-
-function rField(){
+}function rField(){
 const f=gF(curF);
 if(!f){go('home');return;}
 $('fTitle').textContent=f.icon+' '+f.name;
@@ -725,10 +849,7 @@ const notes={};
 allNotes.forEach(n=>{if(n.text&&n.text.trim())notes[n.code]=n;});
 const revs={};
 allReviews.forEach(r=>{revs[r.code]=r;});
-if(Object.keys(subs).length===0){
-c.innerHTML='<div class="es"><span class="ei">📂</span><p>لا توجد مؤشرات لهذا المجال</p></div>';
-return;
-}
+if(Object.keys(subs).length===0){c.innerHTML='<div class="es"><span class="ei">📂</span><p>لا توجد مؤشرات لهذا المجال</p></div>';return;}
 Object.keys(subs).forEach(sn=>{
 const list=subs[sn];
 const sec=document.createElement('div');
@@ -737,9 +858,7 @@ sec.innerHTML='<div class="stt"><span>📂 '+sn+'</span><span class="sc">'+list.
 const gr=document.createElement('div');
 gr.className='ig';
 list.forEach(function(i){
-const cc=counts[i.code]||0;
-const n=notes[i.code];
-const r=revs[i.code];
+const cc=counts[i.code]||0,n=notes[i.code],r=revs[i.code];
 let bd='<span class="bdg '+(cc>0?'f':'')+'">📎 '+cc+'</span>';
 if(n)bd+='<span class="bdg n">📝</span>';
 if(n&&n.swot)bd+='<span class="bdg '+n.swot+'">'+swN(n.swot)+'</span>';
@@ -823,15 +942,10 @@ if(!f){toast('⚠️ الملف غير موجود','w');return;}
 const type=f.fileType||'';
 const name=f.fileName||'ملف';
 let content='';
-if(type.startsWith('image/')){
-content='<img src="'+f.fileData+'" style="max-width:100%;max-height:100%;object-fit:contain;display:block">';
-}else if(type==='application/pdf'||name.toLowerCase().endsWith('.pdf')){
-content='<iframe src="'+f.fileData+'"></iframe>';
-}else if(type.startsWith('video/')){
-content='<video src="'+f.fileData+'" controls style="max-width:100%;max-height:100%"></video>';
-}else{
-content='<div style="text-align:center;padding:40px;color:var(--text-light)"><div style="font-size:4rem;margin-bottom:15px">📄</div><p style="margin-bottom:15px">لا يمكن معاينة هذا النوع من الملفات</p><button class="btn bp" onclick="dlFile(\''+id+'\')">⬇️ تحميل الملف</button></div>';
-}
+if(type.startsWith('image/')){content='<img src="'+f.fileData+'" style="max-width:100%;max-height:100%;object-fit:contain;display:block">';}
+else if(type==='application/pdf'||name.toLowerCase().endsWith('.pdf')){content='<iframe src="'+f.fileData+'"></iframe>';}
+else if(type.startsWith('video/')){content='<video src="'+f.fileData+'" controls style="max-width:100%;max-height:100%"></video>';}
+else{content='<div style="text-align:center;padding:40px;color:var(--text-light)"><div style="font-size:4rem;margin-bottom:15px">📄</div><p style="margin-bottom:15px">لا يمكن معاينة هذا النوع من الملفات</p><button class="btn bp" onclick="dlFile(\''+id+'\')">⬇️ تحميل الملف</button></div>';}
 const modal=document.createElement('div');
 modal.className='preview-modal';
 modal.innerHTML='<div class="preview-content"><div class="preview-header"><h3>👁️ '+esc(name)+'</h3><button class="preview-close" onclick="this.closest(\'.preview-modal\').remove()">✕</button></div><div class="preview-body">'+content+'</div></div>';
@@ -854,15 +968,7 @@ if(newFile.size>900000){toast('⚠️ الملف أكبر من 900KB','w');retur
 toast('⏳ جارٍ التعديل...','');
 try{
 const fdata=await f2b64(newFile);
-await db.collection('files').doc(id).update({
-fileName:newFile.name,
-fileSize:newFile.size,
-fileType:newFile.type||'application/octet-stream',
-fileData:fdata,
-uploadDate:new Date().toISOString(),
-editedBy:currentUser?currentUser.email:'',
-editedAt:new Date().toISOString()
-});
+await db.collection('files').doc(id).update({fileName:newFile.name,fileSize:newFile.size,fileType:newFile.type||'application/octet-stream',fileData:fdata,uploadDate:new Date().toISOString(),editedBy:currentUser?currentUser.email:'',editedAt:new Date().toISOString()});
 toast('✅ تم تعديل الملف','s');
 }catch(e){console.error(e);toast('❌ فشل: '+(e.code||e.message),'e');}
 };
@@ -905,29 +1011,20 @@ navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}})
 .then(s=>{cameraStream=s;$('cameraVideo').srcObject=s;})
 .catch(e=>{toast('⚠️ لا يمكن تشغيل الكاميرا','w');stopCamera();});
 }
-
-function stopCamera(){
-if(cameraStream){cameraStream.getTracks().forEach(t=>t.stop());cameraStream=null;}
-$('cameraArea').style.display='none';
-$('startCameraArea').classList.remove('h');
-}
-
+function stopCamera(){if(cameraStream){cameraStream.getTracks().forEach(t=>t.stop());cameraStream=null;}$('cameraArea').style.display='none';$('startCameraArea').classList.remove('h');}
 function capturePhoto(){
 if(!cameraStream){toast('⚠️ الكاميرا غير مفعّلة','w');return;}
 if(!can('upload')){toast('⚠️ لا تملك صلاحية','w');return;}
 try{
 const v=$('cameraVideo'),c=$('cameraCanvas');
 if(!v.videoWidth){toast('⚠️ انتظر ثانية','w');return;}
-c.width=v.videoWidth;
-c.height=v.videoHeight;
+c.width=v.videoWidth;c.height=v.videoHeight;
 c.getContext('2d').drawImage(v,0,0);
 const dataUrl=c.toDataURL('image/jpeg',0.5);
 const size=Math.round(dataUrl.length*0.75);
 if(size>900000){toast('⚠️ الصورة كبيرة','w');return;}
 toast('⏳ جارٍ الحفظ...','');
-db.collection('files').add({code:curI,fileName:'صورة_'+Date.now()+'.jpg',fileSize:size,fileType:'image/jpeg',fileData:dataUrl,uploadDate:new Date().toISOString(),uploadedBy:currentUser?currentUser.email:''})
-.then(()=>toast('✅ تم الحفظ','s'))
-.catch(e=>{console.error(e);toast('❌ '+e.code,'e');});
+db.collection('files').add({code:curI,fileName:'صورة_'+Date.now()+'.jpg',fileSize:size,fileType:'image/jpeg',fileData:dataUrl,uploadDate:new Date().toISOString(),uploadedBy:currentUser?currentUser.email:''}).then(()=>toast('✅ تم الحفظ','s')).catch(e=>{console.error(e);toast('❌ '+e.code,'e');});
 }catch(e){console.error(e);toast('❌ '+e.message,'e');}
 }
 
@@ -942,11 +1039,8 @@ for(let i=0;i<bc.length;i++)arr[i]=bc.charCodeAt(i);
 const b=new Blob([new Uint8Array(arr)],{type:f.fileType||'application/octet-stream'});
 const u=URL.createObjectURL(b);
 const a=document.createElement('a');
-a.href=u;
-a.download=f.fileName;
-document.body.appendChild(a);
-a.click();
-document.body.removeChild(a);
+a.href=u;a.download=f.fileName;
+document.body.appendChild(a);a.click();document.body.removeChild(a);
 URL.revokeObjectURL(u);
 }catch(e){toast('❌ خطأ تحميل','e');}
 }
@@ -964,49 +1058,18 @@ function lNote(){
 const n=allNotes.find(x=>x.code===curI);
 const ta=$('notesTA'),st=$('nStatus'),tx=$('nText');
 if(n&&n.text){
-ta.value=n.text;
-lT=n.text;
-cS=n.swot||'';
-uSW();
-st.className='nst saved';
-st.querySelector('span:first-child').textContent='✅';
+ta.value=n.text;lT=n.text;cS=n.swot||'';uSW();
+st.className='nst saved';st.querySelector('span:first-child').textContent='✅';
 tx.textContent='آخر حفظ: '+new Date(n.updatedAt).toLocaleString('ar-SA');
-}else{
-ta.value='';
-lT='';
-cS='';
-uSW();
-st.className='nst';
-st.querySelector('span:first-child').textContent='ℹ️';
-tx.textContent='لم تتم إضافة ملاحظة';
+}else{ta.value='';lT='';cS='';uSW();st.className='nst';st.querySelector('span:first-child').textContent='ℹ️';tx.textContent='لم تتم إضافة ملاحظة';}
 }
-}
-
-function pickSWOT(c){
-if(!can('swot')){toast('⚠️','w');return;}
-cS=c;
-uSW();
-const ta=$('notesTA');
-if(ta.value.trim()||c)saveNote(ta.value);
-}
-
-function uSW(){
-document.querySelectorAll('.so').forEach(b=>b.classList.toggle('active',b.dataset.s===cS));
-}
+function pickSWOT(c){if(!can('swot')){toast('⚠️','w');return;}cS=c;uSW();const ta=$('notesTA');if(ta.value.trim()||c)saveNote(ta.value);}
+function uSW(){document.querySelectorAll('.so').forEach(b=>b.classList.toggle('active',b.dataset.s===cS));}
 
 function setupNotes(){
 const ta=$('notesTA'),st=$('nStatus'),tx=$('nText');
 if(!can('notes'))return;
-ta.oninput=function(){
-const t=this.value;
-if(t!==lT){
-st.className='nst saving';
-st.querySelector('span:first-child').textContent='⏳';
-tx.textContent='جارٍ الحفظ...';
-clearTimeout(aT);
-aT=setTimeout(()=>saveNote(t),1000);
-}
-};
+ta.oninput=function(){const t=this.value;if(t!==lT){st.className='nst saving';st.querySelector('span:first-child').textContent='⏳';tx.textContent='جارٍ الحفظ...';clearTimeout(aT);aT=setTimeout(()=>saveNote(t),1000);}};
 $('nSave').onclick=()=>{saveNote(ta.value);toast('💾 تم الحفظ','s');};
 $('nClear').onclick=async()=>{
 if(!ta.value.trim()&&!lT&&!cS){toast('⚠️ لا يوجد','w');return;}
@@ -1014,13 +1077,8 @@ if(!confirm('مسح الملاحظة؟'))return;
 try{
 const e=allNotes.find(x=>x.code===curI);
 if(e)await db.collection('notes').doc(e.id).delete();
-ta.value='';
-lT='';
-cS='';
-uSW();
-st.className='nst';
-st.querySelector('span:first-child').textContent='ℹ️';
-tx.textContent='لم تتم إضافة ملاحظة';
+ta.value='';lT='';cS='';uSW();
+st.className='nst';st.querySelector('span:first-child').textContent='ℹ️';tx.textContent='لم تتم إضافة ملاحظة';
 toast('🗑️ تم المسح','w');
 }catch(e){toast('❌','e');}};
 }
@@ -1032,24 +1090,13 @@ try{
 const e=allNotes.find(x=>x.code===curI);
 if(t.trim()===''&&!cS){
 if(e)await db.collection('notes').doc(e.id).delete();
-lT='';
-st.className='nst';
-st.querySelector('span:first-child').textContent='ℹ️';
-tx.textContent='لم تتم إضافة ملاحظة';
+lT='';st.className='nst';st.querySelector('span:first-child').textContent='ℹ️';tx.textContent='لم تتم إضافة ملاحظة';
 }else{
 const data={code:curI,text:t,swot:cS,updatedAt:new Date().toISOString(),updatedBy:currentUser.email};
-if(e)await db.collection('notes').doc(e.id).update(data);
-else await db.collection('notes').add(data);
-lT=t;
-st.className='nst saved';
-st.querySelector('span:first-child').textContent='✅';
-tx.textContent='آخر حفظ: '+new Date().toLocaleString('ar-SA');
+if(e)await db.collection('notes').doc(e.id).update(data);else await db.collection('notes').add(data);
+lT=t;st.className='nst saved';st.querySelector('span:first-child').textContent='✅';tx.textContent='آخر حفظ: '+new Date().toLocaleString('ar-SA');
 }
-}catch(e){
-st.className='nst';
-st.querySelector('span:first-child').textContent='❌';
-tx.textContent='خطأ';
-}
+}catch(e){st.className='nst';st.querySelector('span:first-child').textContent='❌';tx.textContent='خطأ';}
 }
 
 function lRev(){
@@ -1058,7 +1105,6 @@ const d=$('rvDate'),s=$('rvSelect'),i=$('rvInfo');
 if(r){d.value=r.date||'';s.value=r.status||'pending';uRev(r);}
 else{d.value='';s.value='pending';i.innerHTML='<span>ℹ️</span> <span>لم تتم المراجعة بعد</span>';}
 }
-
 function uRev(r){
 const i=$('rvInfo');
 if(!r||!r.status){i.innerHTML='<span>ℹ️</span> <span>لم تتم المراجعة بعد</span>';return;}
@@ -1067,7 +1113,6 @@ if(r.status==='reviewed')i.innerHTML='<span>✅</span> <span style="color:#16a34
 else if(r.status==='needsImprovement')i.innerHTML='<span>⚠️</span> <span style="color:#f59e0b;font-weight:800">يحتاج تحسين — '+d+'</span>';
 else i.innerHTML='<span>⏳</span> <span>بانتظار المراجعة</span>';
 }
-
 function setupRev(){
 const d=$('rvDate'),s=$('rvSelect');
 const sv=async()=>{
@@ -1075,19 +1120,194 @@ if(!can('review')){toast('⚠️','w');return;}
 try{
 const e=allReviews.find(x=>x.code===curI);
 const data={code:curI,date:d.value,status:s.value,updatedAt:new Date().toISOString(),updatedBy:currentUser.email};
-if(e)await db.collection('reviews').doc(e.id).update(data);
-else await db.collection('reviews').add(data);
+if(e)await db.collection('reviews').doc(e.id).update(data);else await db.collection('reviews').add(data);
 uRev({date:d.value,status:s.value});
 toast('📅 تم الحفظ','s');
-}catch(e){toast('❌','e');}
-};
-d.onchange=sv;
-s.onchange=sv;
+}catch(e){toast('❌','e');}};
+d.onchange=sv;s.onchange=sv;
+}
+
+// ============================================================
+// لوحة متابعة التنفيذ
+// ============================================================
+function initProgressPage(){
+const ff=$('prgFieldFilter');
+ff.innerHTML='<option value="">كل المجالات</option>';
+FIELDS.forEach(f=>{ff.innerHTML+='<option value="'+f.id+'">'+f.icon+' '+f.name+'</option>';});
+renderProgressPage();
+}
+
+function renderProgressPage(){
+const counts={100:0,75:0,50:0,25:0,0:0};
+let totalPercent=0,withProgress=0;
+INDICATORS.forEach(i=>{
+const p=PROGRESS[i.code]?PROGRESS[i.code].percent:0;
+if(counts[p]!==undefined)counts[p]++;else counts[0]++;
+totalPercent+=p;
+if(p>0)withProgress++;
+});
+const total=INDICATORS.length;
+const avg=total>0?Math.round(totalPercent/total):0;
+$('ps100').textContent=counts[100];
+$('ps75').textContent=counts[75];
+$('ps50').textContent=counts[50];
+$('ps25').textContent=counts[25];
+$('ps0').textContent=counts[0];
+$('psAvg').textContent=avg+'%';
+
+// Chart 1: توزيع الحالات
+destroyChart('chartProgressDistribution');
+const ctx1=$('chartProgressDistribution').getContext('2d');
+charts['chartProgressDistribution']=new Chart(ctx1,{type:'doughnut',data:{labels:['✅ نُفذ','🟢 جزئي','🟡 متوسط','🟠 بدأ','❌ لم يُنفذ'],datasets:[{data:[counts[100],counts[75],counts[50],counts[25],counts[0]],backgroundColor:['#16a34a','#22c55e','#f59e0b','#f97316','#dc2626'],borderWidth:3,borderColor:'#fff'}]},options:{responsive:true,maintainAspectRatio:false,cutout:'60%',plugins:{legend:{position:'bottom',labels:{font:{size:11,weight:'bold'},padding:10}}}}});
+
+// Chart 2: متوسط لكل مجال
+destroyChart('chartFieldsProgress');
+const fieldAvg=FIELDS.map(f=>{const inds=gIByF(f.id);if(inds.length===0)return 0;const sum=inds.reduce((s,i)=>s+(PROGRESS[i.code]?PROGRESS[i.code].percent:0),0);return Math.round(sum/inds.length);});
+const ctx2=$('chartFieldsProgress').getContext('2d');
+charts['chartFieldsProgress']=new Chart(ctx2,{type:'bar',data:{labels:FIELDS.map(f=>f.name),datasets:[{label:'متوسط التنفيذ %',data:fieldAvg,backgroundColor:['#0f766e','#14b8a6','#f59e0b','#8b5cf6'],borderRadius:10}]},options:{responsive:true,maintainAspectRatio:false,scales:{y:{beginAtZero:true,max:100,ticks:{font:{weight:'bold'}}}},plugins:{legend:{display:false}}}});
+
+// 4 رسوم لكل مجال
+const container=$('fieldsProgressCharts');
+container.innerHTML='';
+FIELDS.forEach((f,idx)=>{
+const inds=gIByF(f.id);
+if(inds.length===0)return;
+const card=document.createElement('div');
+card.className='chart-card';
+card.innerHTML='<h3>'+f.icon+' '+f.name+' - توزيع الحالات</h3><div class="chart-canvas-wrap"><canvas id="chartField'+idx+'"></canvas></div>';
+container.appendChild(card);
+setTimeout(()=>{
+const fc={100:0,75:0,50:0,25:0,0:0};
+inds.forEach(i=>{const p=PROGRESS[i.code]?PROGRESS[i.code].percent:0;if(fc[p]!==undefined)fc[p]++;else fc[0]++;});
+const c=$('chartField'+idx).getContext('2d');
+charts['chartField'+idx]=new Chart(c,{type:'bar',data:{labels:['100%','75%','50%','25%','0%'],datasets:[{label:'عدد المؤشرات',data:[fc[100],fc[75],fc[50],fc[25],fc[0]],backgroundColor:['#16a34a','#22c55e','#f59e0b','#f97316','#dc2626'],borderRadius:8}]},options:{responsive:true,maintainAspectRatio:false,scales:{y:{beginAtZero:true,ticks:{stepSize:1,font:{weight:'bold'}}}},plugins:{legend:{display:false}}}});
+},50);
+});
+
+renderProgressTable();
+}
+
+function renderProgressTable(){
+const search=($('prgSearch').value||'').toLowerCase().trim();
+const fieldFilter=$('prgFieldFilter').value;
+const statusFilter=$('prgStatusFilter').value;
+let filtered=INDICATORS.filter(i=>{
+if(search){const si=(i.text+' '+i.code+' '+i.sub).toLowerCase();if(!si.includes(search))return false;}
+if(fieldFilter && i.fieldId!==fieldFilter)return false;
+const p=PROGRESS[i.code]?PROGRESS[i.code].percent:0;
+if(statusFilter!=='' && String(p)!==statusFilter)return false;
+return true;
+});
+$('prgCount').textContent=filtered.length+' مؤشر';
+const tbody=$('progressTableBody');
+tbody.innerHTML='';
+if(filtered.length===0){tbody.innerHTML='<tr><td colspan="6" style="text-align:center;padding:40px;color:var(--text-light)">لا توجد مؤشرات مطابقة</td></tr>';return;}
+filtered.forEach(i=>{
+const field=gF(i.fieldId);
+const pr=PROGRESS[i.code];
+const p=pr?pr.percent:0;
+const barClass=p===100?'pb100':p===75?'pb75':p===50?'pb50':p===25?'pb25':'pb0';
+const sbClass=p===100?'sb-100':p===75?'sb-75':p===50?'sb-50':p===25?'sb-25':'sb-0';
+const statusText=prStatus(p);
+const tr=document.createElement('tr');
+tr.innerHTML='<td class="code-cell">'+esc(i.code)+'</td>'
++'<td>'+esc(field?field.name:'-')+'</td>'
++'<td style="line-height:1.5">'+esc(i.text)+'</td>'
++'<td class="progress-bar-cell"><div class="progress-bar-bg"><div class="progress-bar-fill '+barClass+'" style="width:'+p+'%">'+(p>=20?p+'%':'')+'</div></div></td>'
++'<td><span class="status-badge '+sbClass+'">'+statusText+'</span></td>'
++'<td><div class="quick-set">'
++'<button class="quick-btn q0 '+(p===0?'active':'')+'" onclick="setProgress(\''+esc(i.code)+'\',0)">0</button>'
++'<button class="quick-btn q25 '+(p===25?'active':'')+'" onclick="setProgress(\''+esc(i.code)+'\',25)">25</button>'
++'<button class="quick-btn q50 '+(p===50?'active':'')+'" onclick="setProgress(\''+esc(i.code)+'\',50)">50</button>'
++'<button class="quick-btn q75 '+(p===75?'active':'')+'" onclick="setProgress(\''+esc(i.code)+'\',75)">75</button>'
++'<button class="quick-btn q100 '+(p===100?'active':'')+'" onclick="setProgress(\''+esc(i.code)+'\',100)">100</button>'
++'</div></td>';
+tbody.appendChild(tr);
+});
+}
+
+async function setProgress(code,percent){
+if(!can('manageProgress')){toast('⚠️ لا تملك صلاحية التعديل','w');return;}
+try{
+const status=prStatus(percent);
+await db.collection('progress').doc(code).set({code,percent,status,updatedAt:new Date().toISOString(),updatedBy:currentUser?currentUser.email:''},{merge:true});
+toast('✅ تم تحديث: '+code+' → '+percent+'%','s');
+}catch(e){console.error(e);toast('❌ فشل التحديث','e');}
+}
+
+function printProgress(){window.print();}
+
+function exportProgressPDF(){
+const today=new Date().toLocaleDateString('ar-SA');
+let totalCount=INDICATORS.length;
+const counts={100:0,75:0,50:0,25:0,0:0};
+let totalPercent=0;
+INDICATORS.forEach(i=>{const p=PROGRESS[i.code]?PROGRESS[i.code].percent:0;if(counts[p]!==undefined)counts[p]++;else counts[0]++;totalPercent+=p;});
+const avg=totalCount>0?Math.round(totalPercent/totalCount):0;
+
+let h='<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><title>تقرير متابعة التنفيذ - '+today+'</title><style>';
+h+='@page{size:A4;margin:12mm}*{box-sizing:border-box;margin:0;padding:0;font-family:Tahoma,Arial,sans-serif}body{color:#134e4a;background:#fff;line-height:1.5;padding:20px}';
+h+='.cv{text-align:center;padding:40px 20px;border-bottom:4px solid #0f766e;margin-bottom:25px;page-break-after:always}';
+h+='.cv h1{color:#0f766e;font-size:2rem;margin-bottom:15px}.cv .ic{font-size:4rem;margin-bottom:10px}.cv p{color:#64748b;font-size:1rem}.cv .dt{background:#ccfbf1;display:inline-block;padding:10px 25px;border-radius:30px;color:#0f766e;font-weight:700;margin-top:15px}';
+h+='h2{color:#0f766e;font-size:1.2rem;margin:20px 0 12px;padding-bottom:8px;border-bottom:2px solid #ccfbf1}';
+h+='.sm{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:20px}';
+h+='.si{background:#f0fdf4;padding:12px 8px;border-radius:10px;text-align:center;border-top:3px solid #0f766e}';
+h+='.si .n{font-size:1.5rem;font-weight:800;line-height:1}.si .l{color:#64748b;font-size:.72rem;margin-top:5px}';
+h+='.si.s100{border-top-color:#16a34a}.si.s75{border-top-color:#22c55e}.si.s50{border-top-color:#f59e0b}.si.s25{border-top-color:#f97316}.si.s0{border-top-color:#dc2626}';
+h+='table{width:100%;border-collapse:collapse;margin-bottom:15px}th{background:#0f766e;color:#fff;padding:8px;text-align:right;font-size:.78rem}';
+h+='td{padding:7px;border-bottom:1px solid #ccfbf1;font-size:.78rem;vertical-align:middle}';
+h+='.cd{font-weight:800;color:#0f766e;font-size:.75rem}.pb{background:#e5e7eb;height:16px;border-radius:10px;overflow:hidden;min-width:100px}.pf{height:100%;border-radius:10px}';
+h+='.p100{background:#16a34a}.p75{background:#22c55e}.p50{background:#f59e0b}.p25{background:#f97316}.p0{background:#dc2626}';
+h+='.ft{text-align:center;margin-top:25px;padding-top:15px;border-top:2px solid #0f766e;color:#64748b;font-size:.78rem}';
+h+='.pb2{page-break-before:always}';
+h+='.sb{display:inline-block;padding:2px 8px;border-radius:12px;font-size:.68rem;font-weight:700;white-space:nowrap}';
+h+='.sb100{background:#dcfce7;color:#15803d}.sb75{background:#d9f99d;color:#3f6212}.sb50{background:#fef3c7;color:#b45309}.sb25{background:#fed7aa;color:#9a3412}.sb0{background:#fee2e2;color:#991b1b}';
+h+='.field-title{background:#0f766e;color:#fff;padding:10px 15px;border-radius:8px;font-size:1rem;margin:20px 0 10px;font-weight:700}';
+h+='.sub-title{background:#ccfbf1;color:#0f766e;padding:7px 14px;border-radius:6px;font-size:.88rem;font-weight:700;margin:12px 0 8px;border-right:4px solid #14b8a6}';
+h+='@media print{body{padding:0}}';
+h+='</style></head><body>';
+h+='<div class="cv"><div class="ic">📊</div><h1>تقرير متابعة تنفيذ المؤشرات</h1><p>متوسطة الصحافة الأهلية</p><p>تقرير شامل لحالة تنفيذ المؤشرات الـ 52</p><div class="dt">📅 '+today+'</div></div>';
+h+='<h2>📈 الملخص الإحصائي</h2>';
+h+='<div class="sm">';
+h+='<div class="si s100"><div class="n" style="color:#16a34a">'+counts[100]+'</div><div class="l">✅ نُفذ 100%</div></div>';
+h+='<div class="si s75"><div class="n" style="color:#22c55e">'+counts[75]+'</div><div class="l">🟢 جزئي 75%</div></div>';
+h+='<div class="si s50"><div class="n" style="color:#f59e0b">'+counts[50]+'</div><div class="l">🟡 متوسط 50%</div></div>';
+h+='<div class="si s25"><div class="n" style="color:#f97316">'+counts[25]+'</div><div class="l">🟠 بدأ 25%</div></div>';
+h+='<div class="si s0"><div class="n" style="color:#dc2626">'+counts[0]+'</div><div class="l">❌ لم يُنفذ</div></div>';
+h+='<div class="si"><div class="n" style="color:#0f766e">'+avg+'%</div><div class="l">📊 المتوسط</div></div>';
+h+='</div>';
+h+='<div class="pb2"></div><h2>📋 تفاصيل المؤشرات حسب المجال</h2>';
+FIELDS.forEach(f=>{
+const inds=gIByF(f.id);
+if(inds.length===0)return;
+h+='<div class="field-title">'+f.icon+' '+f.name+'</div>';
+const subs={};
+inds.forEach(i=>{if(!subs[i.sub])subs[i.sub]=[];subs[i.sub].push(i);});
+Object.keys(subs).forEach(sn=>{
+h+='<div class="sub-title">📂 '+sn+'</div>';
+h+='<table><thead><tr><th style="width:80px">الرمز</th><th>المؤشر</th><th style="width:120px">شريط التقدم</th><th style="width:90px">النسبة</th><th style="width:90px">الحالة</th></tr></thead><tbody>';
+subs[sn].forEach(i=>{
+const p=PROGRESS[i.code]?PROGRESS[i.code].percent:0;
+const pc=p===100?'p100':p===75?'p75':p===50?'p50':p===25?'p25':'p0';
+const sc=p===100?'sb100':p===75?'sb75':p===50?'sb50':p===25?'sb25':'sb0';
+h+='<tr><td class="cd">'+i.code+'</td><td>'+esc(i.text)+'</td>';
+h+='<td><div class="pb"><div class="pf '+pc+'" style="width:'+p+'%"></div></div></td>';
+h+='<td style="text-align:center;font-weight:800">'+p+'%</td>';
+h+='<td><span class="sb '+sc+'">'+prStatus(p)+'</span></td></tr>';
+});
+h+='</tbody></table>';
+});
+});
+h+='<div class="ft">تم إنشاء هذا التقرير بواسطة منظومة الاعتماد المدرسي — '+today+'</div></body></html>';
+const w=window.open('','_blank');
+w.document.write(h);
+w.document.close();
+setTimeout(()=>w.print(),700);
+toast('📄 اختر "حفظ كـ PDF"','s');
 }// ============================================================
-// إدارة المؤشرات — Admin Panel
+// إدارة المؤشرات
 // ============================================================
 let currentEditCode=null;
-
 function initIndicatorsAdmin(){
 const ff=$('indFieldFilter');
 ff.innerHTML='<option value="">كل المجالات</option>';
@@ -1095,31 +1315,22 @@ FIELDS.forEach(f=>{ff.innerHTML+='<option value="'+f.id+'">'+f.icon+' '+f.name+'
 updateSubFilter();
 renderIndicatorsAdmin();
 }
-
 function updateSubFilter(){
 const fieldId=$('indFieldFilter').value;
 const sf=$('indSubFilter');
 const currentVal=sf.value;
 sf.innerHTML='<option value="">كل المجالات الفرعية</option>';
 const subsSet=new Set();
-INDICATORS.forEach(i=>{
-if(!fieldId||i.fieldId===fieldId)subsSet.add(i.sub);
-});
-Array.from(subsSet).sort().forEach(s=>{
-sf.innerHTML+='<option value="'+esc(s)+'">'+esc(s)+'</option>';
-});
+INDICATORS.forEach(i=>{if(!fieldId||i.fieldId===fieldId)subsSet.add(i.sub);});
+Array.from(subsSet).sort().forEach(s=>{sf.innerHTML+='<option value="'+esc(s)+'">'+esc(s)+'</option>';});
 if(currentVal && subsSet.has(currentVal))sf.value=currentVal;
 }
-
 function renderIndicatorsAdmin(){
 const search=($('indSearch').value||'').toLowerCase().trim();
 const fieldFilter=$('indFieldFilter').value;
 const subFilter=$('indSubFilter').value;
 let filtered=INDICATORS.filter(i=>{
-if(search){
-const searchIn=(i.text+' '+i.code+' '+i.sub+' '+i.evidence).toLowerCase();
-if(!searchIn.includes(search))return false;
-}
+if(search){const si=(i.text+' '+i.code+' '+i.sub+' '+i.evidence).toLowerCase();if(!si.includes(search))return false;}
 if(fieldFilter && i.fieldId!==fieldFilter)return false;
 if(subFilter && i.sub!==subFilter)return false;
 return true;
@@ -1127,25 +1338,14 @@ return true;
 $('indCount').textContent=filtered.length+' مؤشر';
 const tbody=$('indicatorsTableBody');
 tbody.innerHTML='';
-if(filtered.length===0){
-tbody.innerHTML='<tr><td colspan="5" style="text-align:center;padding:40px;color:var(--text-light)">لا توجد مؤشرات مطابقة</td></tr>';
-return;
-}
+if(filtered.length===0){tbody.innerHTML='<tr><td colspan="5" style="text-align:center;padding:40px;color:var(--text-light)">لا توجد مؤشرات مطابقة</td></tr>';return;}
 filtered.forEach(i=>{
 const field=gF(i.fieldId);
 const tr=document.createElement('tr');
-tr.innerHTML='<td class="code-cell">'+esc(i.code)+'</td>'
-+'<td>'+esc(field?field.name:'-')+'</td>'
-+'<td>'+esc(i.sub)+'</td>'
-+'<td style="line-height:1.5">'+esc(i.text)+'</td>'
-+'<td><div class="actions-cell">'
-+'<button class="ab e" onclick="openIndicatorModal(\''+esc(i.code)+'\')" title="تعديل">✏️</button> '
-+'<button class="ab x" onclick="deleteIndicator(\''+esc(i.code)+'\')" title="حذف">🗑️</button>'
-+'</div></td>';
+tr.innerHTML='<td class="code-cell">'+esc(i.code)+'</td><td>'+esc(field?field.name:'-')+'</td><td>'+esc(i.sub)+'</td><td style="line-height:1.5">'+esc(i.text)+'</td><td><div class="actions-cell"><button class="ab e" onclick="openIndicatorModal(\''+esc(i.code)+'\')" title="تعديل">✏️</button> <button class="ab x" onclick="deleteIndicator(\''+esc(i.code)+'\')" title="حذف">🗑️</button></div></td>';
 tbody.appendChild(tr);
 });
 }
-
 function openIndicatorModal(code){
 currentEditCode=code||null;
 const modal=$('indicatorModalBg');
@@ -1162,25 +1362,18 @@ if(code){
 const ind=gIByC(code);
 if(!ind){toast('⚠️ المؤشر غير موجود','w');return;}
 title.textContent='✏️ تعديل المؤشر: '+code;
-$('indCode').value=ind.code;
-$('indField').value=ind.fieldId;
-$('indSub').value=ind.sub;
-$('indText').value=ind.text;
-$('indEvidence').value=ind.evidence;
+$('indCode').value=ind.code;$('indField').value=ind.fieldId;$('indSub').value=ind.sub;$('indText').value=ind.text;$('indEvidence').value=ind.evidence;
 $('indCode').disabled=true;
 }else{
 title.textContent='➕ إضافة مؤشر جديد';
 $('indCode').value=suggestNextCode();
 $('indCode').disabled=false;
 $('indField').value=FIELDS[0].id;
-$('indSub').value='';
-$('indText').value='';
-$('indEvidence').value='';
+$('indSub').value='';$('indText').value='';$('indEvidence').value='';
 }
 $('indModalErr').textContent='';
 modal.classList.add('show');
 }
-
 function suggestNextCode(){
 if(INDICATORS.length===0)return '1-1-1-1';
 const codes=INDICATORS.map(i=>i.code).sort();
@@ -1189,11 +1382,8 @@ const parts=last.split('-').map(n=>parseInt(n)||0);
 if(parts.length===4){parts[3]++;return parts.join('-');}
 return '';
 }
-
 function closeIndicatorModal(){$('indicatorModalBg').classList.remove('show');currentEditCode=null;}
-
 $('btnAddIndicator').onclick=()=>openIndicatorModal(null);
-
 $('btnSaveIndicator').onclick=async()=>{
 const code=$('indCode').value.trim();
 const fieldId=$('indField').value;
@@ -1215,7 +1405,6 @@ toast('✅ تم إضافة المؤشر','s');
 closeIndicatorModal();
 }catch(e){console.error(e);$('indModalErr').textContent='خطأ: '+(e.code||e.message);}
 };
-
 async function deleteIndicator(code){
 if(!can('manageInd')){toast('⚠️','w');return;}
 const ind=gIByC(code);
@@ -1228,14 +1417,15 @@ const notesSnap=await db.collection('notes').where('code','==',code).get();
 if(notesSnap.size>0){const b=db.batch();notesSnap.docs.forEach(d=>b.delete(d.ref));await b.commit();}
 const revsSnap=await db.collection('reviews').where('code','==',code).get();
 if(revsSnap.size>0){const b=db.batch();revsSnap.docs.forEach(d=>b.delete(d.ref));await b.commit();}
+const progSnap=await db.collection('progress').doc(code).get();
+if(progSnap.exists)await db.collection('progress').doc(code).delete();
 await db.collection('indicators').doc(code).delete();
 toast('🗑️ تم حذف المؤشر','w');
 }catch(e){console.error(e);toast('❌ خطأ','e');}
 }
-
 $('btnResetIndicators').onclick=async()=>{
 if(!can('manageInd')){toast('⚠️','w');return;}
-if(!confirm('استعادة المؤشرات الأصلية (52)؟\n\n⚠️ سيتم حذف جميع المؤشرات الحالية.\n\n(لن يتم حذف الملفات والملاحظات)'))return;
+if(!confirm('استعادة المؤشرات الأصلية (52)؟\n\n⚠️ سيتم حذف جميع المؤشرات الحالية.'))return;
 try{
 const all=await db.collection('indicators').get();
 if(all.size>0){const b=db.batch();all.docs.forEach(d=>b.delete(d.ref));await b.commit();}
@@ -1261,27 +1451,24 @@ $('b2').textContent=nc;
 $('b3').textContent=allReviews.length;
 $('b4').textContent=fmtB(size);
 }
-
 async function expBackup(){
 if(!can('export')){toast('⚠️','w');return;}
 try{
 const indicatorsSnap=await db.collection('indicators').orderBy('order').get();
 const indicators=indicatorsSnap.docs.map(d=>({code:d.id,...d.data()}));
-if(allFiles.length===0&&allNotes.length===0&&allReviews.length===0&&indicators.length===0){toast('⚠️ لا توجد بيانات','w');return;}
-const bk={appName:'منظومة الاعتماد المدرسي',version:'13.0',exportDate:new Date().toISOString(),files:allFiles,notes:allNotes,reviews:allReviews,indicators:indicators};
+const progressSnap=await db.collection('progress').get();
+const progress=progressSnap.docs.map(d=>({code:d.id,...d.data()}));
+if(allFiles.length===0&&allNotes.length===0&&allReviews.length===0&&indicators.length===0&&progress.length===0){toast('⚠️ لا توجد بيانات','w');return;}
+const bk={appName:'منظومة الاعتماد المدرسي',version:'14.0',exportDate:new Date().toISOString(),files:allFiles,notes:allNotes,reviews:allReviews,indicators:indicators,progress:progress};
 const b=new Blob([JSON.stringify(bk)],{type:'application/json'});
 const u=URL.createObjectURL(b);
 const a=document.createElement('a');
-a.href=u;
-a.download='نسخة_احتياطية_'+new Date().toISOString().slice(0,10)+'.json';
-document.body.appendChild(a);
-a.click();
-document.body.removeChild(a);
+a.href=u;a.download='نسخة_احتياطية_'+new Date().toISOString().slice(0,10)+'.json';
+document.body.appendChild(a);a.click();document.body.removeChild(a);
 URL.revokeObjectURL(u);
-toast('✅ تم التصدير ('+indicators.length+' مؤشر + '+allFiles.length+' ملف)','s');
+toast('✅ تم التصدير ('+indicators.length+' مؤشر + '+progress.length+' تقدم)','s');
 }catch(e){console.error(e);toast('❌','e');}
 }
-
 async function impBackup(file){
 if(!can('export')){toast('⚠️','w');return;}
 try{
@@ -1290,31 +1477,25 @@ const bk=JSON.parse(text);
 if(!bk.files&&!bk.notes&&!bk.reviews&&!bk.indicators){toast('❌','e');return;}
 if(!confirm('سيتم استبدال جميع البيانات!\n\nهل تريد المتابعة؟'))return;
 const delAll=async(col)=>{const s=await db.collection(col).get();if(s.size>0){const b=db.batch();s.docs.forEach(d=>b.delete(d.ref));await b.commit();}};
-await delAll('files');
-await delAll('notes');
-await delAll('reviews');
-await delAll('indicators');
-let fc=0,nc=0,rc=0,ic=0;
+await delAll('files');await delAll('notes');await delAll('reviews');await delAll('indicators');await delAll('progress');
+let fc=0,nc=0,rc=0,ic=0,pc=0;
 if(bk.files)for(const f of bk.files){const{id,...r}=f;try{await db.collection('files').add(r);fc++;}catch(e){}}
 if(bk.notes)for(const n of bk.notes){const{id,...r}=n;try{await db.collection('notes').add(r);nc++;}catch(e){}}
 if(bk.reviews)for(const r of bk.reviews){const{id,...rest}=r;try{await db.collection('reviews').add(rest);rc++;}catch(e){}}
 if(bk.indicators)for(const ind of bk.indicators){const{code,...rest}=ind;try{await db.collection('indicators').doc(code).set(rest);ic++;}catch(e){}}
+if(bk.progress)for(const pr of bk.progress){const{code,...rest}=pr;try{await db.collection('progress').doc(code).set(rest);pc++;}catch(e){}}
 if(ic>0){await db.collection('meta').doc('indicators-version').set({version:'2.0',migratedAt:new Date().toISOString(),total:ic});}
-toast('✅ تم استيراد '+ic+' مؤشر + '+fc+' ملف + '+nc+' ملاحظة','s');
+toast('✅ تم استيراد '+ic+' مؤشر + '+fc+' ملف + '+pc+' تقدم','s');
 rBackup();
 }catch(e){console.error(e);toast('❌','e');}
 }
-
 async function clrAll(){
 if(!can('clear')){toast('⚠️','w');return;}
-if(!confirm('⚠️ سيتم مسح كل البيانات!\n\n• الملفات\n• الملاحظات\n• المراجعات\n• المؤشرات (ستُستعاد الأصلية)\n\nهل أنت متأكد؟'))return;
+if(!confirm('⚠️ سيتم مسح كل البيانات!\n\n• الملفات\n• الملاحظات\n• المراجعات\n• المؤشرات (ستُستعاد الأصلية)\n• التقدم\n\nهل أنت متأكد؟'))return;
 if(!confirm('تأكيد نهائي؟'))return;
 try{
 const delAll=async(col)=>{const s=await db.collection(col).get();if(s.size>0){const b=db.batch();s.docs.forEach(d=>b.delete(d.ref));await b.commit();}};
-await delAll('files');
-await delAll('notes');
-await delAll('reviews');
-await delAll('indicators');
+await delAll('files');await delAll('notes');await delAll('reviews');await delAll('indicators');await delAll('progress');
 const batch=db.batch();
 DEFAULT_INDICATORS.forEach((ind,idx)=>{
 const ref=db.collection('indicators').doc(ind.code);
@@ -1330,10 +1511,7 @@ rBackup();
 // ============================================================
 // إدارة المستخدمين
 // ============================================================
-function loadUsers(){
-db.collection('users').onSnapshot(s=>{rUsers(s.docs.map(d=>({id:d.id,...d.data()})));});
-}
-
+function loadUsers(){db.collection('users').onSnapshot(s=>{rUsers(s.docs.map(d=>({id:d.id,...d.data()})));});}
 function rUsers(users){
 const t=$('usersTable');
 t.innerHTML='';
@@ -1344,7 +1522,6 @@ tr.innerHTML='<td>'+esc(u.name||'-')+'</td><td>'+esc(u.email||'-')+'</td><td><sp
 t.appendChild(tr);
 });
 }
-
 async function changeRole(uid){
 if(!can('users')){toast('⚠️','w');return;}
 const u=(await db.collection('users').doc(uid).get()).data();
@@ -1355,7 +1532,6 @@ await db.collection('users').doc(uid).update({role:next});
 toast('✅','s');
 }
 }
-
 async function delUser(uid,email){
 if(!can('users')){toast('⚠️','w');return;}
 if(!confirm('حذف '+email+'؟'))return;
@@ -1363,10 +1539,8 @@ if(uid===currentUser.uid){toast('⚠️ لا يمكن حذف نفسك','w');retu
 await db.collection('users').doc(uid).delete();
 toast('🗑️','w');
 }
-
 $('btnAddUser').onclick=()=>$('modalBg').classList.add('show');
 function closeModal(){$('modalBg').classList.remove('show');$('modalErr').textContent='';}
-
 $('btnSaveUser').onclick=async()=>{
 const name=$('mName').value.trim(),email=$('mEmail').value.trim(),pass=$('mPass').value,role=$('mRole').value;
 if(!name||!email||!pass){$('modalErr').textContent='أكمل الحقول';return;}
@@ -1375,11 +1549,8 @@ try{
 $('btnSaveUser').textContent='⏳...';
 const uc=await auth.createUserWithEmailAndPassword(email,pass);
 await db.collection('users').doc(uc.user.uid).set({name,email,role,createdAt:new Date().toISOString(),createdBy:currentUser.email});
-toast('✅ تم','s');
-closeModal();
-$('mName').value='';
-$('mEmail').value='';
-$('mPass').value='';
+toast('✅ تم','s');closeModal();
+$('mName').value='';$('mEmail').value='';$('mPass').value='';
 }catch(e){$('modalErr').textContent=getAuthErr(e);}
 $('btnSaveUser').textContent='💾 إضافة';
 };
@@ -1405,43 +1576,29 @@ tbody.querySelectorAll('.perm-check').forEach(cb=>{
 cb.onchange=async function(){
 if(!can('perms')){this.checked=!this.checked;toast('⚠️','w');return;}
 const role=this.dataset.role,perm=this.dataset.perm;
-try{
-const upd={};
-upd[role+'.'+perm]=this.checked;
-await db.collection('permissions').doc('roles').update(upd);
-toast('✅','s');
-}catch(e){toast('❌','e');this.checked=!this.checked;}
+try{const upd={};upd[role+'.'+perm]=this.checked;await db.collection('permissions').doc('roles').update(upd);toast('✅','s');}catch(e){toast('❌','e');this.checked=!this.checked;}
 };
 });
 }
-
 $('btnResetPerms').onclick=async()=>{
 if(!can('perms')){toast('⚠️','w');return;}
 if(!confirm('استعادة الصلاحيات الافتراضية؟'))return;
-try{
-await db.collection('permissions').doc('roles').set(DEFAULT_PERMS);
-toast('✅','s');
-loadPermissions();
-}catch(e){toast('❌','e');}
+try{await db.collection('permissions').doc('roles').set(DEFAULT_PERMS);toast('✅','s');loadPermissions();}catch(e){toast('❌','e');}
 };
 
 // ============================================================
-// تقرير PDF
+// تقرير PDF العادي
 // ============================================================
 function exportPDF(){
-const fc={};
-allFiles.forEach(f=>{fc[f.code]=(fc[f.code]||0)+1;});
-const nM={};
-allNotes.forEach(n=>{if(n.text&&n.text.trim())nM[n.code]=n;});
-const rM={};
-allReviews.forEach(r=>{rM[r.code]=r;});
+const fc={};allFiles.forEach(f=>{fc[f.code]=(fc[f.code]||0)+1;});
+const nM={};allNotes.forEach(n=>{if(n.text&&n.text.trim())nM[n.code]=n;});
+const rM={};allReviews.forEach(r=>{rM[r.code]=r;});
 const today=new Date().toLocaleDateString('ar-SA');
 const ti=INDICATORS.length,tf=allFiles.length,tn=Object.keys(nM).length;
 const tr=Object.values(rM).filter(r=>r.status==='reviewed').length;
 const tw=Object.values(rM).filter(r=>r.status==='needsImprovement').length;
 const tp=Math.max(0,ti-tr-tw);
-const sc={S:0,W:0,O:0,T:0};
-Object.values(nM).forEach(n=>{if(n.swot&&sc[n.swot]!==undefined)sc[n.swot]++;});
+const sc={S:0,W:0,O:0,T:0};Object.values(nM).forEach(n=>{if(n.swot&&sc[n.swot]!==undefined)sc[n.swot]++;});
 let h='<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><title>تقرير - '+today+'</title><style>';
 h+='@page{size:A4;margin:15mm}*{box-sizing:border-box;margin:0;padding:0;font-family:Tahoma,Arial,sans-serif}body{color:#134e4a;background:#fff;line-height:1.6}';
 h+='.cv{text-align:center;padding:60px 30px 40px;border-bottom:4px solid #0f766e;margin-bottom:30px;page-break-after:always}.cv h1{color:#0f766e;font-size:2.2rem;margin-bottom:15px}.cv .ic{font-size:5rem;margin-bottom:15px}.cv p{color:#64748b;font-size:1.05rem;line-height:1.9}.cv .dt{background:#ccfbf1;display:inline-block;padding:12px 30px;border-radius:30px;color:#0f766e;font-weight:700;margin-top:20px}';
@@ -1487,8 +1644,7 @@ h+='</div>';
 });
 h+='<div class="ft2">تم إنشاء هذا التقرير بواسطة منظومة الاعتماد المدرسي — '+today+'</div></body></html>';
 const w=window.open('','_blank');
-w.document.write(h);
-w.document.close();
+w.document.write(h);w.document.close();
 setTimeout(()=>w.print(),700);
 toast('📄 اختر "حفظ كـ PDF"','s');
 }
@@ -1502,7 +1658,7 @@ $('impInput').onchange=function(){if(this.files[0]){impBackup(this.files[0]);thi
 $('clrBtn').onclick=clrAll;
 window.addEventListener('online',()=>{$('syncIndicator').classList.remove('offline');$('syncText').textContent='متصل';});
 window.addEventListener('offline',()=>{$('syncIndicator').classList.add('offline');$('syncText').textContent='غير متصل';});
-console.log('🎉 المنظومة جاهزة — v13 مع المؤشرات الجديدة');
+console.log('🎉 المنظومة جاهزة — v14 مع لوحة متابعة التنفيذ');
 </script>
 </body>
 </html>
