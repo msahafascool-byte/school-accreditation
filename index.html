@@ -103,6 +103,42 @@ body{background:var(--bg);padding:20px;direction:rtl;min-height:100vh;color:var(
 .lvb{display:inline-block;padding:4px 14px;border-radius:20px;font-size:.8rem;font-weight:800;color:#fff;background:#94a3b8}
 .lvb.lv4{background:#059669}.lvb.lv3{background:#2563eb}.lvb.lv2{background:#ea580c}.lvb.lv1{background:#dc2626}
 .pvn{font-size:.8rem;color:var(--text-light);font-weight:700}
+.rt-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.rt-btn{border:2px solid var(--border);background:#fff;border-radius:14px;padding:12px 10px;cursor:pointer;font-family:inherit;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;transition:all .2s;color:var(--text)}
+.rt-btn b{font-size:1.4rem}.rt-btn span{font-weight:800;font-size:.85rem}.rt-btn small{font-size:.72rem;color:var(--text-light);line-height:1.5}
+.rt-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:var(--shadow)}.rt-btn:disabled{cursor:default}
+.rt-btn.active{color:#fff}.rt-btn.active small{color:rgba(255,255,255,.9)}
+.rt-btn.r4.active{background:#059669;border-color:#059669}.rt-btn.r3.active{background:#2563eb;border-color:#2563eb}.rt-btn.r2.active{background:#ea580c;border-color:#ea580c}.rt-btn.r1.active{background:#dc2626;border-color:#dc2626}
+.rt-res{margin-top:12px;font-weight:700;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ck-h{margin:20px 0 10px;font-size:.95rem;color:var(--primary)}
+.ck-list{display:flex;flex-direction:column;gap:8px}
+.ck{display:flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid var(--border);border-radius:10px;cursor:pointer;font-size:.9rem;background:#fff}
+.ck.on{background:#f0fdf4;border-color:#86efac}.ck input{width:18px;height:18px;accent-color:#16a34a;flex-shrink:0}
+.ck-sum{margin-top:10px;font-size:.85rem;font-weight:800;color:var(--text-light)}
+.pl-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pl-grid label{display:block;font-size:.82rem;font-weight:800;color:var(--text-light);margin-bottom:6px}
+.pl-grid input,.pl-grid select,.pl-grid textarea{width:100%;padding:10px 12px;border:2px solid var(--border);border-radius:10px;font-family:inherit;font-size:.9rem;background:#fff;color:var(--text)}
+.pl-grid textarea{min-height:90px;resize:vertical;line-height:1.7}.pl-full{grid-column:1/-1}
+.pl-act{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.ev-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:22px}
+.ev-card{background:#fff;border-radius:16px;padding:18px;box-shadow:var(--shadow);border:1px solid var(--border);text-align:center}
+.ev-card .n{font-size:1.9rem;font-weight:900;color:var(--primary);line-height:1.2}
+.ev-card .l{font-size:.85rem;font-weight:800;color:var(--text-light);margin:4px 0 8px}
+.ev-card .pv{font-size:.78rem;color:var(--text-light);margin-top:8px;font-weight:700}
+.dlt{font-weight:800}.dlt.up{color:#16a34a}.dlt.dn{color:#dc2626}
+.sttl{color:var(--primary);font-size:1.05rem;margin:22px 0 12px;font-weight:900}
+.tbl-wrap{overflow-x:auto;background:#fff;border-radius:16px;box-shadow:var(--shadow);margin-bottom:20px}
+.qt{width:100%;border-collapse:collapse;font-size:.85rem}
+.qt th{background:var(--primary);color:#fff;padding:10px;text-align:right;font-weight:800;white-space:nowrap}
+.qt td{padding:10px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.6}
+.qt tr.grp td{background:#f0fdfa;font-weight:900;color:var(--primary)}
+.qt select{padding:6px;border:2px solid var(--border);border-radius:8px;font-family:inherit;font-size:.8rem}
+.qr{display:flex;gap:4px}
+.qr button{width:32px;height:30px;border-radius:8px;border:2px solid var(--border);background:#fff;cursor:pointer;font-weight:800;font-family:inherit;color:var(--text-light)}
+.qr button:disabled{cursor:default}
+.qr button.on{color:#fff}.qr .r4.on{background:#059669;border-color:#059669}.qr .r3.on{background:#2563eb;border-color:#2563eb}.qr .r2.on{background:#ea580c;border-color:#ea580c}.qr .r1.on{background:#dc2626;border-color:#dc2626}
+.lnk{color:var(--primary);cursor:pointer;font-weight:800;text-decoration:underline;white-space:nowrap}
+@media(max-width:768px){.rt-grid{grid-template-columns:1fr 1fr}.pl-grid{grid-template-columns:1fr}}
 .bdg.lv4{background:#d1fae5;color:#047857}.bdg.lv3{background:#dbeafe;color:#1d4ed8}.bdg.lv2{background:#ffedd5;color:#c2410c}.bdg.lv1{background:#fee2e2;color:#b91c1c}
 .sec{background:var(--card);border-radius:18px;padding:24px;box-shadow:var(--shadow);margin-bottom:18px}
 .sec h3{color:var(--primary);font-size:1.1rem;margin-bottom:8px;font-weight:800;display:flex;align-items:center;gap:10px}
@@ -312,6 +348,8 @@ footer{text-align:center;margin-top:40px;color:var(--text-light);font-size:.82re
 </div>
 <div class="nav" style="margin-bottom:22px">
 <button class="btn bw" onclick="exportPDF()">📄 تقرير PDF</button>
+<button class="btn bg" onclick="go('eval')">📈 بطاقة التقويم الذاتي</button>
+<button class="btn bg" onclick="go('plan')">🛠️ خطة التحسين</button>
 <button class="btn bp" id="btnProgress" onclick="go('progress')">📊 لوحة متابعة التنفيذ</button>
 <button class="btn bp" id="btnManageIndicators" onclick="go('indicators')" style="display:none">✏️ إدارة المؤشرات</button>
 <button class="btn bg" id="btnBackup" onclick="go('backup')" style="display:none">💾 نسخة احتياطية</button>
@@ -336,6 +374,26 @@ footer{text-align:center;margin-top:40px;color:var(--text-light);font-size:.82re
 <div class="nav"><button class="btn" style="background:rgba(255,255,255,.15);color:#fff;border:2px solid rgba(255,255,255,.25)" id="backBtn">◀ رجوع</button><button class="btn bw" onclick="exportPDF()">📄 تقرير</button></div>
 </div>
 <div class="det" id="iDet"></div>
+<div class="sec" id="secRate">
+<h3>🎯 التقويم الذاتي للمؤشر</h3>
+<p class="hint">يقيّم الفريق مدى تحقق المؤشر بناءً على الشواهد • الدرجة 4 تعادل <bdi>100%</bdi> • 3 تعادل <bdi>75%</bdi> • 2 تعادل <bdi>50%</bdi> • 1 تعادل <bdi>25%</bdi></p>
+<div id="rateBox"></div>
+</div>
+<div class="sec" id="secPlan">
+<h3>🛠️ خطة التحسين لهذا المؤشر</h3>
+<p class="hint">املأها للمؤشرات التي تحتاج تحسينًا • تظهر تلقائيًا في صفحة خطة التحسين</p>
+<div class="pl-grid">
+<div class="pl-full"><label>جانب التحسين (الاحتياج)</label><textarea id="plNeed" placeholder="ما الذي ينقص هذا المؤشر حتى يصل للمستوى المستهدف؟"></textarea></div>
+<div><label>المستوى المستهدف</label><select id="plTarget"><option value="">—</option><option>التميز</option><option>التقدم</option><option>الانطلاق</option></select></div>
+<div><label>حالة التنفيذ</label><select id="plStatus"><option value="todo">⏳ لم يبدأ</option><option value="doing">🔄 جارٍ التنفيذ</option><option value="done">✅ منفذ</option></select></div>
+<div class="pl-full"><label>الإجراءات التحسينية</label><textarea id="plActions" placeholder="الإجراءات العملية التي ستنفذها المدرسة..."></textarea></div>
+<div><label>المسؤول عن التنفيذ</label><input type="text" id="plOwner" placeholder="مثال: وكيل الشؤون التعليمية"></div>
+<div><label>مؤشر التحقق (كيف نعرف أنه تحقق؟)</label><input type="text" id="plVerify" placeholder="مثال: ارتفاع نسبة المتقدمين في نافس إلى 60%"></div>
+<div><label>تاريخ البدء</label><input type="date" id="plStart"></div>
+<div><label>تاريخ الانتهاء</label><input type="date" id="plEnd"></div>
+</div>
+<div class="pl-act"><button class="btn bg" id="plSave" onclick="savePlan()">💾 حفظ الخطة</button><button class="btn bw" id="plSuggest" onclick="suggestPlan()">💡 اقتراح من توصية المقيّم</button><button class="btn bo" id="plClear" onclick="clearPlan()">🧹 حذف الخطة</button></div>
+</div>
 <div class="sec" id="secReview">
 <h3>📅 حالة المراجعة</h3>
 <p class="hint">حدد تاريخ المراجعة وحالة المؤشر</p>
@@ -459,6 +517,43 @@ footer{text-align:center;margin-top:40px;color:var(--text-light);font-size:.82re
 <div style="text-align:center;padding:20px;color:var(--text-light);font-size:.85rem;margin-top:20px;border-top:1px solid var(--border)" class="no-print">
 💾 يتم حفظ التغييرات تلقائياً في السحابة • 🔄 مزامنة فورية مع جميع الأجهزة
 </div>
+</div>
+
+<!-- ==================== بطاقة التقويم الذاتي ==================== -->
+<div id="pg-eval" class="pg h">
+<div class="hdr">
+<div><h1>📈 بطاقة التقويم الذاتي</h1><div style="font-size:.85rem;color:rgba(255,255,255,.85);margin-top:6px"><a onclick="go('home')" style="color:#fff;cursor:pointer;font-weight:700;text-decoration:none">🏠 الرئيسية</a> ◀ بطاقة التقويم الذاتي</div></div>
+<div class="nav no-print"><button class="btn bw" onclick="window.print()">🖨️ طباعة</button><button class="btn" style="background:rgba(255,255,255,.15);color:#fff;border:2px solid rgba(255,255,255,.25)" onclick="go('home')">◀ الرئيسية</button></div>
+</div>
+<div class="wb no-print"><span style="font-size:1.4rem">ℹ️</span><div><strong>طريقة الحساب:</strong> كل مؤشر يقيّمه الفريق من 1 إلى 4 (الدرجة 4 تعادل <bdi>100%</bdi>، و3 تعادل <bdi>75%</bdi>، و2 تعادل <bdi>50%</bdi>، و1 تعادل <bdi>25%</bdi>)، ونسبة المعيار والمجال والأداء العام هي متوسط المؤشرات المقيّمة فيها، ثم تُحوَّل للمستوى وفق الدليل: التميز <bdi>90%</bdi> فأكثر، التقدم <bdi>75%</bdi> فأكثر، الانطلاق <bdi>50%</bdi> فأكثر، التهيئة أقل من <bdi>50%</bdi>.<br><small>هذا تقدير داخلي للاسترشاد وليس حساب الهيئة الرسمي. أرقام الدورة الأولى من البطاقة بعد التحسين.</small></div></div>
+<div class="ev-cards" id="evCards"></div>
+<div class="charts-grid">
+<div class="chart-card"><h3>📊 المجالات: التقويم الذاتي مقابل الدورة الأولى</h3><div class="chart-canvas-wrap"><canvas id="chartEval"></canvas></div></div>
+<div class="chart-card"><h3>🎯 توزيع مستويات المؤشرات</h3><div class="chart-canvas-wrap"><canvas id="chartEvalLv"></canvas></div></div>
+</div>
+<h3 class="sttl">📂 الأداء وفق المعايير</h3>
+<div class="tbl-wrap"><table class="qt"><thead><tr><th>المعيار</th><th>المؤشرات المقيّمة</th><th>التقويم الذاتي</th><th>المستوى</th><th>الدورة الأولى</th><th>الفرق</th></tr></thead><tbody id="evStdBody"></tbody></table></div>
+<h3 class="sttl">📋 تقييم المؤشرات</h3>
+<div class="search-bar no-print">
+<select id="evField" onchange="rEvalTable()"><option value="">كل المجالات</option></select>
+<select id="evFilter" onchange="rEvalTable()"><option value="">كل المؤشرات</option><option value="none">لم تُقيَّم بعد</option><option value="low">مستوى منخفض (1 أو 2)</option><option value="ev">شواهدها ناقصة</option></select>
+<span style="color:var(--text-light);font-weight:700;font-size:.85rem" id="evCount"></span>
+</div>
+<div class="tbl-wrap"><table class="qt"><thead><tr><th>الرمز</th><th>المؤشر</th><th>الدورة الأولى</th><th>التقييم (1-4)</th><th>المستوى</th><th>الشواهد</th></tr></thead><tbody id="evIndBody"></tbody></table></div>
+</div>
+
+<!-- ==================== خطة التحسين ==================== -->
+<div id="pg-plan" class="pg h">
+<div class="hdr">
+<div><h1>🛠️ خطة التحسين</h1><div style="font-size:.85rem;color:rgba(255,255,255,.85);margin-top:6px"><a onclick="go('home')" style="color:#fff;cursor:pointer;font-weight:700;text-decoration:none">🏠 الرئيسية</a> ◀ خطة التحسين</div></div>
+<div class="nav no-print"><button class="btn bw" onclick="printPlan()">🖨️ طباعة / PDF</button><button class="btn bg" onclick="exportPlanCSV()">📗 تصدير Excel</button><button class="btn" style="background:rgba(255,255,255,.15);color:#fff;border:2px solid rgba(255,255,255,.25)" onclick="go('home')">◀ الرئيسية</button></div>
+</div>
+<div class="ev-cards" id="plCards"></div>
+<h3 class="sttl">📋 بنود الخطة</h3>
+<div class="tbl-wrap"><table class="qt"><thead><tr><th>الرمز</th><th>المؤشر</th><th>الحالي ← المستهدف</th><th>جانب التحسين</th><th>الإجراءات</th><th>المسؤول</th><th>المدة</th><th>مؤشر التحقق</th><th>الحالة</th></tr></thead><tbody id="plBody"></tbody></table></div>
+<h3 class="sttl">💡 مؤشرات مقترحة لإضافتها للخطة</h3>
+<p style="color:var(--text-light);font-size:.85rem;margin:-6px 0 12px;font-weight:600">مؤشرات قيّمها الفريق 1 أو 2، أو كانت في مستوى الانطلاق في الدورة الأولى ولم تُقيَّم بعد</p>
+<div class="tbl-wrap"><table class="qt"><thead><tr><th>الرمز</th><th>المؤشر</th><th>السبب</th><th></th></tr></thead><tbody id="plSugBody"></tbody></table></div>
 </div>
 
 <div id="pg-indicators" class="pg h">
@@ -682,11 +777,15 @@ db.collection('progress').onSnapshot(snap=>{
 PROGRESS={};
 snap.docs.forEach(d=>{
 const data=d.data();
-PROGRESS[d.id]={percent:data.percent||0,status:data.status||'',note:data.note||'',updatedAt:data.updatedAt||'',updatedBy:data.updatedBy||''};
+PROGRESS[d.id]={percent:data.percent||0,status:data.status||'',note:data.note||'',updatedAt:data.updatedAt||'',updatedBy:data.updatedBy||'',rating:data.rating||0,checks:data.checks||{},plan:data.plan||null};
 });
 console.log('📊 تم تحميل '+Object.keys(PROGRESS).length+' حالة تقدم');
 if(!$('pg-progress').classList.contains('h'))renderProgressPage();
 if(!$('pg-home').classList.contains('h'))rHome();
+if(!$('pg-field').classList.contains('h'))rField();
+if(!$('pg-ind').classList.contains('h'))rRate();
+if(!$('pg-eval').classList.contains('h'))rEvalPage();
+if(!$('pg-plan').classList.contains('h'))rPlanPage();
 },err=>{console.error('خطأ في مستمع التقدم:',err);});
 }
 
@@ -764,6 +863,8 @@ else if(p==='field')rField();
 else if(p==='ind')rInd();
 else if(p==='indicators')initIndicatorsAdmin();
 else if(p==='progress')initProgressPage();
+else if(p==='eval')rEvalPage();
+else if(p==='plan')rPlanPage();
 else if(p==='backup')rBackup();
 else if(p==='users')loadUsers();
 else if(p==='permissions')loadPermissions();}
@@ -866,7 +967,10 @@ gr.className='ig';
 list.forEach(function(i){
 const cc=counts[i.code]||0,n=notes[i.code],r=revs[i.code];
 let bd='<span class="bdg '+(cc>0?'f':'')+'">📎 '+cc+'</span>';
-bd+=i.prevLevel?'<span class="bdg '+(PREV_CLS[i.prevLevel]||'')+'" title="مستوى الدورة الأولى">'+esc(i.prevLevel)+'</span>':'<span class="bdg" title="مؤشر جديد">🆕 جديد</span>';
+bd+=i.prevLevel?'<span class="bdg '+(PREV_CLS[i.prevLevel]||'')+'" title="مرجع: مستوى الدورة الأولى">📌 '+esc(i.prevLevel)+'</span>':'<span class="bdg" title="مؤشر جديد">🆕 جديد</span>';
+const rr=rateOf(i.code);if(rr)bd+='<span class="bdg '+PREV_CLS[lvlOf(rr*25)]+'" title="التقويم الذاتي">🎯 '+rr+'/4</span>';
+const en=evItems(i).length;if(en)bd+='<span class="bdg'+(evDone(i)===en?' f':'')+'" title="الشواهد المكتملة">☑️ '+evDone(i)+'/'+en+'</span>';
+if(inPlan(i.code))bd+='<span class="bdg" title="ضمن خطة التحسين">🛠️ خطة</span>';
 if(n)bd+='<span class="bdg n">📝</span>';
 if(n&&n.swot)bd+='<span class="bdg '+n.swot+'">'+swN(n.swot)+'</span>';
 if(r&&r.status)bd+='<span class="bdg '+(r.status==='reviewed'?'r':r.status==='needsImprovement'?'w':'')+'">'+(r.status==='reviewed'?'✅':r.status==='needsImprovement'?'⚠️':'⏳')+'</span>';
@@ -890,6 +994,8 @@ $('iCrumb').innerHTML='<a onclick="go(\'home\')" style="color:#fff;cursor:pointe
 $('backBtn').onclick=()=>{curF=f.id;go('field');};
 $('iDet').innerHTML='<div class="dh"><div class="bi">'+f.icon+'</div><div><h2>'+i.sub+'</h2><div class="mt"><span class="cb">🔖 '+i.code+'</span><span>'+f.icon+' '+f.name+'</span></div></div></div><div class="dr"><div class="lb">ℹ️ نص المؤشر</div><div class="vl">'+esc(i.text)+'</div></div><div class="dr"><div class="lb">📄 الشواهد والأدلة المقترحة</div><div class="vl ev">'+esc(i.evidence)+'</div></div>'+prevHtml(i);
 applyPermsToIndicator();
+rRate();
+rPlanForm();
 rFiles();
 lNote();
 lRev();
@@ -900,11 +1006,11 @@ switchTab('files');
 }
 
 function prevHtml(i){
-if(!i.prevLevel)return '<div class="dr"><div class="lb">📊 نتيجة الدورة الأولى</div><div class="vl pv">🆕 مؤشر جديد في الإصدار الثالث للدليل — لم يُقيَّم في الدورة الأولى.</div></div>';
-let h='<div class="dr"><div class="lb">📊 نتيجة الدورة الأولى</div><div class="vl pv"><span class="lvb '+(PREV_CLS[i.prevLevel]||'')+'">'+esc(i.prevLevel)+'</span>';
+if(!i.prevLevel)return '<div class="dr"><div class="lb">📌 مرجع: مستواكم في الدورة الأولى</div><div class="vl pv">🆕 مؤشر جديد في الإصدار الثالث للدليل — لم يُقيَّم في الدورة الأولى.</div></div>';
+let h='<div class="dr"><div class="lb">📌 مرجع: مستواكم في الدورة الأولى</div><div class="vl pv"><span class="lvb '+(PREV_CLS[i.prevLevel]||'')+'">'+esc(i.prevLevel)+'</span>';
 if(i.prevBefore)h+=' <span class="pvn">(قبل التحسين: '+esc(i.prevBefore)+')</span>';
 if(i.prevCode&&i.prevCode!==i.code)h+=' <span class="pvn">— كان برقم '+esc(i.prevCode)+' في الإطار السابق</span>';
-h+='</div></div><div class="dr"><div class="lb">🎯 ما يتوقعه المقيّم</div><div class="vl pv">'+esc(i.prevExpect)+'</div></div>';
+h+='</div></div><div class="dr"><div class="lb">💡 توصية المقيّم في الدورة الأولى</div><div class="vl pv">'+esc(i.prevExpect)+'</div></div>';
 return h;
 }
 function applyPermsToIndicator(){
@@ -1458,6 +1564,189 @@ toast('✅ تم استعادة '+DEFAULT_INDICATORS.length+' مؤشر','s');
 // ============================================================
 // النسخ الاحتياطي
 // ============================================================
+// ============================================================
+// التقويم الذاتي + قائمة الشواهد + خطة التحسين
+// تُحفظ داخل progress/{code} (الحقول: rating, checks, plan) حتى تعمل بقواعد Firebase الحالية
+// ============================================================
+const RATINGS=[
+{v:4,t:'متميز',d:'متحقق بدرجة متميزة: شواهد قوية ومتنوعة ومستدامة'},
+{v:3,t:'متقدم',d:'متحقق بدرجة متقدمة: شواهد واضحة مع جوانب تحتاج تطويرًا'},
+{v:2,t:'متوسط',d:'متحقق بدرجة متوسطة: شواهد محدودة أو تطبيق غير منتظم'},
+{v:1,t:'محدود',d:'متحقق بدرجة محدودة: لا توجد شواهد كافية'}];
+// بطاقة التقويم الخارجي - الدورة الأولى (بعد التحسين)
+const PREV_CARD={overall:81,fields:{leadership:89.5,teaching:80.75,outcomes:75,environment:75.25},subs:{'التخطيط':87.75,'قيادة العملية التعليمية':91,'المجتمع المدرسي':85,'التطوير المؤسسي':92.5,'بناء خبرات التعلم':80.25,'تقويم التعلم':82.25,'التحصيل التعليمي':71.5,'التطور الشخصي والصحي والاجتماعي':89.5,'المبنى المدرسي':72.25,'الأمن والسلامة':78}};
+const LV_COLOR={'التميز':'#059669','التقدم':'#2563eb','الانطلاق':'#ea580c','التهيئة':'#dc2626'};
+const PLAN_ST={todo:'⏳ لم يبدأ',doing:'🔄 جارٍ التنفيذ',done:'✅ منفذ'};
+const lvlOf=p=>p>=90?'التميز':p>=75?'التقدم':p>=50?'الانطلاق':'التهيئة';
+const rateOf=c=>{const r=PROGRESS[c]&&PROGRESS[c].rating;return r>=1&&r<=4?r:0;};
+const avgPct=inds=>{const r=inds.map(i=>rateOf(i.code)).filter(v=>v>0);return r.length?Math.round(r.reduce((a,b)=>a+b,0)/r.length*2500)/100:null;};
+const evItems=i=>(i.evidence||'').split(/[،,]/).map(s=>s.trim().replace(/[.。]$/,'')).filter(Boolean);
+const evKey=s=>{let h=0;for(const ch of s)h=(h*31+ch.codePointAt(0))|0;return 'e'+(h>>>0).toString(36);};
+const evDone=i=>{const ch=(PROGRESS[i.code]&&PROGRESS[i.code].checks)||{};return evItems(i).filter(it=>ch[evKey(it)]).length;};
+const planOf=c=>(PROGRESS[c]&&PROGRESS[c].plan)||null;
+const inPlan=c=>{const p=planOf(c);return !!(p&&(p.actions||p.need));};
+const curLevel=i=>{const r=rateOf(i.code);return r?lvlOf(r*25):(i.prevLevel||'—');};
+const fmtP=p=>p==null?'—':'<bdi>'+p+'%</bdi>';
+const lvBadge=p=>p==null?'<span class="pvn">لم يُقيَّم</span>':'<span class="lvb '+PREV_CLS[lvlOf(p)]+'">'+lvlOf(p)+'</span>';
+const dlt=(p,pv)=>{if(p==null||pv==null)return '—';const d=Math.round((p-pv)*100)/100;return '<span class="dlt '+(d>=0?'up':'dn')+'">'+(d>0?'▲ ':d<0?'▼ ':'')+'<bdi>'+Math.abs(d)+'</bdi></span>';};
+const escBr=s=>esc(s||'').replace(/\n/g,'<br>');
+
+// يكتب الأرقام فوق الأعمدة وداخل الدوائر حتى تُقرأ الرسوم دون تمرير المؤشر
+const valueLabels={id:'valueLabels',afterDatasetsDraw(ch){
+const c=ch.ctx,bar=ch.config.type==='bar';c.save();c.font='bold 12px Tahoma';c.textAlign='center';
+ch.data.datasets.forEach((ds,di)=>{const m=ch.getDatasetMeta(di);if(m.hidden)return;m.data.forEach((el,ix)=>{const v=ds.data[ix];if(v==null||(!bar&&!v))return;const p=el.tooltipPosition();
+if(bar){c.fillStyle='#134e4a';c.fillText(v+'%',p.x,p.y-6);}else{c.fillStyle='#fff';c.fillText(v,p.x,p.y+4);}});});c.restore();}};
+
+async function saveProg(code,obj,msg){
+if(!can('manageProgress')){toast('⚠️ لا تملك صلاحية التعديل','w');return false;}
+try{await db.collection('progress').doc(code).set({code,...obj,updatedAt:new Date().toISOString(),updatedBy:currentUser?currentUser.email:''},{merge:true});if(msg)toast(msg,'s');return true;}
+catch(e){console.error(e);toast('❌ فشل الحفظ: '+(e.code||e.message),'e');return false;}}
+function setRating(code,v){saveProg(code,{rating:v,ratedBy:currentUser?currentUser.email:'',ratedAt:new Date().toISOString()},v?'✅ تم التقييم: '+code+' ← '+v+' من 4':'🧹 تم مسح التقييم');}
+function toggleCheck(code,k,on){saveProg(code,{checks:{[k]:on}});}
+
+// ---------- صفحة المؤشر ----------
+function rRate(){
+const i=gIByC(curI);if(!i||!$('rateBox'))return;
+const r=rateOf(i.code),ed=can('manageProgress');
+let h='<div class="rt-grid">';
+RATINGS.forEach(o=>{h+='<button class="rt-btn r'+o.v+(r===o.v?' active':'')+'" '+(ed?'':'disabled ')+'onclick="setRating(\''+i.code+'\','+o.v+')"><b>'+o.v+'</b><span>'+o.t+'</span><small>'+o.d+'</small></button>';});
+h+='</div><div class="rt-res">';
+if(r)h+='النسبة: <b><bdi>'+(r*25)+'%</bdi></b> — المستوى المتوقع: '+lvBadge(r*25)+(ed?' <button class="bs cl" onclick="setRating(\''+i.code+'\',0)">🧹 مسح التقييم</button>':'');
+else h+='<span class="pvn">⏳ لم يُقيَّم بعد — اختر الدرجة المناسبة بعد مراجعة الشواهد</span>';
+h+='</div>';
+const items=evItems(i),ch=(PROGRESS[i.code]&&PROGRESS[i.code].checks)||{};
+if(items.length){
+let list='',done=0;
+items.forEach(it=>{const k=evKey(it),on=!!ch[k];if(on)done++;list+='<label class="ck'+(on?' on':'')+'"><input type="checkbox" '+(on?'checked ':'')+(ed?'':'disabled ')+'onchange="toggleCheck(\''+i.code+'\',\''+k+'\',this.checked)"> '+esc(it)+'</label>';});
+h+='<h4 class="ck-h">☑️ قائمة الشواهد المطلوبة</h4><div class="ck-list">'+list+'</div><div class="ck-sum">اكتمل '+done+' من '+items.length+(done===items.length?' ✅':'')+'</div>';}
+$('rateBox').innerHTML=h;}
+
+function rPlanForm(){
+const i=gIByC(curI);if(!i)return;
+const p=planOf(i.code)||{},ed=can('manageProgress');
+$('plNeed').value=p.need||'';$('plTarget').value=p.target||'';$('plStatus').value=p.status||'todo';
+$('plActions').value=p.actions||'';$('plOwner').value=p.owner||'';$('plVerify').value=p.verify||'';
+$('plStart').value=p.start||'';$('plEnd').value=p.end||'';
+['plNeed','plTarget','plStatus','plActions','plOwner','plVerify','plStart','plEnd'].forEach(id=>{$(id).disabled=!ed;});
+$('plSave').style.display=ed?'inline-flex':'none';
+$('plClear').style.display=ed&&inPlan(i.code)?'inline-flex':'none';
+$('plSuggest').style.display=ed&&i.prevExpect?'inline-flex':'none';}
+
+function suggestPlan(){
+const i=gIByC(curI);if(!i||!i.prevExpect)return;
+if($('plActions').value.trim()&&!confirm('سيتم استبدال الإجراءات المكتوبة بنص التوصية. متابعة؟'))return;
+$('plActions').value=i.prevExpect.replace(/^يتوقع من المدرسة\s*/,'').replace(/\s*— ومن مؤشر/,'\n\nومن مؤشر');
+const cur=curLevel(i),next={'التهيئة':'الانطلاق','الانطلاق':'التقدم','التقدم':'التميز','التميز':'التميز'}[cur]||'التقدم';
+if(!$('plTarget').value)$('plTarget').value=next;
+if(!$('plNeed').value.trim())$('plNeed').value='رفع مستوى المؤشر من '+cur+' إلى '+next+'.';
+toast('💡 تمت تعبئة الاقتراح — عدّله بما يناسب مدرستك ثم احفظ','s');}
+
+async function savePlan(){
+const i=gIByC(curI);if(!i)return;
+const plan={need:$('plNeed').value.trim(),target:$('plTarget').value,status:$('plStatus').value,actions:$('plActions').value.trim(),owner:$('plOwner').value.trim(),verify:$('plVerify').value.trim(),start:$('plStart').value,end:$('plEnd').value};
+if(!plan.need&&!plan.actions){toast('⚠️ اكتب جانب التحسين أو الإجراءات','w');return;}
+if(await saveProg(i.code,{plan},'✅ تم حفظ خطة التحسين'))rPlanForm();}
+
+async function clearPlan(){
+const i=gIByC(curI);if(!i)return;
+if(!confirm('حذف خطة التحسين لهذا المؤشر؟'))return;
+if(await saveProg(i.code,{plan:firebase.firestore.FieldValue.delete()},'🧹 تم حذف الخطة')){PROGRESS[i.code]&&(PROGRESS[i.code].plan=null);rPlanForm();}}
+
+// ---------- بطاقة التقويم الذاتي ----------
+function evCard(title,p,pv){return '<div class="ev-card"><div class="n">'+fmtP(p)+'</div><div class="l">'+title+'</div>'+lvBadge(p)+(pv!=null?'<div class="pv">الدورة الأولى: <bdi>'+pv+'%</bdi> '+(p!=null?dlt(p,pv):'')+'</div>':'')+'</div>';}
+function rEvalPage(){
+const sel=$('evField');if(sel.options.length===1)FIELDS.forEach(f=>{sel.innerHTML+='<option value="'+f.id+'">'+f.icon+' '+f.name+'</option>';});
+const rated=INDICATORS.filter(i=>rateOf(i.code)).length;
+const evT=INDICATORS.reduce((s,i)=>s+evItems(i).length,0),evD=INDICATORS.reduce((s,i)=>s+evDone(i),0);
+let h=evCard('🏆 الأداء العام',avgPct(INDICATORS),PREV_CARD.overall);
+FIELDS.forEach(f=>{h+=evCard(f.icon+' '+f.name,avgPct(gIByF(f.id)),PREV_CARD.fields[f.id]);});
+h+='<div class="ev-card"><div class="n">'+rated+'<span style="font-size:1rem;color:var(--text-light)"> / '+INDICATORS.length+'</span></div><div class="l">🎯 مؤشرات مقيّمة</div></div>';
+h+='<div class="ev-card"><div class="n">'+(evT?Math.round(evD/evT*100):0)+'%</div><div class="l">☑️ اكتمال الشواهد</div><div class="pv">'+evD+' من '+evT+' شاهدًا</div></div>';
+$('evCards').innerHTML=h;
+let sb='';
+FIELDS.forEach(f=>{const fi=gIByF(f.id);if(!fi.length)return;
+sb+='<tr class="grp"><td colspan="6">'+f.icon+' '+f.name+'</td></tr>';
+[...new Set(fi.map(i=>i.sub))].forEach(s=>{const inds=fi.filter(i=>i.sub===s),p=avgPct(inds),pv=PREV_CARD.subs[s];
+sb+='<tr><td>'+esc(s)+'</td><td>'+inds.filter(i=>rateOf(i.code)).length+' من '+inds.length+'</td><td><b>'+fmtP(p)+'</b></td><td>'+lvBadge(p)+'</td><td>'+(pv!=null?'<bdi>'+pv+'%</bdi>':'<span class="pvn">معيار جديد</span>')+'</td><td>'+dlt(p,pv)+'</td></tr>';});});
+$('evStdBody').innerHTML=sb;
+// رسم المجالات: لون العمود حسب المستوى، والرمادي للدورة الأولى
+const cur=FIELDS.map(f=>avgPct(gIByF(f.id)));
+destroyChart('chartEval');
+charts.chartEval=new Chart($('chartEval').getContext('2d'),{type:'bar',plugins:[valueLabels],data:{labels:FIELDS.map(f=>f.name),datasets:[
+{label:'التقويم الذاتي',data:cur,backgroundColor:cur.map(p=>p==null?'#e2e8f0':LV_COLOR[lvlOf(p)]),borderRadius:8},
+{label:'الدورة الأولى',data:FIELDS.map(f=>PREV_CARD.fields[f.id]),backgroundColor:'#cbd5e1',borderRadius:8}]},
+options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:22}},scales:{y:{beginAtZero:true,max:100,ticks:{callback:v=>v+'%',font:{weight:'bold'}}},x:{ticks:{font:{weight:'bold'}}}},plugins:{legend:{position:'bottom',labels:{font:{weight:'bold'},generateLabels:()=>[{text:'التقويم الذاتي (اللون حسب المستوى)',fillStyle:'#0f766e',strokeStyle:'#0f766e'},{text:'الدورة الأولى',fillStyle:'#cbd5e1',strokeStyle:'#cbd5e1'}]}}}}});
+const lc={'التميز':0,'التقدم':0,'الانطلاق':0,'التهيئة':0};let un=0;
+INDICATORS.forEach(i=>{const r=rateOf(i.code);if(r)lc[lvlOf(r*25)]++;else un++;});
+destroyChart('chartEvalLv');
+charts.chartEvalLv=new Chart($('chartEvalLv').getContext('2d'),{type:'doughnut',plugins:[valueLabels],data:{labels:['التميز','التقدم','الانطلاق','التهيئة','لم يُقيَّم'],datasets:[{data:[lc['التميز'],lc['التقدم'],lc['الانطلاق'],lc['التهيئة'],un],backgroundColor:['#059669','#2563eb','#ea580c','#dc2626','#cbd5e1'],borderWidth:3,borderColor:'#fff'}]},options:{responsive:true,maintainAspectRatio:false,cutout:'55%',plugins:{legend:{position:'bottom',labels:{font:{weight:'bold'},padding:12}}}}});
+rEvalTable();}
+
+function rEvalTable(){
+const ff=$('evField').value,fl=$('evFilter').value,ed=can('manageProgress');
+const list=INDICATORS.filter(i=>{const r=rateOf(i.code);if(ff&&i.fieldId!==ff)return false;
+if(fl==='none')return !r;if(fl==='low')return r&&r<=2;if(fl==='ev')return evDone(i)<evItems(i).length;return true;});
+$('evCount').textContent=list.length+' مؤشر';
+let h='',lastF='';
+list.forEach(i=>{const r=rateOf(i.code),n=evItems(i).length,d=evDone(i);
+if(i.fieldId!==lastF){lastF=i.fieldId;const f=gF(i.fieldId);h+='<tr class="grp"><td colspan="6">'+(f?f.icon+' '+f.name:'')+'</td></tr>';}
+let q='<div class="qr">';[1,2,3,4].forEach(v=>{q+='<button class="r'+v+(r===v?' on':'')+'" '+(ed?'':'disabled ')+'onclick="setRating(\''+i.code+'\','+v+')" title="'+RATINGS[4-v].d+'">'+v+'</button>';});q+='</div>';
+h+='<tr><td><span class="lnk" onclick="curI=\''+i.code+'\';go(\'ind\')">'+i.code+'</span></td><td>'+esc(i.text)+'</td><td>'+(i.prevLevel?'<span class="bdg '+PREV_CLS[i.prevLevel]+'">'+i.prevLevel+'</span>':'<span class="bdg">🆕 جديد</span>')+'</td><td>'+q+'</td><td>'+lvBadge(r?r*25:null)+'</td><td style="white-space:nowrap">'+(n?(d===n?'✅ ':'')+d+' من '+n:'—')+'</td></tr>';});
+$('evIndBody').innerHTML=h||'<tr><td colspan="6" style="text-align:center;padding:30px;color:var(--text-light)">لا توجد مؤشرات مطابقة</td></tr>';}
+
+// ---------- خطة التحسين ----------
+function openPlan(code){curI=code;go('ind');setTimeout(()=>{const s=$('secPlan');if(s)s.scrollIntoView({behavior:'smooth'});},150);}
+function planRowCells(i,withSelect){
+const p=planOf(i.code),stv=p.status||'todo';
+const st=withSelect&&can('manageProgress')?'<select onchange="saveProg(\''+i.code+'\',{plan:{status:this.value}},\'✅ تم تحديث الحالة\')">'+Object.keys(PLAN_ST).map(k=>'<option value="'+k+'"'+(stv===k?' selected':'')+'>'+PLAN_ST[k]+'</option>').join('')+'</select>':PLAN_ST[stv];
+const tg=p.target?'<span class="lvb '+(PREV_CLS[p.target]||'')+'">'+esc(p.target)+'</span>':'—';
+const cl=curLevel(i),cb=PREV_CLS[cl]?'<span class="lvb '+PREV_CLS[cl]+'">'+cl+'</span>':cl;
+return '<td>'+esc(i.text)+'</td><td style="white-space:nowrap">'+(withSelect?cb+' ← '+tg:esc(cl)+' ← '+esc(p.target||'—'))+'</td><td>'+escBr(p.need)+'</td><td>'+escBr(p.actions)+'</td><td>'+esc(p.owner||'')+'</td><td style="white-space:nowrap">'+esc(p.start||'')+(p.end?'<br>← '+esc(p.end):'')+'</td><td>'+esc(p.verify||'')+'</td><td>'+st+'</td>';}
+function rPlanPage(){
+const items=INDICATORS.filter(i=>inPlan(i.code));
+const cnt={todo:0,doing:0,done:0};items.forEach(i=>{cnt[planOf(i.code).status||'todo']++;});
+const pc=items.length?Math.round(cnt.done/items.length*100):0;
+const card=(n,l,c)=>'<div class="ev-card"><div class="n" style="color:'+c+'">'+n+'</div><div class="l">'+l+'</div></div>';
+$('plCards').innerHTML=card(items.length,'🛠️ بنود في الخطة','var(--primary)')+card(cnt.done,'✅ منفذ','#059669')+card(cnt.doing,'🔄 جارٍ التنفيذ','#2563eb')+card(cnt.todo,'⏳ لم يبدأ','#ea580c')+card(pc+'%','📊 نسبة الإنجاز','var(--primary)');
+let h='';
+FIELDS.forEach(f=>{const li=items.filter(i=>i.fieldId===f.id);if(!li.length)return;
+h+='<tr class="grp"><td colspan="9">'+f.icon+' '+f.name+'</td></tr>';
+li.forEach(i=>{h+='<tr><td><span class="lnk" onclick="openPlan(\''+i.code+'\')">'+i.code+'</span></td>'+planRowCells(i,true)+'</tr>';});});
+$('plBody').innerHTML=h||'<tr><td colspan="9" style="text-align:center;padding:30px;color:var(--text-light)">لا توجد بنود بعد — افتح أي مؤشر من القائمة أدناه واملأ قسم "خطة التحسين"</td></tr>';
+const sug=INDICATORS.filter(i=>{if(inPlan(i.code))return false;const r=rateOf(i.code);return r?r<=2:i.prevLevel==='الانطلاق';});
+$('plSugBody').innerHTML=sug.map(i=>{const r=rateOf(i.code);
+return '<tr><td><span class="lnk" onclick="openPlan(\''+i.code+'\')">'+i.code+'</span></td><td>'+esc(i.text)+'</td><td>'+(r?'🎯 تقييم الفريق '+r+' من 4':'📌 الانطلاق في الدورة الأولى')+'</td><td><button class="btn bg" style="padding:6px 12px;font-size:.78rem" onclick="openPlan(\''+i.code+'\')">➕ إعداد الخطة</button></td></tr>';}).join('')||'<tr><td colspan="4" style="text-align:center;padding:24px;color:#16a34a;font-weight:800">✅ لا توجد مؤشرات منخفضة خارج الخطة</td></tr>';}
+
+function printPlan(){
+const items=INDICATORS.filter(i=>inPlan(i.code));
+if(!items.length){toast('⚠️ لا توجد بنود في الخطة','w');return;}
+const today=new Date().toLocaleDateString('ar-SA');
+let h='<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><title>خطة التحسين - '+today+'</title><style>';
+h+='@page{size:A4 landscape;margin:10mm}*{box-sizing:border-box;font-family:Tahoma,Arial,sans-serif}body{color:#134e4a;padding:10px;margin:0}';
+h+='h1{color:#0f766e;text-align:center;margin:0 0 4px;font-size:1.5rem}p.s{text-align:center;color:#64748b;margin:0 0 14px}';
+h+='table{width:100%;border-collapse:collapse}th{background:#0f766e;color:#fff;padding:7px;font-size:.75rem;text-align:right}td{border:1px solid #cbd5e1;padding:6px;font-size:.72rem;vertical-align:top;line-height:1.6}';
+h+='tr.g td{background:#ccfbf1;font-weight:700;font-size:.85rem}tr{page-break-inside:avoid}.ft{text-align:center;margin-top:16px;color:#64748b;font-size:.72rem}</style></head><body>';
+h+='<h1>🛠️ خطة التحسين</h1><p class="s">متوسطة الصحافة الأهلية — '+today+'</p>';
+h+='<table><thead><tr><th>الرمز</th><th>المؤشر</th><th>الحالي ← المستهدف</th><th>جانب التحسين</th><th>الإجراءات</th><th>المسؤول</th><th>المدة</th><th>مؤشر التحقق</th><th>الحالة</th></tr></thead><tbody>';
+FIELDS.forEach(f=>{const li=items.filter(i=>i.fieldId===f.id);if(!li.length)return;
+h+='<tr class="g"><td colspan="9">'+f.name+'</td></tr>';
+li.forEach(i=>{h+='<tr><td style="white-space:nowrap;font-weight:700">'+i.code+'</td>'+planRowCells(i,false)+'</tr>';});});
+h+='</tbody></table><div class="ft">منظومة الاعتماد المدرسي — '+today+'</div></body></html>';
+const w=window.open('','_blank');if(!w){toast('⚠️ اسمح بالنوافذ المنبثقة','w');return;}
+w.document.write(h);w.document.close();setTimeout(()=>w.print(),500);}
+
+function exportPlanCSV(){
+const items=INDICATORS.filter(i=>inPlan(i.code));
+if(!items.length){toast('⚠️ لا توجد بنود في الخطة','w');return;}
+const rows=[['الرمز','المجال','المعيار','المؤشر','المستوى الحالي','المستوى المستهدف','جانب التحسين','الإجراءات','المسؤول','تاريخ البدء','تاريخ الانتهاء','مؤشر التحقق','الحالة']];
+items.forEach(i=>{const p=planOf(i.code),f=gF(i.fieldId);
+rows.push(['="'+i.code+'"',f?f.name:'',i.sub,i.text,curLevel(i),p.target||'',p.need||'',p.actions||'',p.owner||'',p.start||'',p.end||'',p.verify||'',PLAN_ST[p.status||'todo'].replace(/^\S+\s/,'')]);});
+const csv='﻿'+rows.map(r=>r.map(c=>String(c).startsWith('="')?c.replace(/"/g,'""').replace(/^/,'"').replace(/$/,'"'):'"'+String(c).replace(/"/g,'""')+'"').join(',')).join('\r\n');
+const u=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
+const a=document.createElement('a');a.href=u;a.download='خطة_التحسين_'+new Date().toISOString().slice(0,10)+'.csv';
+document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(u);
+toast('✅ تم التصدير — افتحه في Excel','s');}
+
 function rBackup(){
 const size=allFiles.reduce((s,f)=>s+(f.fileSize||0),0);
 const nc=allNotes.filter(n=>n.text&&n.text.trim()).length;
